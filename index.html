@@ -1,0 +1,1652 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TK Office — 竹村 直人 | 経営 × 技術 × 生成AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* A案：クラシック信頼型 */
+    --bg: #f6f5f1;
+    --bg-alt: #ecebe5;
+    --ink: #0f1a34;
+    --ink-soft: #384156;
+    --ink-mute: #6b7280;
+    --line: #d9d6cc;
+    --card: #ffffff;
+    --accent: #1a3a6b;      /* ネイビー */
+    --accent-soft: #e7ecf4;
+    --highlight: #b8946a;   /* 落ち着いた金 */
+    --serif: "Noto Serif JP", "Times New Roman", serif;
+    --sans: "Noto Sans JP", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --radius: 4px;
+    --shadow: 0 1px 2px rgba(15,26,52,.04), 0 4px 24px rgba(15,26,52,.04);
+  }
+  [data-variant="modern"]{
+    --bg: #0b1220;
+    --bg-alt: #111a2e;
+    --ink: #eef2f9;
+    --ink-soft: #b8c2d6;
+    --ink-mute: #7683a0;
+    --line: #1e2942;
+    --card: #131c33;
+    --accent: #6fb5ff;
+    --accent-soft: #1a2745;
+    --highlight: #7fe6d3;
+    --serif: "Inter", sans-serif;
+    --shadow: 0 1px 2px rgba(0,0,0,.2), 0 8px 40px rgba(0,0,0,.25);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"palt";
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:18px 40px;
+    display:flex;align-items:center;justify-content:space-between;
+    background:color-mix(in oklab, var(--bg) 85%, transparent);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s, padding .3s;
+  }
+  .nav.scrolled{border-bottom-color:var(--line);padding:12px 40px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:600}
+  .brand-mark{
+    width:34px;height:34px;border:1.5px solid var(--ink);
+    display:grid;place-items:center;
+    font-family:var(--serif);font-weight:700;font-size:15px;
+    letter-spacing:.02em;
+  }
+  [data-variant="modern"] .brand-mark{border-color:var(--accent);color:var(--accent)}
+  .brand-name{font-size:15px;letter-spacing:.08em}
+  .brand-sub{font-size:11px;color:var(--ink-mute);letter-spacing:.15em;text-transform:uppercase;font-family:var(--sans)}
+  .nav-links{display:flex;gap:32px;font-size:13px;letter-spacing:.08em}
+  .nav-links a{color:var(--ink-soft);transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a::after{content:"";position:absolute;bottom:-6px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{
+    padding:10px 20px;font-size:13px;letter-spacing:.05em;
+    background:var(--ink);color:var(--bg);border:none;cursor:pointer;
+    font-family:var(--sans);transition:transform .15s;
+  }
+  [data-variant="modern"] .nav-cta{background:var(--accent);color:var(--bg)}
+  .nav-cta:hover{transform:translateY(-1px)}
+  @media(max-width:820px){.nav-links{display:none}.nav{padding:14px 20px}}
+
+  /* ---------- Layout ---------- */
+  section{padding:120px 40px;position:relative}
+  .wrap{max-width:1200px;margin:0 auto}
+  @media(max-width:820px){section{padding:80px 20px}}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:11px;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--ink-mute);font-family:var(--sans);margin-bottom:24px;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--ink-mute)}
+  .section-title{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(28px,4vw,44px);line-height:1.3;
+    letter-spacing:.02em;margin-bottom:16px;
+  }
+  .section-lede{color:var(--ink-soft);font-size:16px;max-width:640px;margin-bottom:64px}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-top:180px;padding-bottom:140px;
+    min-height:92vh;display:flex;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:center;width:100%}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:48px}}
+  .hero-eyebrow{
+    font-family:var(--mono);font-size:12px;color:var(--ink-mute);
+    letter-spacing:.15em;margin-bottom:32px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--highlight);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hero h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(40px,6.2vw,78px);line-height:1.15;letter-spacing:.01em;
+    margin-bottom:32px;
+  }
+  .hero h1 .accent{color:var(--accent);position:relative;display:inline-block}
+  .hero h1 .accent::after{
+    content:"";position:absolute;left:0;right:0;bottom:6px;height:.35em;
+    background:color-mix(in oklab, var(--highlight) 40%, transparent);
+    z-index:-1;
+  }
+  [data-variant="modern"] .hero h1 .accent::after{display:none}
+  [data-variant="modern"] .hero h1 .accent{
+    background:linear-gradient(90deg, var(--accent), var(--highlight));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lede{font-size:17px;color:var(--ink-soft);max-width:520px;margin-bottom:40px;line-height:1.9}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 26px;font-size:14px;letter-spacing:.05em;
+    border:1px solid var(--ink);background:var(--ink);color:var(--bg);
+    cursor:pointer;font-family:var(--sans);transition:all .2s;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,26,52,.15)}
+  .btn.outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+  [data-variant="modern"] .btn{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  [data-variant="modern"] .btn.outline{background:transparent;color:var(--ink);border-color:var(--line)}
+
+  .hero-card{
+    position:relative;padding:36px;background:var(--card);
+    border:1px solid var(--line);box-shadow:var(--shadow);
+  }
+  .hero-card::before{
+    content:"PROFILE";position:absolute;top:-10px;left:24px;
+    background:var(--bg);padding:0 12px;font-family:var(--mono);
+    font-size:11px;letter-spacing:.2em;color:var(--ink-mute);
+  }
+  .profile-row{display:flex;gap:20px;align-items:flex-start;margin-bottom:8px;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .profile-row:last-of-type{border-bottom:none}
+  .profile-key{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.1em;min-width:80px;padding-top:3px}
+  .profile-val{font-size:14px;color:var(--ink);flex:1;line-height:1.7}
+  .profile-val strong{font-family:var(--serif);font-size:16px;font-weight:600}
+
+  /* 背景ライン装飾 */
+  .hero::after{
+    content:"";position:absolute;right:-100px;top:20%;width:400px;height:400px;
+    background:radial-gradient(circle, color-mix(in oklab, var(--accent) 12%, transparent), transparent 70%);
+    pointer-events:none;z-index:0;
+  }
+
+  /* ---------- About ---------- */
+  .about{background:var(--bg-alt)}
+  .about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:40px}}
+  .about-body p{color:var(--ink-soft);font-size:15px;line-height:2;margin-bottom:20px}
+  .about-body p strong{color:var(--ink);font-weight:600}
+  .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
+  .stat-num{font-family:var(--serif);font-size:44px;font-weight:600;color:var(--accent);line-height:1;margin-bottom:8px}
+  .stat-label{font-size:12px;color:var(--ink-mute);letter-spacing:.05em}
+
+  /* ---------- Services ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:900px){.services-grid{grid-template-columns:1fr}}
+  .svc-card{
+    padding:40px 32px;background:var(--card);border:1px solid var(--line);
+    position:relative;transition:transform .3s, box-shadow .3s;
+    overflow:hidden;
+  }
+  .svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  /* Services 上部ビジュアル（Worksより控えめな細帯・B案トーン） */
+  .svc-visual{
+    position:relative;aspect-ratio:16/5;overflow:hidden;
+    margin:-40px -32px 32px;
+    border-bottom:1px solid var(--line);
+    background:var(--accent);
+  }
+  .svc-visual img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) brightness(.55) contrast(1.2);
+    z-index:0;
+  }
+  .svc-visual::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(135deg, rgba(26,58,107,.75), rgba(15,26,52,.55));
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .svc-visual::after{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:repeating-linear-gradient(135deg, transparent 0 8px, rgba(255,255,255,.02) 8px 9px);
+    pointer-events:none;
+  }
+  html[data-theme="dark"] .svc-visual img{
+    filter:grayscale(1) brightness(.65) contrast(1.15);
+  }
+  html[data-theme="dark"] .svc-visual::before{
+    background:linear-gradient(135deg, rgba(111,181,255,.35), rgba(15,26,52,.65));
+  }
+  .svc-num{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.2em;margin-bottom:24px}
+  .svc-icon{
+    width:44px;height:44px;margin-bottom:24px;
+    display:grid;place-items:center;
+    border:1px solid var(--accent);color:var(--accent);
+  }
+  .svc-title{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:16px;letter-spacing:.02em}
+  .svc-desc{font-size:14px;color:var(--ink-soft);line-height:1.9;margin-bottom:20px}
+  .svc-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{
+    font-family:var(--mono);font-size:11px;padding:4px 10px;
+    background:var(--accent-soft);color:var(--accent);letter-spacing:.05em;
+  }
+
+  /* ---------- Works ---------- */
+  .works{background:var(--bg-alt)}
+  .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+  @media(max-width:820px){.works-grid{grid-template-columns:1fr}}
+  .work-card{background:var(--card);border:1px solid var(--line);overflow:hidden;transition:transform .3s}
+  .work-card:hover{transform:translateY(-4px)}
+  .work-visual{
+    aspect-ratio:16/9;position:relative;overflow:hidden;
+    background:
+      repeating-linear-gradient(135deg, var(--accent-soft) 0 12px, transparent 12px 24px),
+      var(--bg-alt);
+    border-bottom:1px solid var(--line);
+  }
+  /* B案 Heavy tint: 画像 → グレースケール＋暗く → ネイビーオーバーレイ */
+  .work-visual img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) brightness(.55) contrast(1.2);
+    z-index:0;
+  }
+  .work-visual::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(135deg, rgba(26,58,107,.75), rgba(15,26,52,.55));
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .work-visual::after{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:repeating-linear-gradient(135deg, transparent 0 8px, rgba(255,255,255,.02) 8px 9px);
+    pointer-events:none;
+  }
+  /* ダークモード時は少しトーンを緩める */
+  html[data-theme="dark"] .work-visual img{
+    filter:grayscale(1) brightness(.65) contrast(1.15);
+  }
+  html[data-theme="dark"] .work-visual::before{
+    background:linear-gradient(135deg, rgba(111,181,255,.35), rgba(15,26,52,.65));
+  }
+  .work-visual-label{
+    position:absolute;left:16px;bottom:16px;z-index:2;
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    color:#fff;background:rgba(15,26,52,.72);padding:6px 12px;
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+  }
+  .work-body{padding:32px}
+  .work-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .work-cat{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.15em}
+  .work-num{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .work-title{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:12px;line-height:1.5}
+  .work-desc{font-size:14px;color:var(--ink-soft);line-height:1.85;margin-bottom:20px}
+  .work-result{
+    padding:16px;background:var(--accent-soft);
+    border-left:3px solid var(--accent);
+    font-size:13px;color:var(--ink);margin-bottom:20px;
+  }
+  .work-result b{font-family:var(--serif);color:var(--accent);font-size:15px}
+  .work-stack{display:flex;flex-wrap:wrap;gap:6px}
+
+  /* ---------- Works Group Heading ---------- */
+  .works-group{
+    grid-column:1/-1;
+    display:flex;align-items:baseline;gap:20px;
+    padding:24px 0 8px;
+    border-bottom:1px solid var(--line);
+    margin-top:24px;
+  }
+  .works-group:first-of-type{margin-top:0}
+  .works-group-num{
+    font-family:var(--mono);font-size:11px;letter-spacing:.25em;
+    color:var(--ink-mute);
+  }
+  .works-group-title{
+    font-family:var(--serif);font-size:22px;font-weight:600;
+    color:var(--ink);letter-spacing:.02em;flex:1;
+  }
+  .works-group-count{
+    font-family:var(--mono);font-size:11px;
+    color:var(--ink-mute);letter-spacing:.05em;
+  }
+  @media(max-width:640px){
+    .works-group{flex-wrap:wrap;gap:8px}
+    .works-group-title{font-size:19px;flex-basis:100%}
+  }
+
+  /* ---------- Featured Work (SNS Factory) ---------- */
+  .featured-work{
+    grid-column:1/-1;
+    background:var(--card);border:1px solid var(--line);
+    position:relative;overflow:hidden;
+  }
+  /* SNS Factory ヒーロー画像バナー（B案トーン処理） */
+  .featured-hero{
+    position:relative;aspect-ratio:32/9;overflow:hidden;
+    border-bottom:1px solid var(--line);background:var(--accent);
+  }
+  .featured-hero img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) brightness(.5) contrast(1.25);
+    z-index:0;
+  }
+  .featured-hero::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:
+      linear-gradient(135deg, rgba(26,58,107,.78), rgba(15,26,52,.6)),
+      radial-gradient(ellipse at 30% 40%, rgba(111,181,255,.15), transparent 60%);
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .featured-hero::after{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:repeating-linear-gradient(135deg, transparent 0 10px, rgba(255,255,255,.03) 10px 11px);
+    pointer-events:none;
+  }
+  .featured-hero-label{
+    position:absolute;left:32px;bottom:24px;z-index:2;
+    font-family:var(--mono);font-size:12px;letter-spacing:.15em;
+    color:#fff;background:rgba(15,26,52,.72);padding:8px 14px;
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+  }
+  @media(max-width:640px){
+    .featured-hero{aspect-ratio:16/9}
+    .featured-hero-label{left:16px;bottom:16px;font-size:10px;padding:6px 10px}
+  }
+  html[data-theme="dark"] .featured-hero img{
+    filter:grayscale(1) brightness(.6) contrast(1.2);
+  }
+  html[data-theme="dark"] .featured-hero::before{
+    background:
+      linear-gradient(135deg, rgba(111,181,255,.4), rgba(15,26,52,.7)),
+      radial-gradient(ellipse at 30% 40%, rgba(111,181,255,.2), transparent 60%);
+  }
+  .featured-work::before{
+    content:"FEATURED";position:absolute;top:0;right:0;
+    background:var(--accent);color:var(--bg);
+    font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+    padding:6px 14px;z-index:2;
+  }
+  .featured-header{
+    padding:40px 40px 32px;border-bottom:1px solid var(--line);
+    background:
+      linear-gradient(180deg, transparent, color-mix(in oklab, var(--accent) 3%, transparent)),
+      var(--card);
+  }
+  .featured-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+  .featured-cat{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.15em}
+  .featured-num{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .featured-title{
+    font-family:var(--serif);font-size:clamp(24px,3vw,34px);font-weight:600;
+    line-height:1.35;margin-bottom:12px;letter-spacing:.02em;
+  }
+  .featured-tagline{font-size:15px;color:var(--ink-soft);line-height:1.85;max-width:820px}
+
+  .featured-body{padding:40px}
+  .featured-grid{
+    display:grid;grid-template-columns:1.15fr 1fr;gap:48px;
+    margin-bottom:36px;
+  }
+  @media(max-width:900px){.featured-grid{grid-template-columns:1fr;gap:32px}}
+
+  .featured-h4{
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    color:var(--ink-mute);margin-bottom:16px;padding-bottom:10px;
+    border-bottom:1px solid var(--line);
+  }
+  .featured-desc{font-size:14px;color:var(--ink-soft);line-height:1.9;margin-bottom:16px}
+  .featured-desc strong{color:var(--ink);font-weight:600}
+
+  /* パイプライン図 */
+  .pipeline-viz{
+    background:var(--bg-alt);border:1px dashed var(--line);
+    padding:24px;font-family:var(--mono);font-size:12px;
+    line-height:1.9;color:var(--ink-soft);
+    overflow-x:auto;
+  }
+  .pipeline-viz .node{
+    display:inline-block;padding:4px 10px;
+    background:var(--card);border:1px solid var(--line);
+    color:var(--ink);margin:2px 0;
+  }
+  .pipeline-viz .node.ai{border-color:var(--accent);color:var(--accent)}
+  .pipeline-viz .node.human{border-color:var(--highlight);color:var(--highlight)}
+  .pipeline-viz .arrow{color:var(--ink-mute);padding:0 6px}
+  .pipeline-legend{
+    display:flex;gap:20px;margin-top:16px;padding-top:14px;
+    border-top:1px dashed var(--line);
+    font-family:var(--mono);font-size:11px;color:var(--ink-mute);
+    flex-wrap:wrap;
+  }
+  .pipeline-legend span::before{
+    content:"■";margin-right:6px;
+  }
+  .pipeline-legend .l-ai::before{color:var(--accent)}
+  .pipeline-legend .l-human::before{color:var(--highlight)}
+  .pipeline-legend .l-data::before{color:var(--ink-mute)}
+
+  /* パイプライン構成一覧 */
+  .modules-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+    margin-bottom:36px;
+  }
+  @media(max-width:820px){.modules-grid{grid-template-columns:1fr}}
+  .module-item{
+    padding:20px;background:var(--bg-alt);border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+  }
+  .module-name{
+    font-family:var(--serif);font-size:16px;font-weight:600;
+    margin-bottom:6px;color:var(--ink);
+  }
+  .module-path{
+    font-family:var(--mono);font-size:11px;color:var(--ink-mute);
+    margin-bottom:10px;letter-spacing:.02em;
+  }
+  .module-desc{font-size:13px;color:var(--ink-soft);line-height:1.75}
+
+  /* Trigger block（04 · サーバー不要の定期実行） */
+  .trigger-block{
+    margin-top:36px;padding:32px;
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--highlight) 6%, transparent), transparent 60%),
+      var(--bg-alt);
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .trigger-block::before{
+    content:"◇";position:absolute;top:16px;right:20px;
+    font-size:20px;color:var(--highlight);opacity:.5;
+  }
+  .trigger-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+    margin-bottom:24px;
+  }
+  @media(max-width:900px){.trigger-grid{grid-template-columns:1fr}}
+  .trigger-item{
+    background:var(--card);border:1px solid var(--line);
+    padding:20px;position:relative;
+  }
+  .trigger-schedule{
+    font-family:var(--mono);font-size:10px;
+    letter-spacing:.2em;color:var(--highlight);
+    margin-bottom:12px;padding-bottom:10px;
+    border-bottom:1px dashed var(--line);
+  }
+  .trigger-name{
+    font-family:var(--serif);font-size:17px;font-weight:600;
+    color:var(--ink);margin-bottom:12px;
+  }
+  .trigger-desc{
+    font-size:13px;color:var(--ink-soft);line-height:1.8;
+  }
+  .trigger-desc code{
+    font-family:var(--mono);font-size:11px;
+    background:var(--bg-alt);padding:1px 6px;color:var(--ink);
+  }
+  .trigger-note{
+    padding:16px 20px;background:var(--card);
+    border-left:3px solid var(--highlight);
+    font-size:13px;color:var(--ink-soft);line-height:1.85;
+  }
+  .trigger-note-label{
+    display:block;font-family:var(--mono);font-size:10px;
+    letter-spacing:.15em;color:var(--highlight);
+    margin-bottom:6px;
+  }
+
+  /* Ops highlights */
+  .ops-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+    padding:32px 40px;background:var(--bg-alt);
+    border-top:1px solid var(--line);
+  }
+  @media(max-width:820px){
+    .ops-grid{grid-template-columns:1fr;padding:24px 20px}
+  }
+  .ops-item{padding:0}
+  .ops-num{
+    font-family:var(--serif);font-size:32px;font-weight:600;
+    color:var(--accent);line-height:1;margin-bottom:8px;
+  }
+  .ops-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+    color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px;
+  }
+  .ops-desc{font-size:13px;color:var(--ink-soft);line-height:1.7}
+
+  /* ---------- Career ---------- */
+  .career-timeline{position:relative;max-width:920px;margin:0 auto;padding-left:32px}
+  .career-timeline::before{
+    content:"";position:absolute;left:8px;top:8px;bottom:8px;width:1px;
+    background:var(--line);
+  }
+  .career-item{position:relative;padding-bottom:56px}
+  .career-item:last-child{padding-bottom:0}
+  .career-item::before{
+    content:"";position:absolute;left:-32px;top:8px;width:17px;height:17px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--accent);
+  }
+  .career-item.current::before{background:var(--highlight);border-color:var(--highlight)}
+  .career-year{
+    font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+    color:var(--accent);margin-bottom:6px;
+  }
+  .career-role{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:4px}
+  .career-company{font-size:13px;color:var(--ink-mute);margin-bottom:12px}
+  .career-desc{font-size:14px;color:var(--ink-soft);line-height:1.85}
+
+  /* ---------- Skills ---------- */
+  .skills{background:var(--bg-alt)}
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  @media(max-width:820px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
+  .skill-cat{background:var(--card);border:1px solid var(--line);padding:28px 24px}
+  .skill-cat-title{
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    color:var(--ink-mute);margin-bottom:20px;padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .skill-list{display:flex;flex-direction:column;gap:12px}
+  .skill-item{font-size:14px;color:var(--ink);display:flex;align-items:center;gap:10px}
+  .skill-item::before{content:"—";color:var(--accent);font-family:var(--mono)}
+
+  /* ---------- Contact ---------- */
+  .contact-inner{max-width:820px;margin:0 auto;text-align:center}
+  .contact-inner .section-title{margin-bottom:24px}
+  .contact-inner .section-lede{margin:0 auto 48px}
+  .contact-email{
+    display:inline-block;font-family:var(--serif);
+    font-size:clamp(24px,4vw,40px);font-weight:600;
+    color:var(--accent);letter-spacing:.02em;
+    padding-bottom:8px;border-bottom:2px solid var(--accent);
+    margin-bottom:48px;transition:opacity .2s;
+  }
+  .contact-email:hover{opacity:.7}
+  .contact-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px}
+  @media(max-width:640px){.contact-methods{grid-template-columns:1fr}}
+  .method{padding:28px 20px;border:1px solid var(--line);background:var(--card)}
+  .method-label{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--ink-mute);margin-bottom:8px}
+  .method-val{font-size:15px;color:var(--ink);font-weight:500}
+
+  /* ---------- Footer ---------- */
+  footer{padding:40px;border-top:1px solid var(--line);background:var(--bg)}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .footer-copy{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.1em}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease}
+  .reveal.on{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body data-variant="classic" style="font-size: 15px">
+
+<!-- ========== NAV ========== -->
+<nav class="nav" id="nav">
+  <a href="#top" class="brand">
+    <div class="brand-mark">TK</div>
+    <div>
+      <div class="brand-name">TK Office</div>
+      <div class="brand-sub">Naoto Takemura · Sapporo</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#works">Works</a>
+    <a href="#career">Career</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Contact →</a>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow"><span class="dot"></span>PORTFOLIO · 生成AI × 業務自動化 · 実装実績まとめ</div>
+      <h1 style="font-weight: 600; font-size: 65.2564px">
+        経営者の視点で、<br />
+        <span class="accent">生成AI</span>を使いこなす。
+      </h1>
+      <p class="lede">
+        10年以上の自営業経験と、エンタープライズITインフラの運用実務。<br />
+        そこに生成AIを掛け合わせ、業務自動化ツール・SNS運用パイプライン・<br />
+        画像／文章／リサーチ支援まで、自分で設計・実装してきた記録です。
+      </p>
+      <div class="hero-actions">
+        <a href="#works" class="btn">実装実績を見る</a>
+        <a href="#career" class="btn outline">経歴を見る</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="profile-row">
+        <div class="profile-key">NAME</div>
+        <div class="profile-val"><strong>竹村 直人</strong> / Naoto Takemura</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-key">ROLE</div>
+        <div class="profile-val">AI活用ジェネラリスト<br />生成AIで業務課題を解く実装者</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-key">BASE</div>
+        <div class="profile-val">北海道 札幌市</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-key">SINCE</div>
+        <div class="profile-val">2014 — 自営業歴 10年以上</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-key">CERT</div>
+        <div class="profile-val">生成AIパスポート（2026年3月取得）<br /><span style="color:var(--ink-mute);font-size:12px">現在：AIストラテジスト資格 取得に向けて学習中</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="eyebrow">About</div>
+        <h2 class="section-title">経営者の視点と、<br />技術者の実装力を、<br />ひとつの窓口で。</h2>
+      </div>
+      <div class="about-body">
+        <p>
+          はじめまして、<strong>TK Office</strong>の竹村直人です。<br />
+          2014年に遊戯事業で独立して以来、Eコマース、共済事業、システムエンジニアと、
+          異なる業界を横断しながら「事業を立ち上げ、収益を上げる」現場に立ち続けてきました。
+        </p>
+        <p>
+          直近3年間は、数千台規模のエンタープライズ環境で
+          <strong>MECM / WSUS の運用・保守</strong>を担当。
+          その傍らで<strong>生成AI</strong>の可能性に強く惹かれ、
+          2025年に生成AI事業を立ち上げました。
+        </p>
+        <p>
+          正直に言うと、私自身はコードをゼロから書くのは得意ではありません。
+          でも <strong>生成AIをうまく使えば、必要なものを形にできる</strong> —
+          この感覚こそが、今の時代のいちばんの武器だと思っています。
+        </p>
+        <p>
+          経営者としての「何が本当に困りごとか」を見抜く目と、
+          AIを道具として使いこなす柔軟さ。この2つを軸に、
+          <strong>「小さな自動化」から実運用に耐える仕組み</strong>までを、自分の手で作ってきた記録です。
+        </p>
+        <div class="about-stats" style="grid-template-columns:repeat(2,1fr)">
+          <div>
+            <div class="stat-num">10+</div>
+            <div class="stat-label">自営業歴（年）</div>
+          </div>
+          <div>
+            <div class="stat-num">13</div>
+            <div class="stat-label">試作・実証プロジェクト</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow">Capabilities</div>
+    <h2 class="section-title">できること／専門領域</h2>
+    <p class="section-lede">
+      これまでに自分で手を動かして設計・構築してきた領域を、3つに整理して掲載しています。
+      いずれも「導入して終わり」ではなく、業務フローへの組み込みと運用まで踏み込んで実装した経験です。
+    </p>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-visual"><img src="assets/img/svc-01-consulting.jpg" alt="" loading="lazy"></div>
+        <div class="svc-num">01 / SERVICE</div>
+        <div class="svc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h3 class="svc-title">AI導入設計・PoC構築</h3>
+        <p class="svc-desc">
+          「どこにAIを差し込むと効くか」を、業務ヒアリング → 課題整理 → ツール選定 → PoC の順で
+          設計・検証してきました。自身の複数事業と副業案件で、要件定義から運用設計まで一貫して担当。
+        </p>
+        <div class="svc-tags">
+          <span class="tag">要件定義</span>
+          <span class="tag">PoC</span>
+          <span class="tag">運用設計</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-visual"><img src="assets/img/svc-02-development.jpg" alt="" loading="lazy"></div>
+        <div class="svc-num">02 / SERVICE</div>
+        <div class="svc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+        </div>
+        <h3 class="svc-title">AIワークフロー／ツール開発</h3>
+        <p class="svc-desc">
+          Claude / GPT-4o / Gemini などのAPIと、Node.js・Python・React・n8n を組み合わせて、
+          業務自動化ツールやWebアプリを実装してきました。SNS運用パイプラインや LINE Bot、
+          ローカルダッシュボードなど、実運用に耐える構成での実装経験があります。
+        </p>
+        <div class="svc-tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Python</span>
+          <span class="tag">n8n</span>
+          <span class="tag">LINE API</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-visual"><img src="assets/img/svc-03-creative.jpg" alt="" loading="lazy"></div>
+        <div class="svc-num">03 / SERVICE</div>
+        <div class="svc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3 class="svc-title">生成AIによる制作 · リサーチ実務</h3>
+        <p class="svc-desc">
+          ロゴ・バナー・アイキャッチなどの画像生成、多言語翻訳、記事・文章生成、
+          市場／技術リサーチまで、生成AIを日常的に業務ツールとして使い倒してきました。
+          単発制作から継続運用まで、複数モデルの使い分けを含めて実務経験があります。
+        </p>
+        <div class="svc-tags">
+          <span class="tag">ロゴ</span>
+          <span class="tag">翻訳</span>
+          <span class="tag">SEO記事</span>
+          <span class="tag">リサーチ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WORKS ========== -->
+<section class="works" id="works">
+  <div class="wrap">
+    <div class="eyebrow">Works</div>
+    <h2 class="section-title">試作・実証プロジェクト</h2>
+    <p class="section-lede">
+      2025年〜現在、「生成AIで実際どこまでできるか」を検証する目的で試作したプロジェクト群です。
+      商用リリース済みの成果物ではなく、あくまで自分で使いながら手応えを確かめた実証事例としてご覧ください。
+      内容の性質ごとに<strong>3つのグループ</strong>に分けて掲載しています。
+      各グループの先頭は主力案件、以降は補助的な試作という位置づけです。
+    </p>
+    <div class="works-grid">
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- GROUP A · 運用・自動化基盤                   -->
+      <!-- ═══════════════════════════════════════════ -->
+      <div class="works-group">
+        <span class="works-group-num">GROUP A</span>
+        <span class="works-group-title">運用・自動化の基盤づくり</span>
+        <span class="works-group-count">3 projects</span>
+      </div>
+
+      <!-- ========== FEATURED: SNS Factory（目玉） ========== -->
+      <div class="featured-work">
+        <div class="featured-hero">
+          <img src="assets/img/sns-factory-hero.jpg" alt="" loading="lazy">
+          <span class="featured-hero-label">// SNS Factory — 収集 → 生成 → 承認 → 投稿 → 計測</span>
+        </div>
+        <div class="featured-header">
+          <div class="featured-meta">
+            <span class="featured-cat">A-01 · SNS運用 × 収益自動化</span>
+            <span class="featured-num">2025 — 継続開発中 · 主力案件</span>
+          </div>
+          <h3 class="featured-title">
+            SNS Factory — マルチアカウント統合パイプライン
+          </h3>
+          <p class="featured-tagline">
+            占い・AI・美容・副業など<strong style="color:var(--ink)">複数ジャンルのSNSアカウント</strong>を、
+            収集 → 生成 → 承認 → 投稿 → 計測まで自動化する個人開発の統合ワークスペース。
+            1つの巨大アプリではなく、<strong style="color:var(--ink)">目的ごとに独立した小さなツール群</strong>を、
+            単一ダッシュボードと Claude Code の並列AIエージェントが横断運用します。
+          </p>
+          <p class="featured-desc" style="margin-top:8px">
+            <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">REPO&nbsp;&nbsp;</span>
+            <a href="https://github.com/take8661/sns-factory-showcase" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">github.com/take8661/sns-factory-showcase&nbsp;↗</a>
+          </p>
+        </div>
+
+        <div class="featured-body">
+
+          <!-- 上段：全体像 × パイプライン図 -->
+          <div class="featured-grid">
+            <div>
+              <div class="featured-h4">01 · CONCEPT</div>
+              <p class="featured-desc">
+                「アカウントを増やす＝<strong>フォルダを1つ足すだけ</strong>」という思想で、
+                エンジンにアカウント固有のコードを書かない<strong>3層構造</strong>を採用。
+                アカウントごとの文体・記憶・下書きは<code style="font-family:var(--mono);font-size:12px;background:var(--bg-alt);padding:2px 6px">accounts/&lt;名前&gt;/</code>に分離され、
+                エンジンは汎用パイプラインとして再利用できます。
+              </p>
+              <p class="featured-desc">
+                <strong>公開の最終判断は必ず人間が握る</strong>という設計哲学。
+                AIは下書きまで、公開ボタンは人間 — 薬機法・景表法・ステマ規制などの
+                コンプライアンスリスクを構造的にブロックします。
+              </p>
+            </div>
+
+            <div>
+              <div class="featured-h4">02 · PIPELINE</div>
+              <div class="pipeline-viz">
+                <span class="node">Apify / RSS</span>
+                <span class="arrow">→</span>
+                <span class="node ai">品質ゲート</span>
+                <span class="arrow">→</span>
+                <span class="node">Obsidian Vault</span>
+                <br>
+                <span class="node ai">Claude / GPT-4o</span>
+                <span class="arrow">→</span>
+                <span class="node">下書き生成</span>
+                <span class="arrow">→</span>
+                <span class="node human">人間レビュー</span>
+                <br>
+                <span class="node human">承認ボタン</span>
+                <span class="arrow">→</span>
+                <span class="node">Threads / IG / X / note</span>
+                <span class="arrow">→</span>
+                <span class="node ai">insights収集</span>
+
+                <div class="pipeline-legend">
+                  <span class="l-ai">AI処理</span>
+                  <span class="l-human">人間の判断</span>
+                  <span class="l-data">データ / 外部API</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- モジュール構成 -->
+          <div class="featured-h4">03 · MODULES（主要パイプライン一覧）</div>
+          <div class="modules-grid">
+            <div class="module-item">
+              <div class="module-name">予約投稿ダッシュボード</div>
+              <div class="module-path">dashboard/serve.mjs</div>
+              <div class="module-desc">
+                下書き確認・予約投稿管理・オートスケジュール（本数上限/時間帯設定）を
+                行うローカルWeb管理画面。全アカウント横断の司令塔。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">Threadsスケジューラ</div>
+              <div class="module-path">Windows タスクスケジューラ連携</div>
+              <div class="module-desc">
+                常時稼働サーバー不要。OSのタスクスケジューラで定期起動し、
+                予約済み下書きをThreads APIへ実投稿する軽量な実行系。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">トレンドフィード</div>
+              <div class="module-path">tools/trendfeed/</div>
+              <div class="module-desc">
+                Reddit・HN・GitHub・arXivから話題を収集して投稿ネタ化。
+                429エラー時は Retry-After 準拠の自動リトライを実装し、時差アービトラージを実現。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">ウォッチリスト</div>
+              <div class="module-path">research/watchlist/</div>
+              <div class="module-desc">
+                競合・著名人アカウントを定点観測。X向け著名人ポーリングと、
+                YouTube字幕をClaude Haikuで要約する2系統を実装。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">note-poster</div>
+              <div class="module-path">tools/note-poster/</div>
+              <div class="module-desc">
+                note記事の生成と、章ごとの挿絵をAI画像生成で作るツール。
+                Playwrightのpersistent contextでnote.comへの投稿を自動化。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">gdrive-sync</div>
+              <div class="module-path">tools/gdrive-sync/</div>
+              <div class="module-desc">
+                作業データをGoogleドライブへミラーリング。
+                ローカルとクラウド間の整合性を保つバックアップ層。
+              </div>
+            </div>
+          </div>
+
+          <!-- トリガー（自動実行の仕組み） -->
+          <div class="trigger-block">
+            <div class="featured-h4">04 · TRIGGER · サーバー不要の定期実行アーキテクチャ</div>
+            <p class="featured-desc" style="max-width:none;margin-bottom:24px">
+              クラウドサーバーやcronジョブを別途契約せず、
+              <strong>個人PC上のWindowsタスクスケジューラ</strong>から
+              Node.jsスクリプトを直接呼び出す設計。
+              「常駐プロセス」ではなく「決まった時刻に起動して仕事をしたら終了する」<strong>バッチジョブ</strong>として組むことで、
+              PCの負荷を抑えつつ複数の収集パイプラインを並行して回します。
+              サーバー費用ゼロで定期実行を成立させる、個人開発らしい現実解です。
+            </p>
+
+            <div class="trigger-grid">
+              <div class="trigger-item">
+                <div class="trigger-schedule">DAILY · 1回/日</div>
+                <div class="trigger-name">WatchlistAutoRefresh</div>
+                <div class="trigger-desc">
+                  <code>research/watchlist/</code> 配下の収集スクリプトを起動。
+                  著名人Xポーリング・YouTubeアーカイブ等が動き、
+                  登録済みアカウント・チャンネルの新着投稿/動画を取得してローカルJSON DBに追記。
+                  取得後は要約・統計情報も更新されます。
+                </div>
+              </div>
+              <div class="trigger-item">
+                <div class="trigger-schedule">INTERVAL · 定期</div>
+                <div class="trigger-name">ThreadsScheduler</div>
+                <div class="trigger-desc">
+                  一定間隔でダッシュボード上の予約済み下書きをチェックし、
+                  投稿時刻が来たものを実際にThreadsへ投稿する実行系。
+                  常時稼働サーバー不要で、決まった時刻にだけ動く軽量な構成。
+                </div>
+              </div>
+              <div class="trigger-item">
+                <div class="trigger-schedule">MANUAL → SCHEDULED</div>
+                <div class="trigger-name">Trendfeed（Reddit等）</div>
+                <div class="trigger-desc">
+                  現状は手動実行が中心ですが、
+                  将来的に同じタスクスケジューラ方式で定期化できる設計。
+                  実行ログ・最終結果コードで動作確認しながら段階的にスケジュール化していきます。
+                </div>
+              </div>
+            </div>
+
+            <div class="trigger-note">
+              <span class="trigger-note-label">// dev note</span>
+              開発中もこの定期実行タスクが想定通り動いているか（実行ログ・最終結果コード）を
+              確認しながらデバッグする場面が何度もあり、
+              「バッチ的な実行前提でコードを組む」という設計思想が自然と身に付いた案件です。
+            </div>
+          </div>
+
+          <!-- 開発運用の工夫 -->
+          <div class="featured-grid" style="margin-bottom:0;margin-top:36px">
+            <div>
+              <div class="featured-h4">05 · DEV OPS</div>
+              <p class="featured-desc">
+                <strong>ファイルベースの並列AI指示システム（panel_hub）</strong>を自作。
+                各AIパネルへの指示と完了報告を Obsidian vault 内の Markdown（inbox/outbox）で
+                やり取りし、チャットログに埋もれない永続記録として残します。
+              </p>
+              <p class="featured-desc">
+                複数パネルが同時に同じファイルを編集しないよう<strong>ロックファイル排他制御</strong>を実装。
+                各作業はブランチ・PR経由で行い、マージ前にCowork側のAIが独立テストを行う
+                <strong>PRベース品質担保フロー</strong>を運用しています。
+              </p>
+            </div>
+            <div>
+              <div class="featured-h4">06 · TECH STACK</div>
+              <p class="featured-desc" style="margin-bottom:12px">
+                <strong>フレームワーク非依存の素のNode.js</strong>（ESM）を中核に、
+                データはJSONファイルベース（Git差分管理可）、テストは<code style="font-family:var(--mono);font-size:12px;background:var(--bg-alt);padding:2px 6px">node --test</code>標準機能で、
+                外部API部分は依存性注入でモック化する軽量設計。
+              </p>
+              <div class="work-stack" style="margin-top:16px">
+                <span class="tag">Node.js (ESM)</span>
+                <span class="tag">Apify API</span>
+                <span class="tag">Claude Haiku</span>
+                <span class="tag">GPT-4o</span>
+                <span class="tag">Gemini</span>
+                <span class="tag">Grok (hermes-x)</span>
+                <span class="tag">YouTube Data API v3</span>
+                <span class="tag">Google Drive API</span>
+                <span class="tag">Playwright</span>
+                <span class="tag">Obsidian Vault</span>
+                <span class="tag">GitHub Actions</span>
+                <span class="tag">gitleaks</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Ops highlights -->
+        <div class="ops-wrap">
+          <div class="ops-grid">
+            <div class="ops-item">
+              <div class="ops-label">SCALE</div>
+              <div class="ops-num">6+</div>
+              <div class="ops-desc">
+                稼働中のパイプライン数。1,000+ファイルの統合ワークスペースを
+                個人開発で維持・拡張中。
+              </div>
+            </div>
+            <div class="ops-item">
+              <div class="ops-label">COST GUARD</div>
+              <div class="ops-num">$10<span style="font-size:16px;color:var(--ink-mute)">/月</span></div>
+              <div class="ops-desc">
+                Apify・Anthropic APIのコスト上限を事前件数ガード＋実測usage集計で管理。
+                週次スケジューラで自動監視。
+              </div>
+            </div>
+            <div class="ops-item">
+              <div class="ops-label">SAFETY</div>
+              <div class="ops-num">100<span style="font-size:16px;color:var(--ink-mute)">%</span></div>
+              <div class="ops-desc">
+                公開判断は人間の手動承認。薬機法・景表法・ステマ規制を
+                quality-checkerエージェントが自動採点。
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- A-02 · 品質チェック（AI社員運用テンプレート） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/a02-quality.jpg" alt="" loading="lazy"><span class="work-visual-label">// quality-checker — AIが下書き、品質ゲートが採点</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">A-02 · 運用テンプレート</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">投稿品質チェック × 人間承認ワークフロー</h3>
+          <p class="work-desc">
+            SNS下書きを薬機法・景表法・PR表記・文体ガイド整合の観点で自動採点し、
+            <strong>修正待ち / 確認待ち / 承認済み</strong>を明確に分離。
+            dry-runでの投稿前検証と、ダッシュボードでの状態確認まで含めた
+            「AIに任せつつ、人間が最終判断する」運用テンプレート。
+          </p>
+          <div class="work-result">
+            <b>実証：AI作業を品質ゲートと人間承認で挟む運用フローを整備</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">Claude Code Agents</span>
+            <span class="tag">Markdown / JSON</span>
+            <span class="tag">dry-run 検証</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- A-03 · panel_hub 複数タスク司令塔 -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/a03-panel-hub.jpg" alt="" loading="lazy"><span class="work-visual-label">// panel_hub — inbox / outbox / status</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">A-03 · タスク運用</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">複数タスク司令塔 · panel_hub</h3>
+          <p class="work-desc">
+            複数の開発タスク・AIパネルを、
+            <strong>inbox（指示）/ outbox（報告）/ status（状態）</strong>という
+            ファイルベースの3層構造で管理する司令塔。
+            著名人ポーリング、YouTubeアーカイブ、Drive同期、ダッシュボード修正など、
+            並行して進む作業を混線させずに走らせます。
+          </p>
+          <div class="work-result">
+            <b>実証：複数タスクの状態・指示・完了ログを一元管理</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Markdown DB</span>
+            <span class="tag">Obsidian Vault</span>
+            <span class="tag">ロックファイル排他制御</span>
+            <span class="tag">PR運用</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- GROUP B · 発信・ナレッジ運用                 -->
+      <!-- ═══════════════════════════════════════════ -->
+      <div class="works-group">
+        <span class="works-group-num">GROUP B</span>
+        <span class="works-group-title">発信・ナレッジ運用</span>
+        <span class="works-group-count">3 projects</span>
+      </div>
+
+      <!-- B-01 · AI wiki 自動収集ナレッジベース -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/b01-wiki.jpg" alt="" loading="lazy"><span class="work-visual-label">// AI wiki — 情報を再利用できる知識資産へ</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">B-01 · ナレッジ</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">AI wiki · 自動収集ナレッジベース</h3>
+          <p class="work-desc">
+            Claude Code・Codex・Cursor・MCP・Skills・NotebookLM 等の
+            AI活用に関する情報を自動収集し、テーマ別に分類・統合ノート化。
+            単なるブックマークではなく、投稿ネタ・note記事・教材アイデアへ
+            <strong>再利用できる知識資産</strong>として蓄積します。
+          </p>
+          <div class="work-result">
+            <b>実証：情報収集→分類→再利用までのナレッジ運用サイクルを構築</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Obsidian Vault</span>
+            <span class="tag">Claude Haiku</span>
+            <span class="tag">RSS / Web収集</span>
+            <span class="tag">テーマ分類</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- B-02 · 長文資料要約パイプライン -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/b02-summary.jpg" alt="" loading="lazy"><span class="work-visual-label">// 長文要約 — PDF・文字起こしを読める知識資産に</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">B-02 · 要約パイプライン</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">長文資料 要約パイプライン</h3>
+          <p class="work-desc">
+            PDFや動画文字起こしなどの長文資料を、
+            <strong>チャンク分割 → 章要約 → 統合 → 検証</strong>まで一気通貫で処理。
+            日本語崩壊の検知、並列要約、数値ゲートによる品質検証まで含め、
+            大量の資料を読める知識資産に変換します。
+          </p>
+          <div class="work-result">
+            <b>実証：長文の統合要約と数値ゲート検証の自動化を確認</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Python</span>
+            <span class="tag">PDF抽出</span>
+            <span class="tag">Claude / Gemini</span>
+            <span class="tag">並列処理</span>
+            <span class="tag">品質ゲート</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- B-03 · 稼働データ記録・日報自動生成（旧CASE 05） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/b03-timeline.jpg" alt="" loading="lazy"><span class="work-visual-label">// Claude Haiku — 稼働ログから日報を自動生成</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">B-03 · 業務効率化</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">稼働データ記録・日報自動生成アプリ</h3>
+          <p class="work-desc">
+            日々の稼働データをSQLiteに記録し、Claude Haiku APIが自動で日報を生成。
+            Docker + Caddy で自前VPSに載せ、月額コストを抑えた構成に。
+          </p>
+          <div class="work-result">
+            <b>実証：日報の下書きをAIで自動生成できることを確認</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Claude Haiku API</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Caddy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- GROUP C · ツール・制作物                     -->
+      <!-- ═══════════════════════════════════════════ -->
+      <div class="works-group">
+        <span class="works-group-num">GROUP C</span>
+        <span class="works-group-title">ツール・制作物</span>
+        <span class="works-group-count">7 projects</span>
+      </div>
+
+      <!-- C-01 · LINE伝票OCR（旧CASE 01） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c01-receipt.jpg" alt="" loading="lazy"><span class="work-visual-label">// LINE × Claude — 伝票OCR自動化</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-01 · 飲食業</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">飲食店向け LINE連携 伝票自動処理システム</h3>
+          <p class="work-desc">
+            LINE Bot に伝票画像を送るだけで、Claude API がOCR・仕訳し、
+            Google Sheets へ自動記帳。手作業の伝票処理を大幅に削減。
+          </p>
+          <div class="work-result">
+            <b>実証：手作業の伝票入力を体感で半分以下に</b>（自分で使って検証）
+          </div>
+          <div class="work-stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">Claude API</span>
+            <span class="tag">LINE API</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">VPS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-02 · n8n × GPT-4o（旧CASE 02） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c02-automation.jpg" alt="" loading="lazy"><span class="work-visual-label">// n8n × GPT-4o — 47ノード自動化</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-02 · マーケティング</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">SNSコンテンツマーケティング 完全自動化システム</h3>
+          <p class="work-desc">
+            n8n を47ノードで構成し、GPT-4o と Together AI で
+            テキスト・画像を生成、Instagram に毎日定時投稿する仕組みを構築。
+          </p>
+          <div class="work-result">
+            <b>実証：定時投稿の自動化フローが構築可能なことを確認</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">n8n</span>
+            <span class="tag">GPT-4o</span>
+            <span class="tag">Together AI</span>
+            <span class="tag">Instagram API</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-03 · React × Gemini 自動メディア構築（旧CASE 03） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c03-media.jpg" alt="" loading="lazy"><span class="work-visual-label">// React × Gemini — 自動メディア構築</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-03 · メディア</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">デジタルコンテンツ配信向け 自動メディア構築システム</h3>
+          <p class="work-desc">
+            Gemini API で記事を自動生成し、WordPress へ配信。
+            作品3,000件・タレント1,879件のデータベースを構築し、大規模運用に耐える設計に。
+          </p>
+          <div class="work-result">
+            <b>実証：数千件規模のデータ蓄積とメディア生成が可能なことを確認</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">React 18</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Drizzle ORM</span>
+            <span class="tag">Gemini API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-04 · Python × Streamlit データ収集（旧CASE 04） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c04-database.jpg" alt="" loading="lazy"><span class="work-visual-label">// Python × Streamlit — データ基盤</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-04 · データ収集</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">大規模API データ収集・管理ツール</h3>
+          <p class="work-desc">
+            自動リトライ、重複排除、レート制御を備えた堅牢なデータ収集基盤。
+            Streamlit の管理画面で非エンジニアでも運用可能に。
+          </p>
+          <div class="work-result">
+            <b>実証：リトライ・重複排除を含むデータ収集基盤の構築</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">SQLAlchemy</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-05 · video-use / AI動画編集環境 -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c05-video.jpg" alt="" loading="lazy"><span class="work-visual-label">// video-use — AI × ffmpeg × 文字起こし</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-05 · 動画制作</span><span class="work-num">2025 · 運用中</span></div>
+          <h3 class="work-title">video-use · AI動画編集支援環境</h3>
+          <p class="work-desc">
+            <strong>AI × ffmpeg × 音声文字起こし</strong>を組み合わせた動画編集環境。
+            動画素材の下処理、音声からのテロップ素材化、
+            編集構成の補助まで、動画制作フローをAIで効率化します。実運用に投入済み。
+          </p>
+          <div class="work-result">
+            <b>実証：AIによる下処理〜構成補助フローが実運用ラインに乗る手応え</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">ffmpeg</span>
+            <span class="tag">Whisper 系文字起こし</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">構成補助スクリプト</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-06 · 商品データAPI活用 コンテンツ生成ツール（旧FANZA API Tool） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c06-table.jpg" alt="" loading="lazy"><span class="work-visual-label">// 商品API × Streamlit — CSV / HTML 自動生成</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-06 · アフィリエイト</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">商品データAPI活用 コンテンツ生成ツール</h3>
+          <p class="work-desc">
+            商品データAPI（DMM系）から情報を取得し、
+            <strong>CSVレポート</strong>や<strong>WordPress貼り付け用HTML</strong>を自動生成。
+            SQLiteでデータを管理し、Streamlit UIで非エンジニアでも操作可能に。
+            APIデータ取得から記事素材生成までを一気通貫で自動化します。
+          </p>
+          <div class="work-result">
+            <b>実証：APIデータ→記事素材の変換フローを自動化</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">商品データAPI</span>
+            <span class="tag">HTML生成</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-07 · コンテンツ運用Webアプリ（旧FANZA投稿ツール） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c07-spreadsheet.jpg" alt="" loading="lazy"><span class="work-visual-label">// React × TS × Vite — コンテンツ運用アプリ</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-07 · Webアプリ</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">CSV統合 · コンテンツ運用Webアプリ</h3>
+          <p class="work-desc">
+            商品CSV・プロフィールデータをアップロードし、
+            <strong>プロフィールと商品情報を統合</strong>して一覧表示・記事管理・投稿管理を行うWebアプリ。
+            React / TypeScript / Vite / Tailwind CSS のモダン構成で、
+            CSVデータの取り込みから記事運用までを一つの画面に集約しています。
+          </p>
+          <div class="work-result">
+            <b>実証：CSV取り込み→記事管理→投稿までのUIを一貫構築</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Vite</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">CSV統合</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== CAREER ========== -->
+<section id="career">
+  <div class="wrap">
+    <div class="eyebrow">Career</div>
+    <h2 class="section-title">経歴</h2>
+    <p class="section-lede">
+      経営 → EC → SE → 生成AI。一貫して「事業を前に進める」ことを続けてきました。
+    </p>
+    <div class="career-timeline">
+
+      <div class="career-item current">
+        <div class="career-year">2025 — 現在</div>
+        <div class="career-role">生成AI事業</div>
+        <div class="career-company">代表 · AI活用ジェネラリスト</div>
+        <div class="career-desc">
+          生成AIを活用した業務自動化ツール・Webアプリの試作・実証を継続中。
+          運用基盤・ナレッジ運用・単発ツールの3領域で計13件のプロジェクトを制作し、
+          中核となる<strong>「SNS Factory」（マルチアカウントSNS運用パイプライン）</strong>を継続開発中。
+          現在は<strong>AIストラテジスト資格</strong>の取得に向けて学習中。
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-year">2023.5 — 2026.4</div>
+        <div class="career-role">日本コンセントリクス合同会社</div>
+        <div class="career-company">派遣社員 · システムエンジニア（派遣元：日本パーソナルビジネス）</div>
+        <div class="career-desc">
+          エンタープライズ環境における <strong>MECM / WSUS</strong> の運用・保守。
+          Windowsパッチ配信、M365展開、CMG環境のトラブルシューティング、手順書整備までを担当。
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-year">2022.12 — 2023.3</div>
+        <div class="career-role">パーソルプロセス＆テクノロジー株式会社</div>
+        <div class="career-company">契約社員 · システムエンジニア</div>
+        <div class="career-desc">
+          au PAY マーケットの出店・運用サポート。新規出店法人のオンボーディングと、
+          自身のEC経営経験を活かした売上最大化アドバイス、FAQ・手順の体系化。
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-year">2017.7 — 2022.12</div>
+        <div class="career-role">TKC堂（Eコマース事業）</div>
+        <div class="career-company">代表</div>
+        <div class="career-desc">
+          物販・デジタルコンテンツ販売。仕入れ交渉から独自マーケティングツールの制作、
+          コンサルティング業務まで。<strong>最大月収200万円</strong>を達成。
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-year">2014 — 2017</div>
+        <div class="career-role">遊戯事業</div>
+        <div class="career-company">代表</div>
+        <div class="career-desc">
+          事業立ち上げ、収益管理、現場オペレーション、人材育成まで一貫して担当。
+          少人数運営で高収益モデルを構築し、<strong>最大月収200万円</strong>を達成。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== SKILLS ========== -->
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Skills</div>
+    <h2 class="section-title">触れてきたもの</h2>
+    <p class="section-lede">
+      「使いこなす」というより「AIの力を借りて触れてきた」領域です。
+      経営・営業の実体験と組み合わせて、業務の現場で役立てていきます。
+    </p>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="skill-cat-title">LANGUAGE</div>
+        <div class="skill-list">
+          <div class="skill-item">Node.js / Express</div>
+          <div class="skill-item">Python</div>
+          <div class="skill-item">TypeScript</div>
+          <div class="skill-item">React 18</div>
+          <div class="skill-item">HTML / CSS / JS</div>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">DATABASE</div>
+        <div class="skill-list">
+          <div class="skill-item">PostgreSQL</div>
+          <div class="skill-item">SQLite</div>
+          <div class="skill-item">Drizzle ORM</div>
+          <div class="skill-item">SQLAlchemy</div>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">INFRA · OPS</div>
+        <div class="skill-list">
+          <div class="skill-item">Docker</div>
+          <div class="skill-item">Ubuntu / VPS</div>
+          <div class="skill-item">PM2 / Caddy</div>
+          <div class="skill-item">MECM / WSUS</div>
+          <div class="skill-item">GitHub Actions</div>
+          <div class="skill-item">タスクスケジューラ運用</div>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">AI · AUTOMATION</div>
+        <div class="skill-list">
+          <div class="skill-item">Claude / GPT-4o / Gemini / Grok</div>
+          <div class="skill-item">n8n / Dify / Cursor</div>
+          <div class="skill-item">Apify / Playwright</div>
+          <div class="skill-item">Claude Code 並列運用</div>
+          <div class="skill-item">RAG / Obsidian Vault</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact">
+  <div class="wrap contact-inner">
+    <div class="eyebrow" style="justify-content:center">Contact</div>
+    <h2 class="section-title">技術的な詳細は、<br />お気軽にお問い合わせください。</h2>
+    <p class="section-lede" style="text-align:center">
+      掲載している実装の中身・ソースコード・設計判断など、面談で入りきらない部分でご質問があれば、<br />
+      メールでご連絡いただければ個別にお答えします。
+    </p>
+
+    <a href="/cdn-cgi/l/email-protection#9cf5f2e8f9f0b2aeabecdcfbf1fdf5f0b2fff3f1" class="contact-email"><span class="__cf_email__" data-cfemail="91f8ffe5f4fdbfa3a6e1d1f6fcf0f8fdbff2fefc">[email&#160;protected]</span></a>
+
+    <div class="contact-methods">
+      <div class="method">
+        <div class="method-label">EMAIL</div>
+        <div class="method-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f36312b3a33716d682f1f38323e3633713c3032">[email&#160;protected]</a></div>
+      </div>
+      <div class="method">
+        <div class="method-label">LOCATION</div>
+        <div class="method-val">北海道 札幌市</div>
+      </div>
+      <div class="method">
+        <div class="method-label">RESPONSE</div>
+        <div class="method-val">1〜2営業日以内に返信</div>
+      </div>
+    </div>
+
+    <a href="/cdn-cgi/l/email-protection#2d4443594841031f1a5d6d4a404c4441034e4240125e584f47484e59107966081f1d624b4b444e48081f1dceaca7c8b8a2ceaca9c8bda5ceafa2ceacb6" class="btn">メールで連絡する →</a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-inner">
+    <div class="brand">
+      <div class="brand-mark">TK</div>
+      <div>
+        <div class="brand-name">TK Office</div>
+        <div class="brand-sub">Naoto Takemura</div>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 TK Office · Sapporo, Hokkaido</div>
+  </div>
+</footer>
+
+<!-- Tweaks Panel -->
+<div id="tweaks-root"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks_panel.jsx"></script>
+<script>
+  // Nav scroll effect (plain JS — runs immediately, not async via Babel)
+  (function(){
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  })();
+
+  // Reveal on scroll — progressive enhancement.
+  // Initial-viewport elements are marked .on immediately, so content is
+  // always visible even if JS/observer is slow.
+  // Also: work cards / featured / groups are never hidden — they're the
+  // main content, not decoration. Only section-level intros animate.
+  (function(){
+    const NEVER_HIDE = 'work-card featured-work works-group'.split(' ');
+    const els = document.querySelectorAll('section > .wrap > *, .work-card, .svc-card, .career-item, .skill-cat');
+    const vh = window.innerHeight || 800;
+    els.forEach(el => {
+      // Skip elements that must always be visible (main content cards).
+      if (NEVER_HIDE.some(cls => el.classList.contains(cls))) return;
+      el.classList.add('reveal');
+      const rect = el.getBoundingClientRect();
+      // Anything within (or above) the first viewport is shown immediately.
+      if (rect.top < vh * 0.95) el.classList.add('on');
+    });
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+      document.querySelectorAll('.reveal:not(.on)').forEach(el => io.observe(el));
+    } else {
+      // No IO support → just show everything.
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('on'));
+    }
+    // Bulletproof fallback: after 1.5s, force any still-hidden reveal into .on
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.on)').forEach(el => el.classList.add('on'));
+    }, 1500);
+  })();
+</script>
+
+<script type="text/babel">
+
+  // ---- Tweaks ----
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "variant": "classic",
+  "accent": "#1a3a6b"
+}/*EDITMODE-END*/;
+
+  function TweaksApp() {
+    if (!window.TweaksPanel || !window.useTweaks) return null;
+    const { TweaksPanel, TweakSection, TweakRadio, TweakColor, useTweaks } = window;
+    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+    React.useEffect(() => {
+      document.body.setAttribute('data-variant', t.variant);
+      // accentは classic のときだけ上書き
+      if (t.variant === 'classic') {
+        document.documentElement.style.setProperty('--accent', t.accent);
+        // アクセントに応じてsoftを再計算
+        document.documentElement.style.setProperty('--accent-soft',
+          t.accent === '#1a3a6b' ? '#e7ecf4' :
+          t.accent === '#2d4a3e' ? '#e6ede9' :
+          t.accent === '#5a3a1a' ? '#f2ebe0' : '#e7ecf4'
+        );
+      } else {
+        document.documentElement.style.removeProperty('--accent');
+        document.documentElement.style.removeProperty('--accent-soft');
+      }
+    }, [t.variant, t.accent]);
+
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="デザインバリエーション">
+          <TweakRadio
+            label="スタイル"
+            value={t.variant}
+            options={[
+              { value: 'classic', label: 'A案 · クラシック' },
+              { value: 'modern',  label: 'B案 · モダン' },
+            ]}
+            onChange={v => setTweak('variant', v)}
+          />
+        </TweakSection>
+        {t.variant === 'classic' && (
+          <TweakSection title="アクセントカラー（A案のみ）">
+            <TweakColor
+              label="アクセント"
+              value={t.accent}
+              options={['#1a3a6b','#2d4a3e','#5a3a1a','#3d3d5c']}
+              onChange={v => setTweak('accent', v)}
+            />
+          </TweakSection>
+        )}
+      </TweaksPanel>
+    );
+  }
+
+  // TweaksPanelLib グローバル化 & マウント
+  // Babel が非同期変換するため load イベントは既に発火済みの可能性がある。
+  // readyState を見て即マウントする。
+  // Babel は全 <script type="text/babel"> を順番に変換・実行するので、
+  // tweaks_panel.jsx の Object.assign(window, ...) はこのスクリプト実行時には完了済み。
+  // リトライを介してマウントする。
+  function mountTweaks(retries) {
+    retries = retries == null ? 20 : retries;
+    const el = document.getElementById('tweaks-root');
+    if (!el) return;
+    if (!window.TweaksPanel || !window.useTweaks) {
+      if (retries > 0) return setTimeout(() => mountTweaks(retries - 1), 100);
+      return;
+    }
+    // 重複マウント防止：既に createRoot 済みなら再利用。
+    if (!window.__tweaksRoot) {
+      window.__tweaksRoot = ReactDOM.createRoot(el);
+    }
+    window.__tweaksRoot.render(<TweaksApp />);
+  }
+  mountTweaks();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
+</body>
+</html>
