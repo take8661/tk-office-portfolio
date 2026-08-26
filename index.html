@@ -690,7 +690,7 @@
             <div class="stat-label">自営業歴（年）</div>
           </div>
           <div>
-            <div class="stat-num">13</div>
+            <div class="stat-num">14</div>
             <div class="stat-label">試作・実証プロジェクト</div>
           </div>
         </div>
@@ -777,7 +777,8 @@
     <h2 class="section-title">試作・実証プロジェクト</h2>
     <p class="section-lede">
       2025年〜現在、「生成AIで実際どこまでできるか」を検証する目的で試作したプロジェクト群です。
-      商用リリース済みの成果物ではなく、あくまで自分で使いながら手応えを確かめた実証事例としてご覧ください。
+      多くは商用リリース済みの成果物ではなく、あくまで自分で使いながら手応えを確かめた実証事例ですが、
+      一部は実際の受託案件に投入し、納品まで完了した実装も含みます。
       内容の性質ごとに<strong>3つのグループ</strong>に分けて掲載しています。
       各グループの先頭は主力案件、以降は補助的な試作という位置づけです。
     </p>
@@ -789,7 +790,7 @@
       <div class="works-group">
         <span class="works-group-num">GROUP A</span>
         <span class="works-group-title">運用・自動化の基盤づくり</span>
-        <span class="works-group-count">3 projects</span>
+        <span class="works-group-count">4 projects</span>
       </div>
 
       <!-- ========== FEATURED: SNS Factory（目玉） ========== -->
@@ -1044,11 +1045,256 @@
 
       </div>
 
-      <!-- A-02 · 品質チェック（AI社員運用テンプレート） -->
+      <!-- ========== FEATURED: AI開発パイプライン（目玉2） ========== -->
+      <div class="featured-work">
+        <div class="featured-hero">
+          <span class="featured-hero-label">// AI開発パイプライン — 要件定義 → チーム実装 → レビュー → 統合 → 納品</span>
+        </div>
+        <div class="featured-header">
+          <div class="featured-meta">
+            <span class="featured-cat">A-02 · AI開発組織 × 受託開発の自動化</span>
+            <span class="featured-num">2026 — 実案件で稼働 · 受託開発1件を完遂</span>
+          </div>
+          <h3 class="featured-title">
+            AI開発パイプライン — 複数AIエージェントによる開発組織のシミュレーション
+          </h3>
+          <p class="featured-tagline">
+            課長・部長にあたる<strong style="color:var(--ink)">レビュー役のAIエージェント</strong>と、
+            機能ごとに分業する<strong style="color:var(--ink)">実装チームのAIエージェント</strong>で
+            受託開発の組織体制を再現したパイプライン。
+            要件定義から実装・単体テスト・差し戻し・統合・E2E検証・納品物作成までを自律的に進め、
+            解決しない指摘だけを人間へエスカレーションします。
+            実際の受託案件（食品ギフト仲介事業者向け・受発注管理システム）を
+            このパイプラインで構築し、納品まで完了させました。
+          </p>
+          <p class="featured-desc" style="margin-top:8px">
+            <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">DETAIL&nbsp;&nbsp;</span>
+            <a href="https://claude.ai/code/artifact/0ebb20de-2fb4-4876-a4ae-c3d9180cf2bf" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">AI開発パイプライン — 詳細を見る&nbsp;↗</a>
+          </p>
+        </div>
+
+        <div class="featured-body">
+
+          <!-- 上段：全体像 × パイプライン図 -->
+          <div class="featured-grid">
+            <div>
+              <div class="featured-h4">01 · CONCEPT</div>
+              <p class="featured-desc">
+                機能単位で分業する<strong>実装チーム</strong>（データベース設計・受注入力・外部連携通知・
+                発注書PDF生成・受注メモのAI解析・テストの6チーム）と、
+                その成果物をレビューする<strong>課長・部長役のエージェント</strong>を分離した
+                <strong>階層型のレビュー構造</strong>を採用。
+                「誰が作ったか」ではなく「実機で動くか」を課長・部長が実際にコマンドを実行して検証してから
+                承認する、というルールを徹底しています。
+              </p>
+              <p class="featured-desc">
+                指摘に対する<strong>差し戻しは最大3ラウンド</strong>まで。
+                それでも解消しない場合は自動的に<strong>人間へのエスカレーション</strong>に切り替わる
+                設計で、実際に「テストコードが依存関係の変更に追従できていない」という
+                指摘が3ラウンド未解消のまま人間判断に回された記録が残っています。
+              </p>
+            </div>
+
+            <div>
+              <div class="featured-h4">02 · PIPELINE</div>
+              <div class="pipeline-viz">
+                <span class="node human">要件定義（部長）</span>
+                <span class="arrow">→</span>
+                <span class="node ai">チーム別実装（AI × 6チーム）</span>
+                <br>
+                <span class="node ai">課長レビュー</span>
+                <span class="arrow">→</span>
+                <span class="node">承認 / 差し戻し（最大3回）</span>
+                <br>
+                <span class="node ai">部長・統合担当の統合判定</span>
+                <span class="arrow">→</span>
+                <span class="node ai">E2E統合テスト</span>
+                <br>
+                <span class="node ai">納品物生成（説明書・手順書）</span>
+                <span class="arrow">→</span>
+                <span class="node human">人間の最終確認・エスカレーション対応</span>
+
+                <div class="pipeline-legend">
+                  <span class="l-ai">AI処理</span>
+                  <span class="l-human">人間の判断</span>
+                  <span class="l-data">データ / 検証対象</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- チーム構成 -->
+          <div class="featured-h4">03 · MODULES（実装チームの分業構成）</div>
+          <div class="modules-grid">
+            <div class="module-item">
+              <div class="module-name">受注メモ解析課</div>
+              <div class="module-path">order_memo_parser.py</div>
+              <div class="module-desc">
+                FAX・LINE等で届く自由文の注文メモをAIが読み、
+                届け先ごとの下書きに分解。最終確認は必ず人が行う設計。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">受注入力課</div>
+              <div class="module-path">order_entry.py / tracking_entry.py</div>
+              <div class="module-desc">
+                購入者・複数届け先の受注登録と、配送伝票番号の入力・状態管理を担当。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">発注書PDF生成課</div>
+              <div class="module-path">purchase_order_pdf.py</div>
+              <div class="module-desc">
+                生産者ごとに発注書PDFを自動生成。PDF生成完了と同時に
+                受注状態を「発注書送付済み」へ遷移させるコールバックも実装。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">外部連携通知課</div>
+              <div class="module-path">notification.py</div>
+              <div class="module-desc">
+                生産者への発注書送付ログ、購入者への発送通知文の組み立てを担当。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">データベース設計課</div>
+              <div class="module-path">db.py</div>
+              <div class="module-desc">
+                商品・送料マスタ、受注データの永続化と、
+                生産者別・月次の発注実績／コスト集計ロジックを担当。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">テスト課</div>
+              <div class="module-path">tests / test_end_to_end.py</div>
+              <div class="module-desc">
+                6チーム全部を結線したE2E業務フロー（受注登録 → 発注書生成 → 状態遷移 →
+                発送通知 → 月次集計）と、各チームの単体テストを担当。
+              </div>
+            </div>
+          </div>
+
+          <!-- 品質ゲート -->
+          <div class="trigger-block">
+            <div class="featured-h4">04 · QUALITY GATE · 差し戻し／エスカレーションの仕組み</div>
+            <p class="featured-desc" style="max-width:none;margin-bottom:24px">
+              各チームの成果物は課長役のエージェントが<strong>実機でコマンドを実行して</strong>検証し、
+              承認 or 差し戻しを判定します。差し戻しが<strong>3ラウンドを超えても解消しない</strong>場合は、
+              「誰の担当領域か」「なぜ直っていないか」を含む証跡（実行ログ・トレースバック・
+              タイムスタンプ比較）とともに<strong>自動で人間へエスカレーション</strong>する設計です。
+              統合工程では、既存成果物と重複する新規作成を避けるため、
+              grep等での実機検証を経てから「作らない」判断を下す場面もありました。
+            </p>
+
+            <div class="trigger-grid">
+              <div class="trigger-item">
+                <div class="trigger-schedule">ROUND 1–3</div>
+                <div class="trigger-name">課長レビュー・差し戻しサイクル</div>
+                <div class="trigger-desc">
+                  実行ログ・トレースバック・PASS/FAILの生ログを根拠に、
+                  指摘事項を具体的なコード箇所付きで差し戻す。
+                </div>
+              </div>
+              <div class="trigger-item">
+                <div class="trigger-schedule">ROUND 4 · ESCALATION</div>
+                <div class="trigger-name">人間へのエスカレーション</div>
+                <div class="trigger-desc">
+                  3ラウンド解消しない指摘のみ、発見元・証跡・タイムスタンプ比較を添えて
+                  人間の判断に回す。実際に1件発生した記録あり。
+                </div>
+              </div>
+              <div class="trigger-item">
+                <div class="trigger-schedule">DELIVERY</div>
+                <div class="trigger-name">納品物の言葉づかい検証</div>
+                <div class="trigger-desc">
+                  内部の役職名・運用用語が納品物（説明書・デモ画面）に
+                  残っていないかをgrepで機械的に検証してから納品。
+                </div>
+              </div>
+            </div>
+
+            <div class="trigger-note">
+              <span class="trigger-note-label">// dev note</span>
+              「AIが作ったものをAIがレビューし、それでも解決しない部分だけ人に上げる」
+              という体制を、実際のクライアント案件で最後まで運用できたことが一番の手応えでした。
+            </div>
+          </div>
+
+          <!-- 開発運用の工夫 -->
+          <div class="featured-grid" style="margin-bottom:0;margin-top:36px">
+            <div>
+              <div class="featured-h4">05 · DEV OPS</div>
+              <p class="featured-desc">
+                各チームの実装・レビュー・統合の判断根拠を、<strong>実行ログや差分の一次情報</strong>で
+                残す運用を徹底。統合担当は着手前に必ず既存の納品フォルダを確認し、
+                同一入力に対してすでに完了済みの成果物がないかを実機検証してから
+                作業に入る、という「重複作業を避けるチェック」を組み込んでいます。
+              </p>
+              <p class="featured-desc">
+                納品物は<strong>「かんたん説明モード」「技術者向けモード」</strong>を
+                ボタンで切り替えられる単一HTMLファイルとして自己完結させ、
+                クライアントが特別なソフトなしにブラウザだけで確認できる形にまとめました。
+              </p>
+            </div>
+            <div>
+              <div class="featured-h4">06 · TECH STACK</div>
+              <p class="featured-desc" style="margin-bottom:12px">
+                Python 製の実装チームをFlaskベースのWebアプリへ統合し、
+                PDF生成・DB永続化・通知ログ生成までを1つの業務フローとして接続。
+                単体テストは各チームの<code style="font-family:var(--mono);font-size:12px;background:var(--bg-alt);padding:2px 6px">unittest</code>、
+                結線確認はE2Eテストスイートで担保しています。
+              </p>
+              <div class="work-stack" style="margin-top:16px">
+                <span class="tag">Claude Code Multi-Agent</span>
+                <span class="tag">Python</span>
+                <span class="tag">Flask</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">PDF生成</span>
+                <span class="tag">unittest / E2Eテスト</span>
+                <span class="tag">Markdown指示・レビュー記録</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Ops highlights -->
+        <div class="ops-wrap">
+          <div class="ops-grid">
+            <div class="ops-item">
+              <div class="ops-label">TEAMS</div>
+              <div class="ops-num">6</div>
+              <div class="ops-desc">
+                DB設計・受注入力・外部連携通知・発注書PDF生成・受注メモ解析・テストの
+                6チームに分業し並行実装。
+              </div>
+            </div>
+            <div class="ops-item">
+              <div class="ops-label">TEST RESULT</div>
+              <div class="ops-num">100<span style="font-size:16px;color:var(--ink-mute)">%</span></div>
+              <div class="ops-desc">
+                6チーム全部の単体テスト・E2E統合テスト（受注登録〜月次集計）を
+                実機実行し全件PASSを確認。
+              </div>
+            </div>
+            <div class="ops-item">
+              <div class="ops-label">DELIVERY</div>
+              <div class="ops-num">1<span style="font-size:16px;color:var(--ink-mute)">件</span></div>
+              <div class="ops-desc">
+                実際のクライアント案件で要件定義から納品（利用ガイド・
+                本番投入手順書つき）まで完遂。
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- A-03 · 品質チェック（AI社員運用テンプレート） -->
       <div class="work-card">
         <div class="work-visual"><img src="assets/img/a02-quality.jpg" alt="" loading="lazy"><span class="work-visual-label">// quality-checker — AIが下書き、品質ゲートが採点</span></div>
         <div class="work-body">
-          <div class="work-meta"><span class="work-cat">A-02 · 運用テンプレート</span><span class="work-num">2025</span></div>
+          <div class="work-meta"><span class="work-cat">A-03 · 運用テンプレート</span><span class="work-num">2025</span></div>
           <h3 class="work-title">投稿品質チェック × 人間承認ワークフロー</h3>
           <p class="work-desc">
             SNS下書きを薬機法・景表法・PR表記・文体ガイド整合の観点で自動採点し、
@@ -1068,11 +1314,11 @@
         </div>
       </div>
 
-      <!-- A-03 · panel_hub 複数タスク司令塔 -->
+      <!-- A-04 · panel_hub 複数タスク司令塔 -->
       <div class="work-card">
         <div class="work-visual"><img src="assets/img/a03-panel-hub.jpg" alt="" loading="lazy"><span class="work-visual-label">// panel_hub — inbox / outbox / status</span></div>
         <div class="work-body">
-          <div class="work-meta"><span class="work-cat">A-03 · タスク運用</span><span class="work-num">2025</span></div>
+          <div class="work-meta"><span class="work-cat">A-04 · タスク運用</span><span class="work-num">2025</span></div>
           <h3 class="work-title">複数タスク司令塔 · panel_hub</h3>
           <p class="work-desc">
             複数の開発タスク・AIパネルを、
@@ -1367,7 +1613,7 @@
         <div class="career-company">代表 · AI活用ジェネラリスト</div>
         <div class="career-desc">
           生成AIを活用した業務自動化ツール・Webアプリの試作・実証を継続中。
-          運用基盤・ナレッジ運用・単発ツールの3領域で計13件のプロジェクトを制作し、
+          運用基盤・ナレッジ運用・単発ツールの3領域で計14件のプロジェクトを制作し、
           中核となる<strong>「SNS Factory」（マルチアカウントSNS運用パイプライン）</strong>を継続開発中。
           現在は<strong>AIストラテジスト資格</strong>の取得に向けて学習中。
         </div>
