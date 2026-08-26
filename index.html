@@ -790,7 +790,7 @@
       <div class="works-group">
         <span class="works-group-num">GROUP A</span>
         <span class="works-group-title">運用・自動化の基盤づくり</span>
-        <span class="works-group-count">4 projects</span>
+        <span class="works-group-count">5 projects</span>
       </div>
 
       <!-- ========== FEATURED: SNS Factory（目玉） ========== -->
@@ -1106,6 +1106,12 @@
                 それでも解消しない場合は自動的に<strong>人間へのエスカレーション</strong>に切り替わる
                 設計で、実際に「テストコードが依存関係の変更に追従できていない」という
                 指摘が3ラウンド未解消のまま人間判断に回された記録が残っています。
+              </p>
+              <p class="featured-desc">
+                パイプライン起点の<strong>要件ヒアリング自体も自作のAIチャットアプリ
+                「DX導入ヒアリングAI」</strong>で行っており、8領域の対話ヒアリングを通じて
+                案件カルテを自動生成し、設計統括エージェントへのインプットとして渡しています
+                （詳細は下部Works「DX導入ヒアリングAI Webアプリ」参照）。
               </p>
             </div>
 
@@ -1450,6 +1456,31 @@
             <span class="tag">Obsidian Vault</span>
             <span class="tag">ロックファイル排他制御</span>
             <span class="tag">PR運用</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- A-05 · DX導入ヒアリングAI Webアプリ -->
+      <div class="work-card">
+        <div class="work-visual"><span class="work-visual-label">// hearing-webapp — 8領域ヒアリング → 案件カルテ自動生成</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">A-05 · 要件ヒアリング自動化</span><span class="work-num">2026</span></div>
+          <h3 class="work-title">DX導入ヒアリングAI Webアプリ</h3>
+          <p class="work-desc">
+            クライアントの案件要件を<strong>8領域にわたって対話形式でヒアリング</strong>し、
+            案件カルテ（要件定義の下敷き）として構造化・自動送信するWebアプリ。
+            もとはChatGPTのカスタムGPTとして運用していたものを、
+            共有制限の仕様変更を受けて<strong>OpenAI APIを直接叩く自前のチャットアプリ</strong>に移行。
+            ヒアリング結果はWebhook経由で案件管理シートへ自動反映されます。
+          </p>
+          <div class="work-result">
+            <b>実証：要件ヒアリングの型化とチャット形式での自動収集を実運用</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Node.js / Express</span>
+            <span class="tag">OpenAI API（Function Calling）</span>
+            <span class="tag">n8n Webhook連携</span>
+            <span class="tag">自動テスト（会話シナリオ）</span>
           </div>
         </div>
       </div>
