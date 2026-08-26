@@ -1059,11 +1059,12 @@
             AI開発パイプライン — 複数AIエージェントによる開発組織のシミュレーション
           </h3>
           <p class="featured-tagline">
-            課長・部長にあたる<strong style="color:var(--ink)">レビュー役のAIエージェント</strong>と、
-            機能ごとに分業する<strong style="color:var(--ink)">実装チームのAIエージェント</strong>で
-            受託開発の組織体制を再現したパイプライン。
-            要件定義から実装・単体テスト・差し戻し・統合・E2E検証・納品物作成までを自律的に進め、
-            解決しない指摘だけを人間へエスカレーションします。
+            機能ごとに分業する<strong style="color:var(--ink)">実装エージェント</strong>と、
+            その成果物を検証・承認する<strong style="color:var(--ink)">レビューエージェント</strong>、
+            全体のチーム編成と最終判断を担う<strong style="color:var(--ink)">設計統括エージェント</strong>――
+            この3層構成で、実際の開発チームに近いレビュー体制を再現したパイプライン。
+            要件定義から実装・単体テスト・レビュー（差し戻し）・統合・E2E検証・納品物作成までを自律的に進め、
+            レビューで解決しない指摘だけを人間へエスカレーションします。
             実際の受託案件（食品ギフト仲介事業者向け・受発注管理システム）を
             このパイプラインで構築し、納品まで完了させました。
           </p>
@@ -1089,13 +1090,14 @@
               <div class="featured-h4">01 · CONCEPT</div>
               <p class="featured-desc">
                 クライアントへのヒアリング内容をもとに、<strong>フロントエンドからバックエンドまで
-                その案件に最適な実装チームの数・役割分担を部長役のAIが都度設計</strong>する
+                その案件に最適な実装チームの数・役割分担を「設計統括エージェント」が都度設計</strong>する
                 動的なチーム編成を採用。固定の組織図はなく、
                 レビューの過程で追加の処理が必要と判断されれば、
                 その場で<strong>新しいチームを編成し直す</strong>こともあります。
               </p>
               <p class="featured-desc">
-                編成された各チームの成果物は<strong>課長・部長役のエージェント</strong>がレビュー。
+                編成された各チームの成果物は<strong>「レビューエージェント」</strong>が検証し、
+                最終的な統合判断は設計統括エージェントが行います。
                 「誰が作ったか」ではなく「実機で動くか」を実際にコマンドを実行して検証してから
                 承認する、というルールを徹底しています。
               </p>
@@ -1112,17 +1114,17 @@
               <div class="pipeline-viz">
                 <span class="node human">要件ヒアリング</span>
                 <span class="arrow">→</span>
-                <span class="node ai">チーム編成設計（部長）</span>
+                <span class="node ai">チーム編成設計（設計統括エージェント）</span>
                 <br>
-                <span class="node ai">チーム別実装（AI）</span>
+                <span class="node ai">チーム別実装（実装エージェント）</span>
                 <span class="arrow">→</span>
-                <span class="node ai">課長レビュー</span>
+                <span class="node ai">レビュー（レビューエージェント）</span>
                 <br>
                 <span class="node">承認 / 差し戻し（最大3回）</span>
                 <span class="arrow">→</span>
                 <span class="node ai">追加チーム編成（必要時）</span>
                 <br>
-                <span class="node ai">部長・統合担当の統合判定</span>
+                <span class="node ai">統合判定（設計統括エージェント）</span>
                 <span class="arrow">→</span>
                 <span class="node ai">E2E統合テスト</span>
                 <br>
@@ -1143,7 +1145,7 @@
           <div class="featured-h4">03 · TEAM FORMATION（案件ごとに動的編成されるチーム構成）</div>
           <p class="featured-desc" style="max-width:none;margin-bottom:20px">
             チーム名・チーム数はあらかじめ固定されておらず、
-            ヒアリング内容から部長役のAIが案件ごとに設計します。
+            ヒアリング内容から設計統括エージェントが案件ごとに設計します。
             以下は<strong>今回の案件（食品ギフト仲介事業者向け）で実際に編成された6チーム</strong>の例です。
           </p>
           <div class="modules-grid">
@@ -1199,7 +1201,7 @@
           <div class="trigger-block">
             <div class="featured-h4">04 · QUALITY GATE · 差し戻し／エスカレーションの仕組み</div>
             <p class="featured-desc" style="max-width:none;margin-bottom:24px">
-              各チームの成果物は課長役のエージェントが<strong>実機でコマンドを実行して</strong>検証し、
+              各チームの成果物はレビューエージェントが<strong>実機でコマンドを実行して</strong>検証し、
               承認 or 差し戻しを判定します。レビューの結果、既存チームの担当範囲を超える
               <strong>追加処理が必要と判断された場合は、その場で新しいチームを編成</strong>して対応します。
               差し戻しが<strong>3ラウンドを超えても解消しない</strong>場合は、
@@ -1212,7 +1214,7 @@
             <div class="trigger-grid">
               <div class="trigger-item">
                 <div class="trigger-schedule">ROUND 1–3</div>
-                <div class="trigger-name">課長レビュー・差し戻しサイクル</div>
+                <div class="trigger-name">レビュー・差し戻しサイクル</div>
                 <div class="trigger-desc">
                   実行ログ・トレースバック・PASS/FAILの生ログを根拠に、
                   指摘事項を具体的なコード箇所付きで差し戻す。
@@ -1249,7 +1251,7 @@
               <div class="featured-h4">05 · DEV OPS</div>
               <p class="featured-desc">
                 各チームの実装・レビュー・統合の判断根拠を、<strong>実行ログや差分の一次情報</strong>で
-                残す運用を徹底。統合担当は着手前に必ず既存の納品フォルダを確認し、
+                残す運用を徹底。設計統括エージェントは着手前に必ず既存の納品フォルダを確認し、
                 同一入力に対してすでに完了済みの成果物がないかを実機検証してから
                 作業に入る、という「重複作業を避けるチェック」を組み込んでいます。
               </p>
