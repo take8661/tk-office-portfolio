@@ -1284,10 +1284,58 @@
             </div>
           </div>
 
+          <!-- 納品前レビューツール -->
+          <div class="trigger-block">
+            <div class="featured-h4">05 · FINAL REVIEW · 納品前レビューツールによる最終ゲート</div>
+            <p class="featured-desc" style="max-width:none;margin-bottom:24px">
+              パイプラインが生成した成果物は、最後に別途開発した<strong>納品前セキュリティ・品質検査ツール</strong>
+              でレビューします。静的解析（Python: Ruff・mypy・Bandit／JavaScript・TypeScript: ESLint・tsc／
+              Java: Checkstyle・PMD）に加え、Dockerで隔離した環境での動的検査、任意でAIによる意味レビューまで行い、
+              <strong>「納品可能」「条件付き納品可能」「要修正」「判定不能」の4段階判定</strong>を根拠付きで返します。
+              安全性に具体的な疑いが残る場合は自動で処理を止め、人間の承認記録なしには解除されません。
+            </p>
+
+            <div class="modules-grid">
+              <div class="module-item">
+                <div class="module-name">納品可能</div>
+                <div class="module-desc">
+                  必須の静的・動的検査がすべて完了し、重大な指摘が無い状態。
+                </div>
+              </div>
+              <div class="module-item">
+                <div class="module-name">条件付き納品可能</div>
+                <div class="module-desc">
+                  重大な指摘は無いが、検査範囲の一部が未実施（例：動的検査を実施していない）。
+                  静的検査のみの標準構成では、正常時でもここまでが上限。
+                </div>
+              </div>
+              <div class="module-item">
+                <div class="module-name">要修正</div>
+                <div class="module-desc">
+                  重大な指摘があり、納品前に修正が必要な状態。
+                </div>
+              </div>
+              <div class="module-item">
+                <div class="module-name">判定不能</div>
+                <div class="module-desc">
+                  必須の検査自体が完了できなかった状態。「品質の合否」と「検査を完了できたか」を
+                  別軸で扱う設計です。
+                </div>
+              </div>
+            </div>
+
+            <div class="trigger-note">
+              <span class="trigger-note-label">// dev note</span>
+              このレビューツール自体も、設計・実装の各段階を担当外のAIによる独立レビューにかけ、
+              重大・中程度の指摘0件になるまで先に進めない、というAI開発パイプラインと同じ考え方で作りました。
+              Python／JavaScript・TypeScript／Javaに対応し、テストは450件以上が通過しています。
+            </div>
+          </div>
+
           <!-- 開発運用の工夫 -->
           <div class="featured-grid" style="margin-bottom:0;margin-top:36px">
             <div>
-              <div class="featured-h4">05 · DEV OPS</div>
+              <div class="featured-h4">06 · DEV OPS</div>
               <p class="featured-desc">
                 各チームの実装・レビュー・統合の判断根拠を、<strong>実行ログや差分の一次情報</strong>で
                 残す運用を徹底。設計統括エージェントは着手前に必ず既存の納品フォルダを確認し、
@@ -1301,12 +1349,13 @@
               </p>
             </div>
             <div>
-              <div class="featured-h4">06 · TECH STACK</div>
+              <div class="featured-h4">07 · TECH STACK</div>
               <p class="featured-desc" style="margin-bottom:12px">
                 Python 製の実装チームをFlaskベースのWebアプリへ統合し、
                 PDF生成・DB永続化・通知ログ生成までを1つの業務フローとして接続。
                 単体テストは各チームの<code style="font-family:var(--mono);font-size:12px;background:var(--bg-alt);padding:2px 6px">unittest</code>、
-                結線確認はE2Eテストスイートで担保しています。
+                結線確認はE2Eテストスイートで担保。最終レビューには
+                Ruff・mypy・Bandit・Docker Sandboxを使った専用ツールを使用しています。
               </p>
               <div class="work-stack" style="margin-top:16px">
                 <span class="tag">Claude Code Multi-Agent</span>
@@ -1315,6 +1364,8 @@
                 <span class="tag">SQLite</span>
                 <span class="tag">PDF生成</span>
                 <span class="tag">unittest / E2Eテスト</span>
+                <span class="tag">Ruff / mypy / Bandit</span>
+                <span class="tag">Docker Sandbox</span>
                 <span class="tag">Markdown指示・レビュー記録</span>
               </div>
             </div>
