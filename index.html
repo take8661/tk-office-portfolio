@@ -1089,9 +1089,9 @@
             <div>
               <div class="featured-h4">01 · CONCEPT</div>
               <p class="featured-desc">
-                クライアントへのヒアリング内容をもとに、<strong>フロントエンドからバックエンドまで
-                その案件に最適な実装チームの数・役割分担を「設計統括エージェント」が都度設計</strong>する
-                動的なチーム編成を採用。固定の組織図はなく、
+                クライアントへのヒアリング内容をもとに、<strong>バックエンド（機能別の実装チーム）から
+                フロントエンド（Web UI構築）まで、その案件に必要な役割分担を「設計統括エージェント」が
+                都度設計</strong>する動的なチーム編成を採用。固定の組織図はなく、
                 レビューの過程で追加の処理が必要と判断されれば、
                 その場で<strong>新しいチームを編成し直す</strong>こともあります。
               </p>
@@ -1116,7 +1116,7 @@
                 <span class="arrow">→</span>
                 <span class="node ai">チーム編成設計（設計統括エージェント）</span>
                 <br>
-                <span class="node ai">チーム別実装（実装エージェント）</span>
+                <span class="node ai">バックエンド実装（機能別チーム）</span>
                 <span class="arrow">→</span>
                 <span class="node ai">レビュー（レビューエージェント）</span>
                 <br>
@@ -1124,12 +1124,14 @@
                 <span class="arrow">→</span>
                 <span class="node ai">追加チーム編成（必要時）</span>
                 <br>
+                <span class="node ai">バックエンド結合・E2E検証</span>
+                <span class="arrow">→</span>
+                <span class="node ai">フロントエンド（Web UI）構築</span>
+                <br>
                 <span class="node ai">統合判定（設計統括エージェント）</span>
                 <span class="arrow">→</span>
-                <span class="node ai">E2E統合テスト</span>
+                <span class="node ai">納品物生成（デモ・説明書・手順書）</span>
                 <br>
-                <span class="node ai">納品物生成（説明書・手順書）</span>
-                <span class="arrow">→</span>
                 <span class="node human">人間の最終確認・エスカレーション対応</span>
 
                 <div class="pipeline-legend">
@@ -1145,12 +1147,17 @@
           <div class="featured-h4">03 · TEAM FORMATION（案件ごとに動的編成されるチーム構成）</div>
           <p class="featured-desc" style="max-width:none;margin-bottom:20px">
             チーム名・チーム数はあらかじめ固定されておらず、
-            ヒアリング内容から設計統括エージェントが案件ごとに設計します。
-            以下は<strong>今回の案件（食品ギフト仲介事業者向け）で実際に編成された6チーム</strong>の例です。
+            ヒアリング内容から設計統括エージェントが<strong>バックエンド（機能別の実装チーム）から
+            フロントエンド（Web UI構築）・最終統合まで</strong>案件ごとに設計します。
+            以下は<strong>今回の案件（食品ギフト仲介事業者向け）で実際に編成された体制</strong>の例です。
           </p>
+
+          <div style="font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--ink-mute);margin-bottom:12px">
+            BACKEND — 機能別の実装チーム（6チーム）
+          </div>
           <div class="modules-grid">
             <div class="module-item">
-              <div class="module-name">受注メモ解析課</div>
+              <div class="module-name">受注メモ解析</div>
               <div class="module-path">order_memo_parser.py</div>
               <div class="module-desc">
                 FAX・LINE等で届く自由文の注文メモをAIが読み、
@@ -1158,14 +1165,14 @@
               </div>
             </div>
             <div class="module-item">
-              <div class="module-name">受注入力課</div>
+              <div class="module-name">受注入力</div>
               <div class="module-path">order_entry.py / tracking_entry.py</div>
               <div class="module-desc">
                 購入者・複数届け先の受注登録と、配送伝票番号の入力・状態管理を担当。
               </div>
             </div>
             <div class="module-item">
-              <div class="module-name">発注書PDF生成課</div>
+              <div class="module-name">発注書PDF生成</div>
               <div class="module-path">purchase_order_pdf.py</div>
               <div class="module-desc">
                 生産者ごとに発注書PDFを自動生成。PDF生成完了と同時に
@@ -1173,14 +1180,14 @@
               </div>
             </div>
             <div class="module-item">
-              <div class="module-name">外部連携通知課</div>
+              <div class="module-name">外部連携通知</div>
               <div class="module-path">notification.py</div>
               <div class="module-desc">
                 生産者への発注書送付ログ、購入者への発送通知文の組み立てを担当。
               </div>
             </div>
             <div class="module-item">
-              <div class="module-name">データベース設計課</div>
+              <div class="module-name">データベース設計</div>
               <div class="module-path">db.py</div>
               <div class="module-desc">
                 商品・送料マスタ、受注データの永続化と、
@@ -1188,11 +1195,43 @@
               </div>
             </div>
             <div class="module-item">
-              <div class="module-name">テスト課</div>
+              <div class="module-name">テスト</div>
               <div class="module-path">tests / test_end_to_end.py</div>
               <div class="module-desc">
-                6チーム全部を結線したE2E業務フロー（受注登録 → 発注書生成 → 状態遷移 →
-                発送通知 → 月次集計）と、各チームの単体テストを担当。
+                バックエンド6チーム全部を結線したE2E業務フロー（受注登録 → 発注書生成 →
+                状態遷移 → 発送通知 → 月次集計）と、各チームの単体テストを担当。
+              </div>
+            </div>
+          </div>
+
+          <div style="font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--ink-mute);margin:28px 0 12px">
+            FRONTEND / INTEGRATION — UI構築と最終統合
+          </div>
+          <div class="modules-grid">
+            <div class="module-item">
+              <div class="module-name">バックエンド結合</div>
+              <div class="module-path">app_full/main.py</div>
+              <div class="module-desc">
+                6チームの部品を業務フローの順序で結線するエントリーポイントを構築し、
+                実機でE2E検証（受注登録〜月次集計が一気通貫で動くことを確認）。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">フロントエンド（Web UI）構築</div>
+              <div class="module-path">webapp/app.py, templates/</div>
+              <div class="module-desc">
+                Flask + HTML/CSSでブラウザ操作画面を構築。日常の受発注操作画面に加え、
+                商品・送料・生産者マスタの登録／編集画面も実装。
+                既存のバックエンドロジックは書き換えず、関数呼び出しの形で組み込む設計。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">最終統合・納品物作成</div>
+              <div class="module-path">delivery/index.html, 利用ガイド, 本番投入手順書</div>
+              <div class="module-desc">
+                バックエンド・フロントエンドを合わせて、自己完結型のデモ画面と
+                利用ガイド・本番投入手順書を作成。パイプライン内部の用語や役職名が
+                成果物に残っていないかを機械的に検証してから納品。
               </div>
             </div>
           </div>
@@ -1287,11 +1326,11 @@
         <div class="ops-wrap">
           <div class="ops-grid">
             <div class="ops-item">
-              <div class="ops-label">TEAMS</div>
+              <div class="ops-label">BACKEND TEAMS</div>
               <div class="ops-num">6</div>
               <div class="ops-desc">
                 DB設計・受注入力・外部連携通知・発注書PDF生成・受注メモ解析・テストの
-                6チームに分業し並行実装。
+                6チームに分業し並行実装。別工程でフロントエンド（Web UI）と最終統合を実施。
               </div>
             </div>
             <div class="ops-item">
