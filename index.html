@@ -1773,13 +1773,13 @@
       <div class="works-group">
         <span class="works-group-num">GROUP D</span>
         <span class="works-group-title">AI開発パイプライン実証デモ群</span>
-        <span class="works-group-count">34 projects</span>
+        <span class="works-group-count">35 projects</span>
       </div>
       <p class="section-lede" style="margin-bottom:32px">
         「AI開発パイプライン」（Featured Work参照）が、実案件と並行して異なるジャンルの小規模デモを
         大量かつ短期間に処理できるかを検証するために作った実証バッチです。1件ずつ、実装 → レビュー →
-        最終検査 → 課長承認 → 部長統括まで通した上で収録しています（★1件のみレビューで人間判断待ちのため未収録）。
-        いずれもローカル環境での動作確認までで、本番公開はしていません。
+        最終検査 → 課長承認 → 部長統括まで通した上でVPSへデプロイし、実際に操作できるデモとして公開しています。
+        各カードのコスト・稼働時間は、そのデモをAIパイプラインが実装するのに実際にかかった数値です。
       </p>
       <div class="mini-grid">
             <div class="mini-card">
@@ -1789,7 +1789,7 @@
               </div>
               <h3 class="mini-title">レシートOCR記帳デモ</h3>
               <p class="mini-desc">レシートや手書き伝票の画像をアップロードすると、OCRと生成AIで内容を読み取り構造化データとして抽出します。レシートモードでは合計金額の計算や勘定科目の推測を、手書き伝票モードでは品目・数量のテーブル抽出とTSV変換を行い、抽出結果は一覧で確認・編集・エクスポートできます。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://ocr-structuring-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">ocr-structuring-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js / Express</span><span class="mini-tag">OCR</span><span class="mini-tag">生成AI構造化抽出</span></div>
             </div>
             <div class="mini-card">
@@ -1799,7 +1799,7 @@
               </div>
               <h3 class="mini-title">テキスト構造化抽出デモ</h3>
               <p class="mini-desc">雑な商談メモやボイスメモの文字起こしなど、自由記述のテキストを生成AI（Function Calling）で解析し、構造化データへ自動変換するツールです。CRMモード（商談情報の抽出）とToDoモード（タスクの自動仕分け）の2種類に対応し、出力のフォーマット検証やハルシネーション検知の仕組みも備えています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://text-extraction-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">text-extraction-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js / Express</span><span class="mini-tag">生成AI (OpenAI)</span><span class="mini-tag">ハルシネーション検知</span></div>
             </div>
             <div class="mini-card">
@@ -1809,7 +1809,7 @@
               </div>
               <h3 class="mini-title">異常検知自己修復ダッシュボード</h3>
               <p class="mini-desc">AI開発パイプライン自身が生成する実データ（複数レーンの実行ログや処理状態の遷移記録）を読み込み、稼働状況や異常の発生をダッシュボード上で可視化するツールです。ログ読み込みの疎通確認や、機微情報のマスキング処理、画面上でのエラー表示など、運用監視ツールとしての作り込みがされています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://anomaly-dashboard-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">anomaly-dashboard-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js / Express</span><span class="mini-tag">ログ可視化</span><span class="mini-tag">データマスキング</span></div>
             </div>
             <div class="mini-card">
@@ -1819,7 +1819,7 @@
               </div>
               <h3 class="mini-title">雇用契約書PDFジェネレーター</h3>
               <p class="mini-desc">契約期間・就業場所・労働時間・賃金などの雇用条件をフォームに入力するだけで、労働条件通知書を兼ねた雇用契約書PDFを自動生成するツールです。法的アドバイスではない旨の免責表示を画面とPDFの両方に明示し、生成履歴を監査ログとして記録する機能も備えています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://employment-contract-pdf-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">employment-contract-pdf-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js / Express</span><span class="mini-tag">PDFKit</span><span class="mini-tag">監査ログ</span></div>
             </div>
             <div class="mini-card">
@@ -1829,7 +1829,7 @@
               </div>
               <h3 class="mini-title">Excel放り込み即席Webアプリ生成</h3>
               <p class="mini-desc">Excelファイルをアップロードするだけで、列構成から項目定義を自動推測し、プレビュー画面で内容を確認・修正したうえでアプリとして確定できるツールです。確定後はデータが一括投入され、そのままCRUD操作や検索を行える業務アプリとして利用できます。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://excel-instant-webapp-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">excel-instant-webapp-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js / Express</span><span class="mini-tag">Excel自動解析</span><span class="mini-tag">CRUDエンジン</span></div>
             </div>
             <div class="mini-card">
@@ -1839,7 +1839,7 @@
               </div>
               <h3 class="mini-title">極小ワークフロービルダー</h3>
               <p class="mini-desc">Webhook・フォーム・AI判定・スプレッドシート保存・条件分岐といったノードを画面上でつなぎ合わせ、簡易的な業務自動化フローを組み立てられるZapier風のツールです。トポロジカルソートによる実行順制御や、Webhookの署名検証・重複実行防止（冪等性キー）などの実務的な仕組みも組み込まれています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://workflow-builder-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">workflow-builder-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js / Express</span><span class="mini-tag">ワークフロー自動化</span><span class="mini-tag">Google Sheets連携</span></div>
             </div>
             <div class="mini-card">
@@ -1849,7 +1849,7 @@
               </div>
               <h3 class="mini-title">APIコスト上限ストッパー</h3>
               <p class="mini-desc">外部API利用時のコスト暴走を防ぐガードシステムのデモです。呼び出し前の予算事前チェックと呼び出し後の実コスト精算を組み合わせたハイブリッド方式で、設定した予算上限に達すると自動的に処理を停止します。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://api-cost-stopper-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">api-cost-stopper-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">コスト管理</span></div>
             </div>
             <div class="mini-card">
@@ -1859,7 +1859,7 @@
               </div>
               <h3 class="mini-title">DLQ（デッドレターキュー）可視化ダッシュボード</h3>
               <p class="mini-desc">バッチ処理で失敗した注文ジョブを消失させず、デッドレターキューへ退避して可視化するダッシュボードです。意図的なエラー注入によって失敗を再現し、誰が・何を・どう失敗したかをログから追跡できます。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://dlq-dashboard-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">dlq-dashboard-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">DLQ</span></div>
             </div>
             <div class="mini-card">
@@ -1869,7 +1869,7 @@
               </div>
               <h3 class="mini-title">PII（個人情報）自動マスキングツール</h3>
               <p class="mini-desc">氏名・電話番号・メールアドレス・クレジットカード番号などの個人情報を検出し、復元不能な形でマスキングするツールです。ルールベースとAI検出を組み合わせたハイブリッド方式を採用し、検出精度は正解データとの重なりを基準に自動採点されます。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://pii-masking-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">pii-masking-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">個人情報保護</span></div>
             </div>
             <div class="mini-card">
@@ -1879,7 +1879,7 @@
               </div>
               <h3 class="mini-title">冪等性・連打耐性デモ</h3>
               <p class="mini-desc">二重送信や連打などの多重リクエストを受けてもデータが壊れないことを実演するデモです。DBのUNIQUE制約とトランザクションによる安全な実装と、対策を施さないナイーブな実装を並べて比較し、対策なしでは実際にデータ不整合が起きることを示します。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://idempotency-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">idempotency-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">SQLite</span></div>
             </div>
             <div class="mini-card">
@@ -1889,7 +1889,7 @@
               </div>
               <h3 class="mini-title">手書きスケッチ→ワイヤーフレーム変換デモ</h3>
               <p class="mini-desc">手書きのスケッチ画像を生成AIで読み取り、構造化された中間JSONに変換したうえで、決定論的なロジックによりHTML/CSSのワイヤーフレームへ変換するデモです。非決定的な画像解析と決定的な変換処理を明確に分離し、変換部分は厳密な自動テストで検証されています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://sketch-to-wireframe-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">sketch-to-wireframe-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">生成AI画像解析</span></div>
             </div>
             <div class="mini-card">
@@ -1899,7 +1899,7 @@
               </div>
               <h3 class="mini-title">サードパーティAPI死活連動型の機能縮退（デグラデーション）デモ</h3>
               <p class="mini-desc">オンライン注文アプリを題材に、決済APIと天気APIという重要度の異なる外部依存先をそれぞれ独立したサーキットブレーカーで監視するデモです。障害発生時は決済のような重要機能を安全に停止し、非重要機能は標準値へ自動フォールバックしながら継続動作します。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://api-health-degradation-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">api-health-degradation-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">サーキットブレーカー</span></div>
             </div>
             <div class="mini-card">
@@ -1909,7 +1909,7 @@
               </div>
               <h3 class="mini-title">CSV即席グラフ改善提案デモ</h3>
               <p class="mini-desc">任意のCSVファイルをアップロードすると区切り文字や文字コードを自動判定して読み込み、内容に適したグラフ種別をAIが提案・自動生成するツールです。データを開いてすぐに可視化の示唆を得たい場面を想定しています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://csv-insight-chart-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">csv-insight-chart-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">React</span><span class="mini-tag">TypeScript</span><span class="mini-tag">Chart.js</span></div>
             </div>
             <div class="mini-card">
@@ -1919,7 +1919,7 @@
               </div>
               <h3 class="mini-title">IPAサンプル要件定義書テキストからのER図（Mermaid）・DDL即時生成デモ</h3>
               <p class="mini-desc">自然文で書かれた要件定義書のテキストを入力すると、AIがエンティティ構造を解析し、同じ中間データからMermaid形式のER図とSQLのCREATE TABLE文を同時に生成します。要件定義から設計書起こしまでの工程を大幅に短縮する用途を想定しています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://er-diagram-instant-generator-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">er-diagram-instant-generator-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Claude API</span><span class="mini-tag">Mermaid</span><span class="mini-tag">DDL生成</span></div>
             </div>
             <div class="mini-card">
@@ -1929,7 +1929,7 @@
               </div>
               <h3 class="mini-title">IPA公開資料からの図書館予約・貸出システム化デモ</h3>
               <p class="mini-desc">図書館の貸出・予約業務を題材に、利用者証の有効期限や延滞状況のチェックを伴う貸出受付、書誌検索、予約登録・取消、返却時の予約繰り上げまでを一通り扱う業務システムです。所蔵状況と予約状況を厳密な状態遷移ルールで管理します。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://library-reservation-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">library-reservation-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">TypeScript</span><span class="mini-tag">Vitest</span><span class="mini-tag">状態遷移管理</span></div>
             </div>
             <div class="mini-card">
@@ -1939,7 +1939,7 @@
               </div>
               <h3 class="mini-title">Slackプチ版：緊急度自動判定エスカレーションルーター</h3>
               <p class="mini-desc">チャット風の投稿フォームに入力されたメッセージをキーワード・正規表現スコアリングで解析し、緊急度を自動判定して適切な宛先へ振り分けるツールです。判定根拠を画面に表示し、誤判定時は手動で再分類することもできます。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://escalation-router-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">escalation-router-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">ルールベース分類</span></div>
             </div>
             <div class="mini-card">
@@ -1949,7 +1949,7 @@
               </div>
               <h3 class="mini-title">プロンプトインジェクション＆ハルシネーション防御デモ</h3>
               <p class="mini-desc">AIチャットボットに対するプロンプトインジェクション攻撃の検知、事実と異なる回答（ハルシネーション）の検知、出力データの構造バリデーションという3つの防御機構を単体で検証できるデモです。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://prompt-injection-defense-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">prompt-injection-defense-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Claude API</span><span class="mini-tag">セキュリティ</span><span class="mini-tag">LLM防御</span></div>
             </div>
             <div class="mini-card">
@@ -1959,7 +1959,7 @@
               </div>
               <h3 class="mini-title">マルチテナント環境のデータ論理分離チェッカー</h3>
               <p class="mini-desc">複数テナントが同居するシステムで起こりがちなデータ越境アクセスの危険性を、あえて分離漏れのある実装と正しく分離された実装を並べて体験できるデモです。全リソース・全操作の組み合わせを自動テストで網羅的に検証します。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://multitenant-isolation-checker-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">multitenant-isolation-checker-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">セキュリティ</span><span class="mini-tag">自動テスト網羅</span></div>
             </div>
             <div class="mini-card">
@@ -1969,7 +1969,7 @@
               </div>
               <h3 class="mini-title">ワンタイム同意フォームデモ</h3>
               <p class="mini-desc">契約書などの同意フォームを一意なURLで発行し、同意操作を確実に一度きりに制限する仕組みのデモです。改ざん検知用のハッシュ連鎖など、証跡の完全性を担保する設計になっています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://onetime-consent-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">onetime-consent-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">SQLite</span><span class="mini-tag">電子同意</span></div>
             </div>
             <div class="mini-card">
@@ -1979,7 +1979,7 @@
               </div>
               <h3 class="mini-title">会議滞空時間診断デモ（Zoomプチ版）</h3>
               <p class="mini-desc">会議の発言記録（CSVまたはJSON形式でアップロード可能）を解析し、参加者ごとの発言時間の偏りを診断するツールです。ファシリテーションの改善につなげる用途を想定しています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://meeting-airtime-diagnosis-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">meeting-airtime-diagnosis-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">データ可視化</span></div>
             </div>
             <div class="mini-card">
@@ -1989,7 +1989,7 @@
               </div>
               <h3 class="mini-title">古参システムCSV／固定長ファイル→現代的フォーマット変換ETL</h3>
               <p class="mini-desc">レガシーシステムが出力するSJIS固定長ファイルやCSVを、現代的なJSON／CSV形式へ変換するETLツールです。変換前後で数値合計を独立して再計算・突合することで変換の正確性を検証します。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://legacy-etl-converter-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">legacy-etl-converter-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">ETL</span><span class="mini-tag">文字コード変換</span></div>
             </div>
             <div class="mini-card">
@@ -1999,7 +1999,7 @@
               </div>
               <h3 class="mini-title">大量データ一括インポート＆チャンク分割処理デモ</h3>
               <p class="mini-desc">1万行規模のCSVデータを一度に読み込まず、設定可能なサイズのチャンクに分割して段階的にデータベースへ取り込むインポートツールです。重複データの検出やエラー行の種別ごとの集計を行います。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://bulk-chunked-import-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">bulk-chunked-import-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">バッチインポート</span></div>
             </div>
             <div class="mini-card">
@@ -2009,7 +2009,7 @@
               </div>
               <h3 class="mini-title">官公庁調達仕様書（PDF）→必須要件チェックリスト抽出器デモ</h3>
               <p class="mini-desc">官公庁の調達仕様書PDFをアップロードすると、記載されている必須要件を自動抽出してチェックリスト形式で一覧表示するツールです。提案書作成時の要件見落としを防ぐことを目的としています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://gov-spec-checklist-extractor-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">gov-spec-checklist-extractor-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">React</span><span class="mini-tag">Fastify</span><span class="mini-tag">PDF解析</span></div>
             </div>
             <div class="mini-card">
@@ -2019,7 +2019,7 @@
               </div>
               <h3 class="mini-title">Notionプチ版：雑多メモ自動マークダウン階層化デモ</h3>
               <p class="mini-desc">時系列に書きなぐった雑多なメモを入力すると、LLMが行ごとの割り当てのみを判断し、本文の複製や情報欠落チェックはサーバー側の決定的処理で行うことで、見出し階層付きのMarkdownに整形するツールです。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://messy-memo-markdown-organizer-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">messy-memo-markdown-organizer-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">LLM function calling</span></div>
             </div>
             <div class="mini-card">
@@ -2029,7 +2029,7 @@
               </div>
               <h3 class="mini-title">時系列ステートトラッカー＆期限アラート</h3>
               <p class="mini-desc">メールやメモ、チャットなど複数ソースからの断片的な状況報告を、案件ごとの時系列の状態遷移履歴として蓄積管理するツールです。期限が近づいた案件や超過した案件を自動判定してアラートを出す機能も備えています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://state-tracker-deadline-alert-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">state-tracker-deadline-alert-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">期限アラート</span></div>
             </div>
             <div class="mini-card">
@@ -2039,7 +2039,7 @@
               </div>
               <h3 class="mini-title">手書きシフト表→カレンダー自動変換デモ</h3>
               <p class="mini-desc">手書きのシフト表を撮影・アップロードすると、Vision AIで内容を読み取り、時刻の正規化や信頼度判定を経てカレンダー用のICSファイルに変換するツールです。アップロード画像はサーバーに保存せず、その場限りで処理します。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://handwritten-shift-calendar-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">handwritten-shift-calendar-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">Vision API</span></div>
             </div>
             <div class="mini-card">
@@ -2049,7 +2049,7 @@
               </div>
               <h3 class="mini-title">手書き図面（簡易間取り図）→面積・部屋数概算デモ</h3>
               <p class="mini-desc">手書きの簡易な間取り図をアップロードすると、AIが部屋の形状や畳数などを読み取り、決定論的な計算ロジックで部屋数と概算面積を自動算出するツールです。算出結果は画面上で手動修正・再計算もできます。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://handwritten-floorplan-area-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">handwritten-floorplan-area-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">Anthropic API</span></div>
             </div>
             <div class="mini-card">
@@ -2059,7 +2059,7 @@
               </div>
               <h3 class="mini-title">現場写真→施工報告書自動生成デモ</h3>
               <p class="mini-desc">建設・工事現場の作業前後の写真と簡単なメモをアップロードすると、AIが内容を読み取って施工完了報告書のPDFを自動生成するツールです。AIによる読み取りと、確認済みデータからのPDF組み立てを分離した設計です。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://site-photo-report-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">site-photo-report-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">PDF生成</span></div>
             </div>
             <div class="mini-card">
@@ -2069,7 +2069,7 @@
               </div>
               <h3 class="mini-title">不正リクエスト検知＆自動IPブロック（簡易WAF自作デモ）</h3>
               <p class="mini-desc">脆弱なダミーAPIとそれを保護する簡易WAF、動作を確認できるデモ画面の3つで構成されたセキュリティ学習用デモです。SQLインジェクションなどの不正リクエストパターンを検知し、閾値を超えたIPを自動ブロックします。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://simple-waf-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">simple-waf-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">WAF</span></div>
             </div>
             <div class="mini-card">
@@ -2079,7 +2079,7 @@
               </div>
               <h3 class="mini-title">Shopifyプチ版：複数チャネル在庫連携管理デモ</h3>
               <p class="mini-desc">自社ECサイト・フリマ的チャネル・実店舗という3つの架空の販売チャネルが単一の在庫マスタを共有し、いずれかのチャネルで注文が確定すると他チャネルの在庫表示にも即座に反映される在庫連携デモです。核心機能は在庫の二重販売防止です。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://multichannel-inventory-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">multichannel-inventory-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">排他制御</span></div>
             </div>
             <div class="mini-card">
@@ -2089,7 +2089,7 @@
               </div>
               <h3 class="mini-title">複数ドキュメント横断・矛盾検知ツール</h3>
               <p class="mini-desc">契約書や仕様書、議事録など複数の文書をまとめて読み込ませると、日付・金額・当事者名・数量といった項目間の食い違いを信頼度付きで自動検出するツールです。PDFやWord文書にも対応しています。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://cross-doc-contradiction-detector-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">cross-doc-contradiction-detector-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">OpenAI API</span></div>
             </div>
             <div class="mini-card">
@@ -2099,7 +2099,7 @@
               </div>
               <h3 class="mini-title">HubSpotプチ版：解約リスクスコアリングデモ</h3>
               <p class="mini-desc">SaaS顧客の利用状況を記録したCSVを取り込むと、各顧客の解約リスクスコアを算出し、その根拠とともにダッシュボード上に表示するツールです。カスタマーサクセス担当者の優先アプローチ判断を支援します。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://churn-risk-scoring-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">churn-risk-scoring-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">スコアリング</span></div>
             </div>
             <div class="mini-card">
@@ -2109,7 +2109,7 @@
               </div>
               <h3 class="mini-title">設定値の世代管理＆ワンクリックロールバックデモ</h3>
               <p class="mini-desc">システムの設定値を変更するたびに世代として履歴を保存し、過去のどの時点の設定にもワンクリックで戻せる管理画面デモです。誰がいつどの設定をどう変更したかを世代テーブルで一覧できます。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://config-rollback-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">config-rollback-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">Express</span><span class="mini-tag">設定管理</span></div>
             </div>
             <div class="mini-card">
@@ -2119,8 +2119,18 @@
               </div>
               <h3 class="mini-title">閲覧1回限りパスワード共有URLデモ（1Passwordプチ版）</h3>
               <p class="mini-desc">パスワード付きの機密情報を、一度だけ閲覧可能な共有URLとして発行できるツールです。閲覧確定後は原子的な更新処理により即座に無効化されるため、同じリンクを二度目に開いても内容は表示されません。</p>
-              <div class="mini-demo-line"><b>DEMO</b> 準備中（VPSへのデプロイ待ち）</div>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://onetime-view-share-url-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">onetime-view-share-url-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
               <div class="mini-tags"><span class="mini-tag">Node.js</span><span class="mini-tag">SQLite</span><span class="mini-tag">セキュアシェアリング</span></div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card-top">
+                <span class="mini-num">D-35</span>
+                <span class="mini-stat">$10.23 ・ AI稼働38分</span>
+              </div>
+              <h3 class="mini-title">手書きメニュー→アレルゲン表示付き多言語Webメニュー自動生成デモ</h3>
+              <p class="mini-desc">手書きメニューの写真をアップロードすると、AIが品目名・価格を読み取り、翻訳を加えた多言語Webメニューを自動生成するデモです。食材からアレルゲン情報も推測して表示しますが、AIによる推測である旨の免責バナーを画面に常時表示する設計になっています。</p>
+              <div class="mini-demo-line"><b>DEMO</b> <a href="https://menu-allergen-multilingual-demo.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)">menu-allergen-multilingual-demo.demos.himitsuno-heya123.com&nbsp;↗</a></div>
+              <div class="mini-tags"><span class="mini-tag">Node.js / Express</span><span class="mini-tag">Vision AI</span><span class="mini-tag">多言語生成</span></div>
             </div>
       </div>
 
