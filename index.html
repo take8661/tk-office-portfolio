@@ -1748,12 +1748,37 @@
         <span class="works-group-title">AI開発パイプライン実証デモ群</span>
         <span class="works-group-count">35 projects</span>
       </div>
-      <p class="section-lede" style="margin-bottom:32px">
-        「AI開発パイプライン」（Featured Work参照）が、実案件と並行して異なるジャンルの小規模デモを
-        大量かつ短期間に処理できるかを検証するために作った実証バッチです。1件ずつ、実装 → レビュー →
-        最終検査 → 課長承認 → 部長統括まで通した上でVPSへデプロイし、実際に操作できるデモとして公開しています。
-        各カードのコスト・稼働時間は、そのデモをAIパイプラインが実装するのに実際にかかった数値です。
-      </p>
+      <div class="featured-grid" style="grid-column:1/-1;margin-bottom:36px">
+        <div>
+          <div class="featured-h4">01 · WHY · なぜ作ったか</div>
+          <p class="featured-desc">
+            「AI開発パイプライン」（Featured Work参照）は、食品ギフト仲介事業者向けの実案件（案件_山渓）で
+            初めて実運用しましたが、<strong>1件の案件を任せられるだけでは「開発組織」としての
+            再現性は証明できません。</strong>ジャンル・技術要件がまったく異なる案件を並行して大量に
+            処理しても、レビュー体制や品質ゲートが崩れずに機能し続けるか——それを確認するために
+            企画した実証バッチが、このGROUP Dの35件です。
+          </p>
+          <p class="featured-desc">
+            OCR・PDF生成・セキュリティ・業務システム・レガシー変換など、あえて<strong>領域を大きく
+            散らして</strong>設計書を個別に用意し、1件ごとに他プロジェクトと完全に独立してゼロから
+            実装させています。
+          </p>
+        </div>
+        <div>
+          <div class="featured-h4">02 · HOW · どう作ったか</div>
+          <p class="featured-desc">
+            各デモは通常の受託案件と<strong>まったく同じプロセス</strong>を1件ずつ通しています。
+            実装エージェントによる実装 → レビューエージェントによる検証（差し戻しは最大3ラウンド）→
+            最終検査 → 課長承認 → 部長統括、という流れをすべて経たうえで、承認済みのものだけを
+            VPSへ個別デプロイし、実際に操作できるデモとして公開しています。
+          </p>
+          <p class="featured-desc">
+            各カードに表示している<strong>COST・AI稼働時間は演出ではなく実数値</strong>です。
+            パイプラインの実行ログ（cost-log）から、そのデモ1件を実装するのに実際にかかった
+            AI利用コストと処理時間を集計して掲載しています。
+          </p>
+        </div>
+      </div>
             <div class="work-card">
         <div class="work-visual"><span class="work-visual-label">// ocr-structuring-demo</span></div>
         <div class="work-body">
