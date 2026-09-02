@@ -296,6 +296,33 @@
   .work-result b{font-family:var(--serif);color:var(--accent);font-size:15px}
   .work-stack{display:flex;flex-wrap:wrap;gap:6px}
 
+  /* ---------- Mini demo grid (GROUP D) ---------- */
+  .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:980px){.mini-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.mini-grid{grid-template-columns:1fr}}
+  .mini-card{
+    background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);
+    padding:20px;display:flex;flex-direction:column;gap:10px;
+    transition:transform .25s,border-color .25s,box-shadow .25s;
+  }
+  .mini-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+  .mini-card:hover{border-top-color:var(--accent)}
+  .mini-card-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .mini-num{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.14em;font-weight:600;white-space:nowrap;flex-shrink:0}
+  .mini-stat{font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.02em;white-space:nowrap;text-align:right}
+  .mini-title{font-family:var(--serif);font-size:16px;font-weight:600;line-height:1.5}
+  .mini-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.75;flex-grow:1}
+  .mini-demo-line{
+    font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);
+    padding-top:10px;border-top:1px dashed var(--line);letter-spacing:.02em;
+  }
+  .mini-demo-line b{color:var(--ink-soft);font-weight:600}
+  .mini-tags{display:flex;flex-wrap:wrap;gap:5px}
+  .mini-tag{
+    font-family:var(--mono);font-size:10px;padding:3px 8px;
+    background:var(--accent-soft);color:var(--accent);letter-spacing:.03em;
+  }
+
   /* ---------- Works Group Heading ---------- */
   .works-group{
     grid-column:1/-1;
