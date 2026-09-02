@@ -620,10 +620,20 @@ VPS側セッションが登録前後の`crontab -l`を実際に提示。**登録
 実際にブラウザで開き、リセットボタン2つの表示と世代一覧が世代1のみに戻っている
 ことを確認した（2026-09-03 01:5x時点）。
 
-**未完了として残っている点**：cron登録直後のため、`*/30 * * * *`が実際に一度でも
-発火してログ（`/var/log/demo-reset.log`）が生成されたかはまだ未確認（VPS側セッション
-も正直にこの点を保留と報告している）。登録から30分以上経過した後、`cat
-/var/log/demo-reset.log`の出力を確認し、この項目を完全にクローズする必要がある。
+**追記（2026-09-03 02:53・完全クローズ）**：登録から40分以上経過後、竹村さんが
+VPS側で実際に`cat /var/log/demo-reset.log`と`crontab -l`を実行し、生の出力を
+共有。`crontab -l`に`*/30 * * * * REMOTE_BASE=/opt/portfolio-demos
+/opt/portfolio-demos/_scripts/reset-demo-state.sh >> /var/log/demo-reset.log
+2>&1`のエントリが存在し、ログには`02:00:01`と`02:30:01`の2回、ちょうど30分間隔で
+実際にリセット処理が発火・完走した記録（6デモすべての処理＋PM2再起動4件の成功、
+`pm2 list`で全43プロセスonline）が残っていることを確認した。これで項目30は
+機械的な証拠に基づき完全にクローズとする。
+
+これにより、上記「棚卸し総括」で「cron確認待ち」としていたdlq-dashboard-demo・
+excel-instant-webapp-demo・bulk-chunked-import-demo・
+multitenant-isolation-checker-demo・workflow-builder-demoの5デモの「30分ごとに
+自動的にリセットされます」という表示も、実際に正しい表示だったことが確認された
+（対応不要）。
 
 ## 31. pii-masking-demoの警告バナーが実際の挙動と矛盾していた不具合を修正
 
