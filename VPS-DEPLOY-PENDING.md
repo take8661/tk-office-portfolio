@@ -741,3 +741,41 @@ VPS側cron頼みだった点を発見（項目30のcron確認と表裏一体、�
   切り替える」という誤った前提の修正を加えたが、この検証の結果、その修正は
   取り消し・原状復帰した（README追記も取り消し済み）。既存テスト32件、
   変更なしでPASSのままであることを確認済み。
+
+### バッチ3（10件）：menu-allergen-multilingual-demo〜sketch-to-wireframe-demo
+
+9件は問題なし。multitenant-isolation-checker-demoで同じ「30分ごとに自動
+リセット」表示を確認したが、これはworkflow-builder-demo等と同じく項目27で
+まとめて追加した5デモの1つであり、新規の問題ではない（下記「棚卸し総括」参照）。
+
+### バッチ4（3件・最終）：state-tracker-deadline-alert-demo、text-extraction-demo、
+workflow-builder-demo
+
+state-tracker-deadline-alert-demo・text-extraction-demoは問題なし。
+workflow-builder-demoは既知の「30分ごとに自動リセット」表示を確認（新規では
+ない）。
+
+## GROUP D全33デモ横断棚卸し・総括（2026-09-02・完了）
+
+全33デモ（公開URLとしてindex.htmlにリンクされている全件）を4バッチに分けて
+監査した。結果：
+
+- **実際に修正した不具合**：pii-masking-demo（項目31、既に反映・独立確認済み）
+- **「バグかもしれない」として一度修正しかけたが、深掘りの結果、実際には
+  矛盾がないと判明し修正を取り消したもの**：meeting-airtime-diagnosis-demo
+  （表示される社員名は常に固定のダミー名のみで、アップロードした実データの
+  名前が画面に出ることはない設計のため、既存の注記表示のままで正しかった）
+- **「30分ごとに自動的にリセットされます」という表示が、アプリ自体のコードには
+  実装されておらずVPS側cron頼みだった**デモ：dlq-dashboard-demo・
+  excel-instant-webapp-demo・bulk-chunked-import-demo・
+  multitenant-isolation-checker-demo・workflow-builder-demoの5件。これは
+  いずれも項目27で同じタイミング・同じテンプレートでリセット機能を追加した
+  デモ群であり、個別の不具合ではなく1つの根本原因（cronが実際に動いている
+  ことの確認が取れていない）に集約される。項目30のcron確認
+  （`/var/log/demo-reset.log`）が取れ次第、この5件すべてが同時に解消する。
+- **上記以外の27デモ**：banner/disclaimer文言・サンプル機能・リセット機能に
+  ついて、実際のコード・実際のAPI応答まで追跡した上で矛盾なしと確認。
+
+竹村さんの「なんで全部見ない？」という指摘を受けて、item27・pii-maskingで
+見つかった不具合パターンについて、報告のあったデモだけでなくGROUP D全体を
+対象に横断確認した結果である。
