@@ -820,3 +820,34 @@ state-tracker-deadline-alert-demo。
   でreview-filesフォルダへの削除権限を取得した上で対応）。テスト46件PASS。
 
 反映依頼：`vps-session-request-20260903a.md`
+
+### バッチ2（3件・実装・テスト完了、反映依頼済み）
+
+- escalation-router-demo：`lib/store.js`に元々あった`reset()`関数（テストのみで
+  実際のルートに未接続だった死んだコード）を`POST /api/demo-reset`として
+  初めて配線。呼び出し時、起動時と同じシードメッセージ（`server.js`の
+  `getSeedMessages()`）へ戻す。テスト20件（既存18件＋新規2件）PASS。
+- idempotency-demo：`resetOrders()`（`orders`・`orders_naive`両テーブルを
+  DELETE）＋ログクリアを`POST /admin/demo-reset`として追加。
+  **検証環境上の制約**：本セッションの実行環境（Linux VM、Windows側で
+  インストールされたnode_modulesを使用）ではsqlite3のネイティブバイナリが
+  `invalid ELF header`（Windows用）→`npm rebuild`後は`GLIBC_2.38`不足→
+  `--build-from-source`はネットワークタイムアウト、という連鎖でテストが
+  一切実行できなかった（**既存の9件の旧テストも同じエラーで失敗する**ことを
+  確認済みのため、今回の変更が原因ではなく環境固有の問題と判断）。
+  `node --check`による構文チェックのみ実施し、READMEに制約を明記。
+  **VPS側セッションで`npm test`を実際に実行し、結果を報告してほしい**
+  （本番環境はこのデモが既に正常稼働している環境のため、テストも通るはず）。
+- library-reservation-demo：`apps/api/src/routes/admin.ts`（新規）で
+  `POST /admin/demo-reset`を追加。`LibraryStore`に既にあった`seed()`
+  メソッドと起動時と同じ`buildSeedState()`を再利用し、会員・貸出・予約・
+  監査ログを初期状態へ戻す。SCR-06監査ログ画面（`AuditLog.tsx`）に
+  「今すぐこのデモのデータを全て初期状態に戻す」ボタンを追加
+  （`apps/web/src/api/client.ts`に`resetDemo()`追加）。フロントは
+  `npm run build --workspaces --if-present`で再ビルド済み（`apps/web/dist/`）。
+  `apps/api`側はビルド不要（`node --experimental-strip-types`で直接実行する
+  構成）。テスト34件（既存33件＋新規1件）PASS（同じくWindows→Linuxの
+  ネイティブモジュール差異で`@rollup/rollup-linux-x64-gnu`不足エラーが
+  出たため`npm install`で解消）。
+
+反映依頼：`vps-session-request-20260903b.md`
