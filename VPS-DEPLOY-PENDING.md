@@ -789,3 +789,34 @@ workflow-builder-demoは既知の「30分ごとに自動リセット」表示を
 竹村さんの「なんで全部見ない？」という指摘を受けて、item27・pii-maskingで
 見つかった不具合パターンについて、報告のあったデモだけでなくGROUP D全体を
 対象に横断確認した結果である。
+
+## 32. 「共有状態はあるのにリセット手段が無い」9デモの機械的な発見と対応（2026-09-03）
+
+竹村さんより「リセットボタンの有無だけでは仕様かバグか外から区別できない」との
+指摘を受け、GROUP D全33デモのサーバーコードを実際に読み、「投稿・アップロード
+したデータが他の閲覧者にも見える形で溜まるか」を機械的に分類した
+（`review-files/group-d-shared-state-audit.md`として一覧化・納品済み）。
+
+結果、共有状態を持つデモは合計17件（うちapi-cost-stopper-demo・
+api-health-degradation-demoは既存で対応済み、item27の6件を含め8件対応済み）、
+**新たに9件が未対応**と判明：anomaly-dashboard-demo・churn-risk-scoring-demo・
+employment-contract-pdf-demo・escalation-router-demo・idempotency-demo・
+library-reservation-demo・multichannel-inventory-demo・simple-waf-demo・
+state-tracker-deadline-alert-demo。
+
+3件ずつ3バッチに分けて対応する。
+
+### バッチ1（3件・実装・テスト完了、反映依頼済み）
+
+- anomaly-dashboard-demo：`runStore.clear()`＋`POST /api/runs/demo-reset`。
+  テスト47件PASS。インメモリのみでPM2再起動不要。
+- churn-risk-scoring-demo：`POST /api/demo-reset`（既定値コピー）。テスト43件
+  PASS。README.md新規作成（元々無かった）。
+- employment-contract-pdf-demo：`resetHistory()`＋`POST /api/history/demo-reset`。
+  Vite製SPAのため`npm run build`で`public/assets/`まで再ビルド済み（フロント
+  ビルド時、`frontend/node_modules`がWindows用ネイティブバイナリのみで
+  Linux VM側のビルドが失敗したため`npm install`で追加、かつビルド前の
+  `public/assets`クリアに削除権限が必要だったため`device_request_delete_permission`
+  でreview-filesフォルダへの削除権限を取得した上で対応）。テスト46件PASS。
+
+反映依頼：`vps-session-request-20260903a.md`
