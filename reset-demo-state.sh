@@ -1,14 +1,22 @@
 #!/bin/bash
-# 状態を持つデモ5件を、30分ごとに「サンプルのみ・訪問者の操作痕跡なし」の
+# 状態を持つデモ6件を、30分ごとに「サンプルのみ・訪問者の操作痕跡なし」の
 # 初期状態へ自動的に戻すスクリプト。VPS上でcronから30分おきに実行する想定。
 #
 # 対象と方式（各アプリのストア実装を実際に読んで、キャッシュの有無を確認した上で決定）：
-#   - dlq-dashboard-demo, bulk-chunked-import-demo, multitenant-isolation-checker-demo：
-#     起動時にファイル/DBをメモリへ読み込みキャッシュする実装のため、
+#   - dlq-dashboard-demo, bulk-chunked-import-demo, multitenant-isolation-checker-demo,
+#     config-rollback-demo：
+#     起動時にファイル/DBをメモリへ読み込みキャッシュする実装（config-rollback-demoは
+#     server/app.jsのstore.init()が起動時に1回だけ世代1を作る設計）のため、
 #     ファイルを戻すだけでは反映されない。PM2再起動が必須。
 #   - workflow-builder-demo, excel-instant-webapp-demo：
 #     リクエストのたびにファイルを読み直す実装のため、ファイルを戻すだけで反映される
 #     （再起動不要）。
+#
+# 【2026-09-02追記】config-rollback-demoを対象に追加。このデモは他5デモと違い
+# 手動リセットボタン（POST /api/demo-reset）自体が今回まで実装されておらず見落として
+# いた。手動ボタンでは即座にresetToInitial()が動くため再起動は不要だが、この
+# cronスクリプトのようにファイルを直接消すだけの場合はstore.init()が再実行されず
+# 空の状態のままになってしまうため、他の3デモと同じくPM2再起動が必須な方に分類した。
 #
 # 使い方：
 #   REMOTE_BASE=/opt/portfolio-demos ./reset-demo-state.sh
@@ -43,7 +51,11 @@ rm -f "$BASE/bulk-chunked-import-demo/data/import.db"
 echo "multitenant-isolation-checker-demo をリセット"
 rm -f "$BASE/multitenant-isolation-checker-demo/db/data.sqlite"
 
-echo "PM2再起動（上記3件。テナントA/Bやフィクスチャは各アプリの起動処理が自動で再生成する）"
-pm2 restart dlq-dashboard-demo bulk-chunked-import-demo multitenant-isolation-checker-demo
+echo "config-rollback-demo をリセット"
+rm -f "$BASE/config-rollback-demo/data/generations.jsonl"
+rm -f "$BASE/config-rollback-demo/logs/audit.log"
+
+echo "PM2再起動（上記4件。テナントA/Bやフィクスチャ・世代1既定値は各アプリの起動処理が自動で再生成する）"
+pm2 restart dlq-dashboard-demo bulk-chunked-import-demo multitenant-isolation-checker-demo config-rollback-demo
 
 echo "[$(date -Iseconds)] デモ状態リセット完了"
