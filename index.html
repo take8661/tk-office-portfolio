@@ -1339,10 +1339,73 @@
             </div>
           </div>
 
+          <!-- 非機能要件の自動レコメンド機構 -->
+          <div class="trigger-block">
+            <div class="featured-h4">06 · NON-FUNCTIONAL MENU · 非機能要件の自動レコメンド機構</div>
+            <p class="featured-desc" style="max-width:none;margin-bottom:24px">
+              各チームへの実装指示を作成する段階で、<strong>ログ管理・エラーハンドリング・データ整合性・
+              監視・パフォーマンス・セキュリティ・生成AIガードレールの7カテゴリ・18項目</strong>からなる
+              非機能要件メニューと自動的に突き合わせ、項目ごとに<strong>「採用」「対象外」「要確認」</strong>を
+              判定する仕組みを組み込んでいます。案件ごとに人手でチェックリストを作り直すのではなく、
+              判定ロジックとしてパイプライン側に持たせている部分です。
+            </p>
+
+            <div class="modules-grid">
+              <div class="module-item">
+                <div class="module-name">ログ管理</div>
+                <div class="module-path">3項目</div>
+                <div class="module-desc">ログの分離／タイムスタンプの統一／監査ログ</div>
+              </div>
+              <div class="module-item">
+                <div class="module-name">エラーハンドリング</div>
+                <div class="module-path">4項目</div>
+                <div class="module-desc">
+                  リトライとバックオフ／デッドレターキュー／タイムアウト設定／
+                  エラーメッセージの外部露出防止
+                </div>
+              </div>
+              <div class="module-item">
+                <div class="module-name">データ整合性</div>
+                <div class="module-path">3項目</div>
+                <div class="module-desc">冪等性の担保／トランザクション管理・ロールバック／論理削除</div>
+              </div>
+              <div class="module-item">
+                <div class="module-name">監視</div>
+                <div class="module-path">2項目</div>
+                <div class="module-desc">ヘルスチェック／レートリミット</div>
+              </div>
+              <div class="module-item">
+                <div class="module-name">パフォーマンス</div>
+                <div class="module-path">1項目</div>
+                <div class="module-desc">同時実行時の競合対策</div>
+              </div>
+              <div class="module-item">
+                <div class="module-name">セキュリティ</div>
+                <div class="module-path">2項目</div>
+                <div class="module-desc">入力値のバリデーション・サニタイズ／シークレット情報の環境変数化</div>
+              </div>
+              <div class="module-item">
+                <div class="module-name">生成AIガードレール</div>
+                <div class="module-path">3項目</div>
+                <div class="module-desc">
+                  出力フォーマットの厳格化／ハルシネーション検知／プロンプトインジェクション対策
+                </div>
+              </div>
+            </div>
+
+            <div class="trigger-note">
+              <span class="trigger-note-label">// dev note</span>
+              項目のIDは改訂しても再利用しない設計にしていて、メニューの内容を更新した場合は
+              既存の判定結果を必ず再評価する運用にしています。下記GROUP Dの実証デモ群は、
+              ジャンルの異なる案件を並行して流したときにこのメニューの判定が
+              どう変わるかを確認する目的も兼ねています。
+            </div>
+          </div>
+
           <!-- 開発運用の工夫 -->
           <div class="featured-grid" style="margin-bottom:0;margin-top:36px">
             <div>
-              <div class="featured-h4">06 · DEV OPS</div>
+              <div class="featured-h4">07 · DEV OPS</div>
               <p class="featured-desc">
                 各チームの実装・レビュー・統合の判断根拠を、<strong>実行ログや差分の一次情報</strong>で
                 残す運用を徹底。設計統括エージェントは着手前に必ず既存の納品フォルダを確認し、
@@ -1356,7 +1419,7 @@
               </p>
             </div>
             <div>
-              <div class="featured-h4">07 · TECH STACK</div>
+              <div class="featured-h4">08 · TECH STACK</div>
               <p class="featured-desc" style="margin-bottom:12px">
                 Python 製の実装チームをFlaskベースのWebアプリへ統合し、
                 PDF生成・DB永続化・通知ログ生成までを1つの業務フローとして接続。
