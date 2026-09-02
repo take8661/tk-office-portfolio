@@ -851,3 +851,28 @@ state-tracker-deadline-alert-demo。
   出たため`npm install`で解消）。
 
 反映依頼：`vps-session-request-20260903b.md`
+
+### バッチ3（3件・実装・テスト完了、反映依頼済み）※これで9件全て完了
+
+- multichannel-inventory-demo：`src/seed.js`（新規）に`resetToSeed()`追加、
+  `src/routes/admin.js`に`POST /admin/demo-reset`追加。トップページに
+  「今すぐこのデモの在庫・注文データを全て初期状態に戻す」ボタン追加。
+  テスト16件（既存15件＋新規1件）PASS。**なお本デモもsqlite3ネイティブ
+  バイナリの都合で本セッション環境では直接テスト実行できなかったため、
+  ソース一式をクラウド側の別環境（GLIBC 2.39）へ退避してそちらで
+  `npm install`からやり直して検証した（詳細はREADME参照）**。
+- simple-waf-demo：`lib/vulnerable-api-app.js`に`POST /api/admin/demo-reset`
+  追加（`node:sqlite`使用のためネイティブバイナリ依存なし、通常通り本環境で
+  テスト実行できた）。SQLi/XSSシグネチャ検査と無関係な管理操作のため、
+  既存の`/direct`バイパス経路経由で送信するボタンを追加。テスト16件
+  （既存15件＋新規1件）PASS。
+- state-tracker-deadline-alert-demo：`src/store/matterStore.js`に
+  `reset()`追加（本デモは初期シードデータを持たないため空の状態へ戻す）、
+  `src/routes/matters.js`に`POST /api/demo-reset`追加。案件一覧・履歴画面に
+  「今すぐこのデモの案件・履歴を全て初期状態に戻す」ボタン追加。テスト53件
+  （既存52件＋新規1件）PASS。
+
+反映依頼：`vps-session-request-20260903c.md`
+
+**これでGROUP D横断棚卸しで見つかった9件全ての実装・テスト・反映依頼が完了。**
+VPS側での3バッチ分の反映確認が完了次第、本項目をクローズする。
