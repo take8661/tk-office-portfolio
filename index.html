@@ -89,7 +89,9 @@
   }
   [data-variant="modern"] .nav-cta{background:var(--accent);color:var(--bg)}
   .nav-cta:hover{transform:translateY(-1px)}
-  @media(max-width:820px){.nav-links{display:none}.nav{padding:14px 20px}}
+  @media(max-width:1180px){.nav-links{gap:20px;font-size:12px}}
+  @media(max-width:960px){.nav-links{display:none}}
+  @media(max-width:820px){.nav{padding:14px 20px}}
 
   /* ---------- Layout ---------- */
   section{padding:120px 40px;position:relative}
@@ -126,7 +128,7 @@
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
   .hero h1{
     font-family:var(--serif);font-weight:600;
-    font-size:clamp(40px,6.2vw,78px);line-height:1.15;letter-spacing:.01em;
+    font-size:clamp(30px,4.2vw,50px);line-height:1.25;letter-spacing:.01em;
     margin-bottom:32px;
   }
   .hero h1 .accent{color:var(--accent);position:relative;display:inline-block}
@@ -613,6 +615,84 @@
   /* Reveal animation */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease}
   .reveal.on{opacity:1;transform:translateY(0)}
+
+  /* ---------- v2 additions（既存の変数・部品のみで構成） ---------- */
+  .alt{background:var(--bg-alt)}
+  .section-title.tight{margin-bottom:48px}
+  .sub-lede{color:var(--ink-soft);font-size:15px;line-height:1.95;max-width:860px;margin:20px 0 32px}
+  .sub-lede + .sub-lede{margin-top:-12px}
+  .stack-gap{margin-top:56px}
+  .note-small{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink-mute);margin-top:16px}
+  .build{opacity:.55}
+
+  /* 考え方 */
+  .principles .svc-card{padding:36px 32px}
+
+  /* 全体構成図 */
+  .arch{padding:28px;font-size:13px}
+  .arch .tag{font-size:11px;white-space:nowrap}
+  .arch-row{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+  .arch-note{font-family:var(--sans);font-size:13px;color:var(--ink-soft);line-height:1.7}
+  .arch-tree{margin:10px 0 0 12px;padding-left:24px;border-left:1px solid var(--line)}
+  .arch-item{position:relative;padding:8px 0}
+  .arch-item::before{content:"";position:absolute;left:-24px;top:21px;width:18px;height:1px;background:var(--line)}
+  .arch-item > summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+  .arch-item > summary::-webkit-details-marker{display:none}
+  .arch-item > summary::after{content:"＋";color:var(--ink-mute);font-family:var(--mono);margin-left:4px}
+  .arch-item[open] > summary::after{content:"－"}
+  .arch-body{margin:8px 0 4px 2px;font-family:var(--sans);font-size:13px;color:var(--ink-soft);line-height:1.85;max-width:720px}
+  .arch-link{font-family:var(--sans);font-size:12px;color:var(--accent);border-bottom:1px solid var(--accent-soft)}
+  .arch-sup{margin-top:28px;max-width:820px}
+
+  /* 1件の流れ */
+  .flow-timeline{max-width:none;margin:0 0 48px}
+  .flow-demo{margin-top:8px}
+  .more{margin-top:48px;border:1px solid var(--line);background:var(--card)}
+  .more > summary{cursor:pointer;list-style:none;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .more > summary::-webkit-details-marker{display:none}
+  .more > summary::after{content:"＋";font-family:var(--mono);color:var(--accent)}
+  .more[open] > summary::after{content:"－"}
+  .more[open] > summary{border-bottom:1px solid var(--line)}
+  .more-title{font-family:var(--serif);font-size:18px;font-weight:600;flex:1}
+  .more > summary::after{order:2}
+  .more-sub{font-size:12px;color:var(--ink-mute);flex-basis:100%;order:3}
+  .more .ops-wrap{border-top:0}
+
+  /* 外と内から学ぶ */
+  .ops-grid.cols4{grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin:40px 0 8px}
+  @media(max-width:900px){.ops-grid.cols4{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.ops-grid.cols4{grid-template-columns:1fr;padding:24px 20px}}
+  .status-list{max-width:640px;margin-top:8px}
+  .status-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:14px;color:var(--ink)}
+  .status-row:last-child{border-bottom:none}
+  .learn-head{margin-top:0;margin-bottom:24px}
+  .learn-head.next{margin-top:64px}
+
+  /* 実績 */
+  .works .works-group{margin-top:56px}
+  .works .works-group.first{margin-top:0}
+  .works .modules-grid{margin:24px 0 0}
+  .works .works-grid{margin-top:32px}
+  .module-status{margin-bottom:10px}
+
+  /* 経歴（表→タイムライン） */
+  .career-role.plain{font-size:18px;line-height:1.6}
+  .career-desc .lead{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);margin-right:10px}
+
+  /* 読書 */
+  .books-grid{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:900px){.books-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.books-grid{grid-template-columns:1fr}}
+  .book-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .book-tags .tag{line-height:1.6;font-size:12px}
+
+  /* これから／面接で話せること */
+  .ask-list{display:flex;flex-direction:column;gap:12px;margin:16px 0 28px}
+  .ask-list .skill-item{align-items:flex-start;font-size:15px;line-height:1.8;color:var(--ink-soft)}
+  .ask-list .skill-item::before{line-height:1.8}
+  .ask-head{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--ink-mute);margin-top:32px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .talk-foot{padding-left:18px;border-left:3px solid var(--line)}
+
 </style>
 </head>
 <body data-variant="classic" style="font-size: 15px">
@@ -627,12 +707,14 @@
     </div>
   </a>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
+    <a href="#thinking">Thinking</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#flow">Flow</a>
+    <a href="#learning">Learning</a>
     <a href="#works">Works</a>
     <a href="#career">Career</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
+    <a href="#books">Books</a>
+    <a href="#talk">Talk</a>
   </div>
   <a href="#contact" class="nav-cta">Contact →</a>
 </nav>
@@ -642,18 +724,16 @@
   <div class="wrap hero-grid">
     <div>
       <div class="hero-eyebrow"><span class="dot"></span>PORTFOLIO · 生成AI × 業務自動化 · 実装実績まとめ</div>
-      <h1 style="font-weight: 600; font-size: 65.2564px">
-        経営者の視点で、<br />
-        <span class="accent">生成AI</span>を使いこなす。
+      <h1 style="font-weight: 600">
+        AIを使うのではなく、<br />
+        AIで<span class="accent">「仕組み」</span>を組む。
       </h1>
       <p class="lede">
-        10年以上の自営業経験と、エンタープライズITインフラの運用実務。<br />
-        そこに生成AIを掛け合わせ、業務自動化ツール・SNS運用パイプライン・<br />
-        画像／文章／リサーチ支援まで、自分で設計・実装してきた記録です。
+        個人事業主として10年以上、事業の意思決定と収支に責任を持ってきました。いまは生成AIを役割ごとのパイプラインに分けて束ね、開発・設計の検証・情報収集・改善までを回しています。このページは、その考え方と仕組みの記録です。
       </p>
       <div class="hero-actions">
-        <a href="#works" class="btn">実装実績を見る</a>
-        <a href="#career" class="btn outline">経歴を見る</a>
+        <a href="#thinking" class="btn">考え方を見る</a>
+        <a href="#architecture" class="btn outline">仕組みを見る</a>
       </div>
     </div>
     <div class="hero-card">
@@ -663,7 +743,7 @@
       </div>
       <div class="profile-row">
         <div class="profile-key">ROLE</div>
-        <div class="profile-val">AI活用ジェネラリスト<br />生成AIで業務課題を解く実装者</div>
+        <div class="profile-val">AIパイプラインの設計・統率（DX導入・AI推進）</div>
       </div>
       <div class="profile-row">
         <div class="profile-key">BASE</div>
@@ -681,435 +761,162 @@
   </div>
 </section>
 
-<!-- ========== ABOUT ========== -->
-<section class="about" id="about">
+<!-- ========== 考え方 (#thinking) ========== -->
+<section class="alt" id="thinking">
   <div class="wrap">
-    <div class="about-grid">
-      <div>
-        <div class="eyebrow">About</div>
-        <h2 class="section-title">経営者の視点と、<br />技術者の実装力を、<br />ひとつの窓口で。</h2>
+    <div class="eyebrow">Thinking</div>
+    <h2 class="section-title tight">3つの原則</h2>
+    <div class="services-grid principles">
+      <div class="svc-card">
+        <div class="svc-num">01 / PRINCIPLE</div>
+        <h3 class="svc-title">単発ではなく、仕組みにする</h3>
+        <p class="svc-desc">
+          生成AIは、その場で指示を出すだけでは精度が安定せず、続けることも広げることもできません。だから目的ごとに役割を分けたパイプラインを設計し、束ねて運用しています。新しい業務が増えたら、パイプラインを1本足す。既存のものは直しながら使い続ける。
+        </p>
       </div>
-      <div class="about-body">
-        <p>
-          はじめまして、<strong>TK Office</strong>の竹村直人です。<br />
-          2014年に遊戯事業で独立して以来、Eコマース、システムエンジニアと、
-          異なる業界を横断しながら「事業を立ち上げ、収益を上げる」現場に立ち続けてきました。
+      <div class="svc-card">
+        <div class="svc-num">02 / PRINCIPLE</div>
+        <h3 class="svc-title">区分けと方向性は自分が見る。細部はAIに任せる</h3>
+        <p class="svc-desc">
+          頭の中に全体の設計図を持ち、作業を領域ごとに区切って、同時に組み上げていきます。細かい実装の整合は、AIの方が正確な場面も多い。だから自分の役割は「どう区切るか」「設計図と出来たものが合っているか」「方向がずれていないか」に絞り、ずれたらその都度直します。精密さが要る場面では専用のスキルや指示テンプレートを作り込み、個人で速く試す場面ではあえて作り込みません。
         </p>
-        <p>
-          直近3年間は、数千台規模のエンタープライズ環境で
-          <strong>MECM / WSUS の運用・保守</strong>を担当。
-          その傍らで<strong>生成AI</strong>の可能性に強く惹かれ、
-          2025年に生成AI事業を立ち上げました。
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">03 / PRINCIPLE</div>
+        <h3 class="svc-title">「作る人」と「使う人」の間に立つ</h3>
+        <p class="svc-desc">
+          EC事業では、海外のエンジニアに業務ツール（自動出品ツール・売上管理ツール等）の開発を依頼し、お客様の要望を開発の指示に落とし込む橋渡しを続けてきました。いまは依頼先がエンジニアからAIに変わりましたが、やっていることは同じです。
         </p>
-        <p>
-          私の根底にあるのは、<strong>「時間は有限であり、本質的でない作業に命を削るべきではない」</strong>という哲学です。
-          物事を目先の感情や常識でジャッジせず、全体をフラットな「構造」として俯瞰する。
-          そして、人間が本来やるべき<strong>「価値創造」</strong>にのみリソースを集中させる手段として、AIを用いたパイプライン構築にこだわっています。
-        </p>
-        <p>
-          経営者としての「事業のボトルネックを見抜く目」と、
-          複数の生成AIをチームとしてオーケストレーションする実装力。
-          この2つを軸に、<strong>既存の枠組みを壊し、実運用に耐える完全自動化の仕組み</strong>を自分の手で作ってきた記録です。
-        </p>
-        <div class="about-stats" style="grid-template-columns:repeat(2,1fr)">
-          <div>
-            <div class="stat-num">10+</div>
-            <div class="stat-label">自営業歴（年）</div>
-          </div>
-          <div>
-            <div class="stat-num">49</div>
-            <div class="stat-label">試作・実証プロジェクト</div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== SERVICES ========== -->
-<section id="services">
+<!-- ========== 全体構成図 (#architecture) ========== -->
+<section id="architecture">
   <div class="wrap">
-    <div class="eyebrow">Capabilities</div>
-    <h2 class="section-title">できること／専門領域</h2>
-    <p class="section-lede">
-      これまでに自分で手を動かして設計・構築してきた領域を、3つに整理して掲載しています。
-      いずれも「導入して終わり」ではなく、業務フローへの組み込みと運用まで踏み込んで実装した経験です。
-    </p>
-    <div class="services-grid">
-      <div class="svc-card">
-        <div class="svc-visual"><img src="assets/img/svc-01-consulting.jpg" alt="" loading="lazy"></div>
-        <div class="svc-num">01 / SERVICE</div>
-        <div class="svc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-        </div>
-        <h3 class="svc-title">AI導入設計・PoC構築</h3>
-        <p class="svc-desc">
-          「どこにAIを差し込むと効くか」を、業務ヒアリング → 課題整理 → ツール選定 → PoC の順で
-          設計・検証してきました。自身の複数事業と副業案件で、要件定義から運用設計まで一貫して担当。
-        </p>
-        <div class="svc-tags">
-          <span class="tag">要件定義</span>
-          <span class="tag">PoC</span>
-          <span class="tag">運用設計</span>
+    <div class="eyebrow">Architecture</div>
+    <h2 class="section-title tight">AIを組織のように束ねる</h2>
+
+    <div class="pipeline-viz arch">
+      <div class="arch-row">
+        <span class="node human">竹村（統率）</span>
+        <span class="arch-note">何を作るか・区分け・方向性を決める</span>
+      </div>
+      <div class="arch-tree">
+        <div class="arch-item">
+          <div class="arch-row">
+            <span class="node ai">専務役</span>
+            <span class="arch-note">依頼を受けて、適切なパイプラインへ振り分ける</span>
+            <span class="tag build">構築中</span>
+          </div>
+          <div class="arch-tree">
+            <details class="arch-item">
+              <summary><span class="node ai">開発パイプライン（重量級）</span><span class="tag">稼働中</span></summary>
+              <p class="arch-body">要件の精査・分解 → 機能別チームが実装 → レビュー（差し戻し最大3回）→ 部長役AIが統括承認 → 統合・Web画面・納品物</p>
+            </details>
+            <details class="arch-item">
+              <summary><span class="node ai">設計検証パイプライン（軽量級）</span><span class="tag">稼働中</span></summary>
+              <p class="arch-body">設計書を複数のAIで相互レビューし、合格するまで直す</p>
+            </details>
+            <div class="arch-item">
+              <div class="arch-row">
+                <span class="node ai">探索パイプライン</span>
+                <span class="tag">稼働中</span>
+                <a class="arch-link" href="#learning">「外と内から学ぶ」で詳述</a>
+              </div>
+            </div>
+            <div class="arch-item">
+              <div class="arch-row">
+                <span class="node ai">SNS運用パイプライン</span>
+                <span class="tag">稼働中</span>
+                <span class="arch-note">一部</span>
+                <span class="tag">試験運用中</span>
+              </div>
+            </div>
+            <div class="arch-item">
+              <div class="arch-row">
+                <span class="node ai">動画制作</span>
+                <span class="tag">試験運用中</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="svc-card">
-        <div class="svc-visual"><img src="assets/img/svc-02-development.jpg" alt="" loading="lazy"></div>
-        <div class="svc-num">02 / SERVICE</div>
-        <div class="svc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
-        </div>
-        <h3 class="svc-title">AIワークフロー／ツール開発</h3>
-        <p class="svc-desc">
-          Claude / GPT-4o / Gemini などのAPIと、Node.js・Python・React・n8n を組み合わせて、
-          業務自動化ツールやWebアプリを実装してきました。SNS運用パイプラインや LINE Bot、
-          ローカルダッシュボードなど、実運用に耐える構成での実装経験があります。
-        </p>
-        <div class="svc-tags">
-          <span class="tag">Node.js</span>
-          <span class="tag">Python</span>
-          <span class="tag">n8n</span>
-          <span class="tag">LINE API</span>
-        </div>
-      </div>
-
-      <div class="svc-card">
-        <div class="svc-visual"><img src="assets/img/svc-03-creative.jpg" alt="" loading="lazy"></div>
-        <div class="svc-num">03 / SERVICE</div>
-        <div class="svc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <h3 class="svc-title">生成AIによる制作 · リサーチ実務</h3>
-        <p class="svc-desc">
-          ロゴ・バナー・アイキャッチなどの画像生成、多言語翻訳、記事・文章生成、
-          市場／技術リサーチまで、生成AIを日常的に業務ツールとして使い倒してきました。
-          単発制作から継続運用まで、複数モデルの使い分けを含めて実務経験があります。
-        </p>
-        <div class="svc-tags">
-          <span class="tag">ロゴ</span>
-          <span class="tag">翻訳</span>
-          <span class="tag">SEO記事</span>
-          <span class="tag">リサーチ</span>
-        </div>
+      <div class="pipeline-legend">
+        <span class="l-human">人間の判断</span>
+        <span class="l-ai">AI処理</span>
       </div>
     </div>
+
+    <p class="featured-desc arch-sup">
+      本体PCと予備PCの2台で処理を分担しています。本体は開発・設計を、予備PCは情報の調査と文書のレビューを担当し、1分ごとの中継でタスクと結果をやり取りします。
+    </p>
   </div>
 </section>
 
-<!-- ========== WORKS ========== -->
-<section class="works" id="works">
+<!-- ========== 1件の流れ (#flow) ========== -->
+<section class="alt" id="flow">
   <div class="wrap">
-    <div class="eyebrow">Works</div>
-    <h2 class="section-title">試作・実証プロジェクト</h2>
+    <div class="eyebrow">Flow</div>
+    <h2 class="section-title">実案件で、依頼から納品まで</h2>
     <p class="section-lede">
-      2025年〜現在、「生成AIで実際どこまでできるか」を検証する目的で試作したプロジェクト群です。
-      多くは商用リリース済みの成果物ではなく、あくまで自分で使いながら手応えを確かめた実証事例ですが、
-      一部は実際の受託案件に投入し、納品まで完了した実装も含みます。
-      内容の性質ごとに<strong>4つのグループ</strong>に分けて掲載しています。
-      各グループの先頭は主力案件、以降は補助的な試作という位置づけです。
+      食品ギフト仲介事業者向けの受発注管理システム（受託・納品済み）を、開発パイプラインで構築しました。
     </p>
-    <div class="works-grid">
 
-      <!-- ═══════════════════════════════════════════ -->
-      <!-- GROUP A · 運用・自動化基盤                   -->
-      <!-- ═══════════════════════════════════════════ -->
-      <div class="works-group">
-        <span class="works-group-num">GROUP A</span>
-        <span class="works-group-title">運用・自動化の基盤づくり</span>
-        <span class="works-group-count">5 projects</span>
+    <div class="career-timeline flow-timeline">
+      <div class="career-item">
+        <div class="career-year">STEP 1</div>
+        <div class="career-role">ヒアリング</div>
+        <div class="career-desc">自作のヒアリングAIで8領域を聞き取り、案件カルテを作る</div>
       </div>
-
-      <!-- ========== FEATURED: SNS Factory（目玉） ========== -->
-      <div class="featured-work">
-        <div class="featured-hero">
-          <img src="assets/img/sns-factory-hero.jpg" alt="" loading="lazy">
-          <span class="featured-hero-label">// SNS Factory — 収集 → 生成 → 承認 → 投稿 → 計測</span>
-        </div>
-        <div class="featured-header">
-          <div class="featured-meta">
-            <span class="featured-cat">A-01 · SNS運用 × 収益自動化</span>
-            <span class="featured-num">2025 — 継続開発中 · 主力案件</span>
-          </div>
-          <h3 class="featured-title">
-            SNS Factory — マルチアカウント統合パイプライン
-          </h3>
-          <p class="featured-tagline">
-            占い・AI・美容・副業など<strong style="color:var(--ink)">複数ジャンルのSNSアカウント</strong>を、
-            収集 → 生成 → 承認 → 投稿 → 計測まで自動化する個人開発の統合ワークスペース。
-            1つの巨大アプリではなく、<strong style="color:var(--ink)">目的ごとに独立した小さなツール群</strong>を、
-            単一ダッシュボードと Claude Code の並列AIエージェントが横断運用します。
-          </p>
-          <p class="featured-desc" style="margin-top:8px">
-            <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">REPO&nbsp;&nbsp;</span>
-            <a href="https://github.com/take8661/sns-factory-showcase" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">github.com/take8661/sns-factory-showcase&nbsp;↗</a>
-          </p>
-        </div>
-
-        <div class="featured-body">
-
-          <!-- 上段：全体像 × パイプライン図 -->
-          <div class="featured-grid">
-            <div>
-              <div class="featured-h4">01 · CONCEPT</div>
-              <p class="featured-desc">
-                「アカウントを増やす＝<strong>フォルダを1つ足すだけ</strong>」という思想で、
-                エンジンにアカウント固有のコードを書かない<strong>3層構造</strong>を採用。
-                アカウントごとの文体・記憶・下書きは<code style="font-family:var(--mono);font-size:12px;background:var(--bg-alt);padding:2px 6px">accounts/&lt;名前&gt;/</code>に分離され、
-                エンジンは汎用パイプラインとして再利用できます。
-              </p>
-              <p class="featured-desc">
-                <strong>公開の最終判断は必ず人間が握る</strong>という設計哲学。
-                AIは下書きまで、公開ボタンは人間 — 薬機法・景表法・ステマ規制などの
-                コンプライアンスリスクを構造的にブロックします。
-              </p>
-            </div>
-
-            <div>
-              <div class="featured-h4">02 · PIPELINE</div>
-              <div class="pipeline-viz">
-                <span class="node">Apify / RSS</span>
-                <span class="arrow">→</span>
-                <span class="node ai">品質ゲート</span>
-                <span class="arrow">→</span>
-                <span class="node">Obsidian Vault</span>
-                <br>
-                <span class="node ai">Claude / GPT-4o</span>
-                <span class="arrow">→</span>
-                <span class="node">下書き生成</span>
-                <span class="arrow">→</span>
-                <span class="node human">人間レビュー</span>
-                <br>
-                <span class="node human">承認ボタン</span>
-                <span class="arrow">→</span>
-                <span class="node">Threads / IG / X / note</span>
-                <span class="arrow">→</span>
-                <span class="node ai">insights収集</span>
-
-                <div class="pipeline-legend">
-                  <span class="l-ai">AI処理</span>
-                  <span class="l-human">人間の判断</span>
-                  <span class="l-data">データ / 外部API</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- モジュール構成 -->
-          <div class="featured-h4">03 · MODULES（主要パイプライン一覧）</div>
-          <div class="modules-grid">
-            <div class="module-item">
-              <div class="module-name">予約投稿ダッシュボード</div>
-              <div class="module-path">dashboard/serve.mjs</div>
-              <div class="module-desc">
-                下書き確認・予約投稿管理・オートスケジュール（本数上限/時間帯設定）を
-                行うローカルWeb管理画面。全アカウント横断の司令塔。
-              </div>
-            </div>
-            <div class="module-item">
-              <div class="module-name">Threadsスケジューラ</div>
-              <div class="module-path">Windows タスクスケジューラ連携</div>
-              <div class="module-desc">
-                常時稼働サーバー不要。OSのタスクスケジューラで定期起動し、
-                予約済み下書きをThreads APIへ実投稿する軽量な実行系。
-              </div>
-            </div>
-            <div class="module-item">
-              <div class="module-name">トレンドフィード</div>
-              <div class="module-path">tools/trendfeed/</div>
-              <div class="module-desc">
-                Reddit・HN・GitHub・arXivから話題を収集して投稿ネタ化。
-                429エラー時は Retry-After 準拠の自動リトライを実装し、時差アービトラージを実現。
-              </div>
-            </div>
-            <div class="module-item">
-              <div class="module-name">ウォッチリスト</div>
-              <div class="module-path">research/watchlist/</div>
-              <div class="module-desc">
-                競合・著名人アカウントを定点観測。X向け著名人ポーリングと、
-                YouTube字幕をClaude Haikuで要約する2系統を実装。
-              </div>
-            </div>
-            <div class="module-item">
-              <div class="module-name">note-poster</div>
-              <div class="module-path">tools/note-poster/</div>
-              <div class="module-desc">
-                note記事の生成と、章ごとの挿絵をAI画像生成で作るツール。
-                Playwrightのpersistent contextでnote.comへの投稿を自動化。
-              </div>
-            </div>
-            <div class="module-item">
-              <div class="module-name">gdrive-sync</div>
-              <div class="module-path">tools/gdrive-sync/</div>
-              <div class="module-desc">
-                作業データをGoogleドライブへミラーリング。
-                ローカルとクラウド間の整合性を保つバックアップ層。
-              </div>
-            </div>
-          </div>
-
-          <!-- トリガー（自動実行の仕組み） -->
-          <div class="trigger-block">
-            <div class="featured-h4">04 · TRIGGER · サーバー不要の定期実行アーキテクチャ</div>
-            <p class="featured-desc" style="max-width:none;margin-bottom:24px">
-              クラウドサーバーやcronジョブを別途契約せず、
-              <strong>個人PC上のWindowsタスクスケジューラ</strong>から
-              Node.jsスクリプトを直接呼び出す設計。
-              「常駐プロセス」ではなく「決まった時刻に起動して仕事をしたら終了する」<strong>バッチジョブ</strong>として組むことで、
-              PCの負荷を抑えつつ複数の収集パイプラインを並行して回します。
-              サーバー費用ゼロで定期実行を成立させる、個人開発らしい現実解です。
-            </p>
-
-            <div class="trigger-grid">
-              <div class="trigger-item">
-                <div class="trigger-schedule">DAILY · 1回/日</div>
-                <div class="trigger-name">WatchlistAutoRefresh</div>
-                <div class="trigger-desc">
-                  <code>research/watchlist/</code> 配下の収集スクリプトを起動。
-                  著名人Xポーリング・YouTubeアーカイブ等が動き、
-                  登録済みアカウント・チャンネルの新着投稿/動画を取得してローカルJSON DBに追記。
-                  取得後は要約・統計情報も更新されます。
-                </div>
-              </div>
-              <div class="trigger-item">
-                <div class="trigger-schedule">INTERVAL · 定期</div>
-                <div class="trigger-name">ThreadsScheduler</div>
-                <div class="trigger-desc">
-                  一定間隔でダッシュボード上の予約済み下書きをチェックし、
-                  投稿時刻が来たものを実際にThreadsへ投稿する実行系。
-                  常時稼働サーバー不要で、決まった時刻にだけ動く軽量な構成。
-                </div>
-              </div>
-              <div class="trigger-item">
-                <div class="trigger-schedule">MANUAL → SCHEDULED</div>
-                <div class="trigger-name">Trendfeed（Reddit等）</div>
-                <div class="trigger-desc">
-                  現状は手動実行が中心ですが、
-                  将来的に同じタスクスケジューラ方式で定期化できる設計。
-                  実行ログ・最終結果コードで動作確認しながら段階的にスケジュール化していきます。
-                </div>
-              </div>
-            </div>
-
-            <div class="trigger-note">
-              <span class="trigger-note-label">// dev note</span>
-              開発中もこの定期実行タスクが想定通り動いているか（実行ログ・最終結果コード）を
-              確認しながらデバッグする場面が何度もあり、
-              「バッチ的な実行前提でコードを組む」という設計思想が自然と身に付いた案件です。
-            </div>
-          </div>
-
-          <!-- 開発運用の工夫 -->
-          <div class="featured-grid" style="margin-bottom:0;margin-top:36px">
-            <div>
-              <div class="featured-h4">05 · DEV OPS</div>
-              <p class="featured-desc">
-                <strong>ファイルベースの並列AI指示システム（panel_hub）</strong>を自作。
-                各AIパネルへの指示と完了報告を Obsidian vault 内の Markdown（inbox/outbox）で
-                やり取りし、チャットログに埋もれない永続記録として残します。
-              </p>
-              <p class="featured-desc">
-                複数パネルが同時に同じファイルを編集しないよう<strong>ロックファイル排他制御</strong>を実装。
-                各作業はブランチ・PR経由で行い、マージ前にCowork側のAIが独立テストを行う
-                <strong>PRベース品質担保フロー</strong>を運用しています。
-              </p>
-            </div>
-            <div>
-              <div class="featured-h4">06 · TECH STACK</div>
-              <p class="featured-desc" style="margin-bottom:12px">
-                <strong>フレームワーク非依存の素のNode.js</strong>（ESM）を中核に、
-                データはJSONファイルベース（Git差分管理可）、テストは<code style="font-family:var(--mono);font-size:12px;background:var(--bg-alt);padding:2px 6px">node --test</code>標準機能で、
-                外部API部分は依存性注入でモック化する軽量設計。
-              </p>
-              <div class="work-stack" style="margin-top:16px">
-                <span class="tag">Node.js (ESM)</span>
-                <span class="tag">Apify API</span>
-                <span class="tag">Claude Haiku</span>
-                <span class="tag">GPT-4o</span>
-                <span class="tag">Gemini</span>
-                <span class="tag">Grok (hermes-x)</span>
-                <span class="tag">YouTube Data API v3</span>
-                <span class="tag">Google Drive API</span>
-                <span class="tag">Playwright</span>
-                <span class="tag">Obsidian Vault</span>
-                <span class="tag">GitHub Actions</span>
-                <span class="tag">gitleaks</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Ops highlights -->
-        <div class="ops-wrap">
-          <div class="ops-grid">
-            <div class="ops-item">
-              <div class="ops-label">SCALE</div>
-              <div class="ops-num">6+</div>
-              <div class="ops-desc">
-                稼働中のパイプライン数。1,000+ファイルの統合ワークスペースを
-                個人開発で維持・拡張中。
-              </div>
-            </div>
-            <div class="ops-item">
-              <div class="ops-label">COST GUARD</div>
-              <div class="ops-num">$10<span style="font-size:16px;color:var(--ink-mute)">/月</span></div>
-              <div class="ops-desc">
-                Apify・Anthropic APIのコスト上限を事前件数ガード＋実測usage集計で管理。
-                週次スケジューラで自動監視。
-              </div>
-            </div>
-            <div class="ops-item">
-              <div class="ops-label">SAFETY</div>
-              <div class="ops-num">100<span style="font-size:16px;color:var(--ink-mute)">%</span></div>
-              <div class="ops-desc">
-                公開判断は人間の手動承認。薬機法・景表法・ステマ規制を
-                quality-checkerエージェントが自動採点。
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div class="career-item">
+        <div class="career-year">STEP 2</div>
+        <div class="career-role">分解</div>
+        <div class="career-desc">AIが要件を精査し、機能ごとの作業に分ける</div>
       </div>
+      <div class="career-item">
+        <div class="career-year">STEP 3</div>
+        <div class="career-role">実装</div>
+        <div class="career-desc">機能別の6チームが並行して実装（受注メモ解析・受注入力・発注書PDF生成・通知・データベース・テスト）</div>
+      </div>
+      <div class="career-item">
+        <div class="career-year">STEP 4</div>
+        <div class="career-role">レビュー</div>
+        <div class="career-desc">別のAIが実際にコマンドを動かして検証。差し戻しは最大3回。それでも直らない指摘は、証拠を添えて人間（私）に回る。実際に1件、私が判断して解決した</div>
+      </div>
+      <div class="career-item current">
+        <div class="career-year">STEP 5</div>
+        <div class="career-role">統合・納品</div>
+        <div class="career-desc">部長役AIが全体を承認し、Web画面・利用ガイド・本番投入手順書まで作って納品</div>
+      </div>
+    </div>
 
-      <!-- ========== FEATURED: AI開発パイプライン（目玉2） ========== -->
-      <div class="featured-work">
-        <div class="featured-hero">
-          <img src="assets/img/ai-pipeline-hero.jpg" alt="" loading="lazy">
-          <span class="featured-hero-label">// AI開発パイプライン — 要件定義 → チーム実装 → レビュー → 統合 → 納品</span>
-        </div>
-        <div class="featured-header">
-          <div class="featured-meta">
-            <span class="featured-cat">A-02 · AI開発組織 × 受託開発の自動化</span>
-            <span class="featured-num">2026 — 実案件で稼働 · 受託開発1件を完遂</span>
-          </div>
-          <h3 class="featured-title">
-            AI開発パイプライン — 複数AIエージェントによる開発組織のシミュレーション
-          </h3>
-          <p class="featured-tagline">
-            機能ごとに分業する<strong style="color:var(--ink)">実装エージェント</strong>と、
-            その成果物を検証・承認する<strong style="color:var(--ink)">レビューエージェント</strong>、
-            全体のチーム編成と最終判断を担う<strong style="color:var(--ink)">設計統括エージェント</strong>――
-            この3層構成で、実際の開発チームに近いレビュー体制を再現したパイプライン。
-            要件定義から実装・単体テスト・レビュー（差し戻し）・統合・E2E検証・納品物作成までを自律的に進め、
-            レビューで解決しない指摘だけを人間へエスカレーションします。
-            実際の受託案件（食品ギフト仲介事業者向け・受発注管理システム）を
-            このパイプラインで構築し、納品まで完了させました。
-          </p>
-          <p class="featured-desc" style="margin-top:8px">
-            <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">DETAIL&nbsp;&nbsp;</span>
-            <a href="https://claude.ai/code/artifact/0ebb20de-2fb4-4876-a4ae-c3d9180cf2bf" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">claude.ai/code/artifact/0ebb20de-2fb4-4876-a4ae-c3d9180cf2bf&nbsp;↗</a>
-          </p>
-          <p class="featured-desc" style="margin-top:8px">
-            <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;</span>
-            <a href="https://oroshi.himitsuno-heya123.com/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">oroshi.himitsuno-heya123.com&nbsp;↗</a>
-            <span style="font-family:var(--mono);font-size:12px;color:var(--ink-mute);margin-left:10px">ID: TKC / PW: TKC123</span>
-          </p>
-          <p class="featured-desc" style="margin-top:2px;font-size:12px;color:var(--ink-mute)">
-            ※ダミーデータで動作するデモ環境です。実際の受注登録から発注書PDF生成・月次集計までの一連の業務フローを実際に操作して確認できます。
-          </p>
-        </div>
+    <div class="flow-demo">
+      <p class="featured-desc" style="margin-top:8px">
+        <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;</span>
+        <a href="https://oroshi.himitsuno-heya123.com/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">oroshi.himitsuno-heya123.com&nbsp;↗</a>
+        <span style="font-family:var(--mono);font-size:12px;color:var(--ink-mute);margin-left:10px">ID: TKC / PW: TKC123</span>
+      </p>
+      <p class="featured-desc" style="margin-top:2px;font-size:12px;color:var(--ink-mute)">
+        ※ダミーデータで動作するデモ環境です。実際の受注登録から発注書PDF生成・月次集計までの一連の業務フローを実際に操作して確認できます。
+      </p>
+      <p class="featured-desc" style="margin-top:8px">
+        <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">DETAIL&nbsp;&nbsp;</span>
+        <a href="https://claude.ai/code/artifact/0ebb20de-2fb4-4876-a4ae-c3d9180cf2bf" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">claude.ai/code/artifact/0ebb20de-2fb4-4876-a4ae-c3d9180cf2bf&nbsp;↗</a>
+      </p>
+    </div>
 
+    <div class="trigger-note" style="margin-top:32px">
+      <span class="trigger-note-label">// dev note</span>
+      「AIが作ったものをAIが確かめ、それでも解決しない部分だけ人が判断する」体制を、実際のお客様の案件で最後まで回せたことが一番の手応えでした。
+    </div>
+
+    <details class="more">
+      <summary>
+        <span class="more-title">詳しく見る</span>
+        <span class="more-sub">チーム編成・品質ゲート・納品前レビューツール・非機能要件18項目など</span>
+      </summary>
         <div class="featured-body">
 
           <!-- 上段：全体像 × パイプライン図 -->
@@ -1139,7 +946,7 @@
                 パイプライン起点の<strong>要件ヒアリング自体も自作のAIチャットアプリ
                 「DX導入ヒアリングAI」</strong>で行っており、8領域の対話ヒアリングを通じて
                 案件カルテを自動生成し、設計統括エージェントへのインプットとして渡しています
-                （詳細は下部Works「DX導入ヒアリングAI Webアプリ」参照）。
+                （詳細は実績「DX導入ヒアリングAI Webアプリ」参照）。
               </p>
             </div>
 
@@ -1310,12 +1117,6 @@
                 </div>
               </div>
             </div>
-
-            <div class="trigger-note">
-              <span class="trigger-note-label">// dev note</span>
-              「AIが作ったものをAIがレビューし、それでも解決しない部分だけ人に上げる」
-              という体制を、実際のクライアント案件で最後まで運用できたことが一番の手応えでした。
-            </div>
           </div>
 
           <!-- 納品前レビューツール -->
@@ -1423,7 +1224,7 @@
             <div class="trigger-note">
               <span class="trigger-note-label">// dev note</span>
               項目のIDは改訂しても再利用しない設計にしていて、メニューの内容を更新した場合は
-              既存の判定結果を必ず再評価する運用にしています。下記GROUP Dの実証デモ群は、
+              既存の判定結果を必ず再評価する運用にしています。実績に掲載している実証デモ群は、
               ジャンルの異なる案件を並行して流したときにこのメニューの判定が
               どう変わるかを確認する目的も兼ねています。
             </div>
@@ -1469,7 +1270,6 @@
           </div>
 
         </div>
-
         <!-- Ops highlights -->
         <div class="ops-wrap">
           <div class="ops-grid">
@@ -1499,376 +1299,100 @@
             </div>
           </div>
         </div>
+    </details>
+  </div>
+</section>
 
-      </div>
+<!-- ========== 外と内から学ぶ (#learning) ========== -->
+<section id="learning">
+  <div class="wrap">
+    <div class="eyebrow">Learning</div>
+    <h2 class="section-title tight">動かしながら、仕組みが育つ</h2>
 
-      <!-- A-03 · 品質チェック（AI社員運用テンプレート） -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/a02-quality.jpg" alt="" loading="lazy"><span class="work-visual-label">// quality-checker — AIが下書き、品質ゲートが採点</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">A-03 · 運用テンプレート</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">投稿品質チェック × 人間承認ワークフロー</h3>
-          <p class="work-desc">
-            SNS下書きを薬機法・景表法・PR表記・文体ガイド整合の観点で自動採点し、
-            <strong>修正待ち / 確認待ち / 承認済み</strong>を明確に分離。
-            dry-runでの投稿前検証と、ダッシュボードでの状態確認まで含めた
-            「AIに任せつつ、人間が最終判断する」運用テンプレート。
-          </p>
-          <div class="work-result">
-            <b>実証：AI作業を品質ゲートと人間承認で挟む運用フローを整備</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">Node.js</span>
-            <span class="tag">Claude Code Agents</span>
-            <span class="tag">Markdown / JSON</span>
-            <span class="tag">dry-run 検証</span>
-          </div>
+    <div class="works-group learn-head">
+      <span class="works-group-num">01</span>
+      <span class="works-group-title">外から学ぶ</span>
+    </div>
+    <div class="about-body">
+      <p>毎日、Hacker News・GitHub・ニュース・技術記事（Zenn）・公式の更新情報を集めています。週に1回は、論文データベース6か所（arXiv・Semantic Scholar・OpenAlex・Crossref・J-STAGE・CiNii）から、AIエージェントやRAGに関する論文も集めます。</p>
+      <p>集めた約3,000件は1つの表にまとめ、2段階でふるい分けます。1段目は生成AIではない判定モデルが明らかに不要なものを落とし、2段目でAIが優先度を付けます。優先度の高い候補はAIが中身を読み、「今の自分の環境と比べて何が良くなるか」を判定して日次のレポートにします。採用するかどうかは私が決め、採用したものは設計書を経て仕組みに組み込みます。</p>
+      <p>この調査は予備PCに切り分け、本体PCと2台で同時に処理しています。予備PCの4レーンで1時間に15〜21件。いまは、レーンを増やしたときにどこまで速くなるかを測りながら拡張しています。</p>
+    </div>
+
+    <div class="ops-wrap">
+      <div class="ops-grid cols4">
+        <div class="ops-item">
+          <div class="ops-label">毎日の収集</div>
+          <div class="ops-num">約240<span style="font-size:16px;color:var(--ink-mute)">件</span></div>
+          <div class="ops-desc">2026-10-19の1回分</div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-label">1つの表に集約</div>
+          <div class="ops-num">3,051<span style="font-size:16px;color:var(--ink-mute)">件</span></div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-label">判定の記録</div>
+          <div class="ops-num">4,931<span style="font-size:16px;color:var(--ink-mute)">件</span></div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-label">予備PCの処理</div>
+          <div class="ops-num">15〜21<span style="font-size:16px;color:var(--ink-mute)">件／時</span></div>
         </div>
       </div>
+    </div>
 
-      <!-- A-04 · panel_hub 複数タスク司令塔 -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/a03-panel-hub.jpg" alt="" loading="lazy"><span class="work-visual-label">// panel_hub — inbox / outbox / status</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">A-04 · タスク運用</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">複数タスク司令塔 · panel_hub</h3>
-          <p class="work-desc">
-            複数の開発タスク・AIパネルを、
-            <strong>inbox（指示）/ outbox（報告）/ status（状態）</strong>という
-            ファイルベースの3層構造で管理する司令塔。
-            著名人ポーリング、YouTubeアーカイブ、Drive同期、ダッシュボード修正など、
-            並行して進む作業を混線させずに走らせます。
-          </p>
-          <div class="work-result">
-            <b>実証：複数タスクの状態・指示・完了ログを一元管理</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">Markdown DB</span>
-            <span class="tag">Obsidian Vault</span>
-            <span class="tag">ロックファイル排他制御</span>
-            <span class="tag">PR運用</span>
-          </div>
-        </div>
-      </div>
+    <div class="works-group learn-head next">
+      <span class="works-group-num">02</span>
+      <span class="works-group-title">内から学ぶ</span>
+    </div>
+    <div class="about-body">
+      <p>パイプラインで起きた失敗は、すべて記録しています。一度起きた失敗は対処法として残し、同じことが起きればAIが人に聞かずに解消します（対処法27項目）。</p>
+      <p>さらに、失敗に種類を付けて数え、頻度と影響で「直すかどうか」を決める仕組みを段階的に入れています。1000回に1回の失敗は直さない。10〜20%起きる失敗は構造から直す。直した後は別の系統で本当に減ったかを確かめ、減っていなければ元に戻します。</p>
+      <p>最初の測定では、直近7日のレーンの強制停止783件（結果全体の32%）を種類別に分解しました。</p>
+    </div>
 
-      <!-- A-05 · DX導入ヒアリングAI Webアプリ -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/a05-hearing.jpg" alt="" loading="lazy"><span class="work-visual-label">// hearing-webapp — 8領域ヒアリング → 案件カルテ自動生成</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">A-05 · 要件ヒアリング自動化</span><span class="work-num">2026</span></div>
-          <h3 class="work-title">DX導入ヒアリングAI Webアプリ</h3>
-          <p class="work-desc">
-            クライアントの案件要件を<strong>8領域にわたって対話形式でヒアリング</strong>し、
-            案件カルテ（要件定義の下敷き）として構造化・自動送信するWebアプリ。
-            もとはChatGPTのカスタムGPTとして運用していたものを、
-            共有制限の仕様変更を受けて<strong>OpenAI APIを直接叩く自前のチャットアプリ</strong>に移行。
-            ヒアリング結果はWebhook経由で案件管理シートへ自動反映されます。
-          </p>
-          <div class="work-result">
-            <b>実証：要件ヒアリングの型化とチャット形式での自動収集を実運用</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">Node.js / Express</span>
-            <span class="tag">OpenAI API（Function Calling）</span>
-            <span class="tag">n8n Webhook連携</span>
-            <span class="tag">自動テスト（会話シナリオ）</span>
-          </div>
-        </div>
-      </div>
+    <div class="status-list">
+      <div class="status-row"><span>失敗の記録と自己解消</span><span class="tag">稼働中</span></div>
+      <div class="status-row"><span>種類別の測定</span><span class="tag">稼働中</span></div>
+      <div class="status-row"><span>直す対策の自動化</span><span class="tag build">構築中</span></div>
+    </div>
 
-      <!-- ═══════════════════════════════════════════ -->
-      <!-- GROUP B · 発信・ナレッジ運用                 -->
-      <!-- ═══════════════════════════════════════════ -->
-      <div class="works-group">
-        <span class="works-group-num">GROUP B</span>
-        <span class="works-group-title">発信・ナレッジ運用</span>
-        <span class="works-group-count">3 projects</span>
-      </div>
+    <p class="note-small">数字は2026年10月19日時点</p>
+  </div>
+</section>
 
-      <!-- B-01 · AI wiki 自動収集ナレッジベース -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/b01-wiki.jpg" alt="" loading="lazy"><span class="work-visual-label">// AI wiki — 情報を再利用できる知識資産へ</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">B-01 · ナレッジ</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">AI wiki · 自動収集ナレッジベース</h3>
-          <p class="work-desc">
-            Claude Code・Codex・Cursor・MCP・Skills・NotebookLM 等の
-            AI活用に関する情報を自動収集し、テーマ別に分類・統合ノート化。
-            単なるブックマークではなく、投稿ネタ・note記事・教材アイデアへ
-            <strong>再利用できる知識資産</strong>として蓄積します。
-          </p>
-          <div class="work-result">
-            <b>実証：情報収集→分類→再利用までのナレッジ運用サイクルを構築</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">Obsidian Vault</span>
-            <span class="tag">Claude Haiku</span>
-            <span class="tag">RSS / Web収集</span>
-            <span class="tag">テーマ分類</span>
-          </div>
-        </div>
-      </div>
+<!-- ========== 実績 (#works) ========== -->
+<section class="works" id="works">
+  <div class="wrap">
+    <div class="eyebrow">Works</div>
+    <h2 class="section-title tight">実績</h2>
 
-      <!-- B-02 · 長文資料要約パイプライン -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/b02-summary.jpg" alt="" loading="lazy"><span class="work-visual-label">// 長文要約 — PDF・文字起こしを読める知識資産に</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">B-02 · 要約パイプライン</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">長文資料 要約パイプライン</h3>
-          <p class="work-desc">
-            PDFや動画文字起こしなどの長文資料を、
-            <strong>チャンク分割 → 章要約 → 統合 → 検証</strong>まで一気通貫で処理。
-            日本語崩壊の検知、並列要約、数値ゲートによる品質検証まで含め、
-            大量の資料を読める知識資産に変換します。
-          </p>
-          <div class="work-result">
-            <b>実証：長文の統合要約と数値ゲート検証の自動化を確認</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">Python</span>
-            <span class="tag">PDF抽出</span>
-            <span class="tag">Claude / Gemini</span>
-            <span class="tag">並列処理</span>
-            <span class="tag">品質ゲート</span>
-          </div>
-        </div>
+    <div class="works-group first">
+      <span class="works-group-num">CLIENT WORK</span>
+      <span class="works-group-title">受託開発</span>
+    </div>
+    <div class="modules-grid">
+      <div class="module-item">
+        <div class="module-name">食品ギフト仲介事業者向け 受発注管理システム</div>
+        <div class="module-status"><span class="tag">納品完了</span></div>
+        <div class="module-desc">上記「実案件で、依頼から納品まで」のとおり。デモあり　<a class="arch-link" href="#flow">1件の流れへ</a></div>
       </div>
+      <div class="module-item">
+        <div class="module-name">レシート仕訳・帳簿入力の自動化（お客様の事務部門からの依頼）</div>
+        <div class="module-status"><span class="tag">進行中</span></div>
+        <div class="module-desc">ITに詳しくないお客様向けに、先にモックを見せ、答えやすい質問で要望を引き出しながら進めている</div>
+      </div>
+    </div>
 
-      <!-- B-03 · 稼働データ記録・日報自動生成（旧CASE 05） -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/b03-timeline.jpg" alt="" loading="lazy"><span class="work-visual-label">// Claude Haiku — 稼働ログから日報を自動生成</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">B-03 · 業務効率化</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">稼働データ記録・日報自動生成アプリ</h3>
-          <p class="work-desc">
-            日々の稼働データをSQLiteに記録し、Claude Haiku APIが自動で日報を生成。
-            Docker + Caddy で自前VPSに載せ、月額コストを抑えた構成に。
-          </p>
-          <div class="work-result">
-            <b>実証：日報の下書きをAIで自動生成できることを確認</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">Node.js</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Claude Haiku API</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Caddy</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══════════════════════════════════════════ -->
-      <!-- GROUP C · ツール・制作物                     -->
-      <!-- ═══════════════════════════════════════════ -->
-      <div class="works-group">
-        <span class="works-group-num">GROUP C</span>
-        <span class="works-group-title">ツール・制作物</span>
-        <span class="works-group-count">7 projects</span>
-      </div>
-
-      <!-- C-01 · LINE伝票OCR（旧CASE 01） -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/c01-receipt.jpg" alt="" loading="lazy"><span class="work-visual-label">// LINE × Claude — 伝票OCR自動化</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">C-01 · 飲食業</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">飲食店向け LINE連携 伝票自動処理システム</h3>
-          <p class="work-desc">
-            LINE Bot に伝票画像を送るだけで、Claude API がOCR・仕訳し、
-            Google Sheets へ自動記帳。手作業の伝票処理を大幅に削減。
-          </p>
-          <div class="work-result">
-            <b>実証：手作業の伝票入力を体感で半分以下に</b>（自分で使って検証）
-          </div>
-          <div class="work-stack">
-            <span class="tag">Node.js</span>
-            <span class="tag">Claude API</span>
-            <span class="tag">LINE API</span>
-            <span class="tag">Google Sheets</span>
-            <span class="tag">VPS</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- C-02 · n8n × GPT-4o（旧CASE 02） -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/c02-automation.jpg" alt="" loading="lazy"><span class="work-visual-label">// n8n × GPT-4o — 47ノード自動化</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">C-02 · マーケティング</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">SNSコンテンツマーケティング 完全自動化システム</h3>
-          <p class="work-desc">
-            n8n を47ノードで構成し、GPT-4o と Together AI で
-            テキスト・画像を生成、Instagram に毎日定時投稿する仕組みを構築。
-          </p>
-          <div class="work-result">
-            <b>実証：定時投稿の自動化フローが構築可能なことを確認</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">n8n</span>
-            <span class="tag">GPT-4o</span>
-            <span class="tag">Together AI</span>
-            <span class="tag">Instagram API</span>
-            <span class="tag">Docker</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- C-03 · React × Gemini 自動メディア構築（旧CASE 03） -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/c03-media.jpg" alt="" loading="lazy"><span class="work-visual-label">// React × Gemini — 自動メディア構築</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">C-03 · メディア</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">デジタルコンテンツ配信向け 自動メディア構築システム</h3>
-          <p class="work-desc">
-            Gemini API で記事を自動生成し、WordPress へ配信。
-            作品3,000件・タレント1,879件のデータベースを構築し、大規模運用に耐える設計に。
-          </p>
-          <div class="work-result">
-            <b>実証：数千件規模のデータ蓄積とメディア生成が可能なことを確認</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">React 18</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">Drizzle ORM</span>
-            <span class="tag">Gemini API</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- C-04 · Python × Streamlit データ収集（旧CASE 04） -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/c04-database.jpg" alt="" loading="lazy"><span class="work-visual-label">// Python × Streamlit — データ基盤</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">C-04 · データ収集</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">大規模API データ収集・管理ツール</h3>
-          <p class="work-desc">
-            自動リトライ、重複排除、レート制御を備えた堅牢なデータ収集基盤。
-            Streamlit の管理画面で非エンジニアでも運用可能に。
-          </p>
-          <div class="work-result">
-            <b>実証：リトライ・重複排除を含むデータ収集基盤の構築</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">Python</span>
-            <span class="tag">Streamlit</span>
-            <span class="tag">SQLAlchemy</span>
-            <span class="tag">PostgreSQL</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- C-05 · video-use / AI動画編集環境 -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/c05-video.jpg" alt="" loading="lazy"><span class="work-visual-label">// video-use — AI × ffmpeg × 文字起こし</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">C-05 · 動画制作</span><span class="work-num">2025 · 運用中</span></div>
-          <h3 class="work-title">video-use · AI動画編集支援環境</h3>
-          <p class="work-desc">
-            <strong>AI × ffmpeg × 音声文字起こし</strong>を組み合わせた動画編集環境。
-            動画素材の下処理、音声からのテロップ素材化、
-            編集構成の補助まで、動画制作フローをAIで効率化します。実運用に投入済み。
-          </p>
-          <div class="work-result">
-            <b>実証：AIによる下処理〜構成補助フローが実運用ラインに乗る手応え</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">ffmpeg</span>
-            <span class="tag">Whisper 系文字起こし</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">構成補助スクリプト</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- C-06 · 商品データAPI活用 コンテンツ生成ツール（旧FANZA API Tool） -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/c06-table.jpg" alt="" loading="lazy"><span class="work-visual-label">// 商品API × Streamlit — CSV / HTML 自動生成</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">C-06 · アフィリエイト</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">商品データAPI活用 コンテンツ生成ツール</h3>
-          <p class="work-desc">
-            商品データAPI（DMM系）から情報を取得し、
-            <strong>CSVレポート</strong>や<strong>WordPress貼り付け用HTML</strong>を自動生成。
-            SQLiteでデータを管理し、Streamlit UIで非エンジニアでも操作可能に。
-            APIデータ取得から記事素材生成までを一気通貫で自動化します。
-          </p>
-          <div class="work-result">
-            <b>実証：APIデータ→記事素材の変換フローを自動化</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">Python</span>
-            <span class="tag">Streamlit</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">商品データAPI</span>
-            <span class="tag">HTML生成</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- C-07 · コンテンツ運用Webアプリ（旧FANZA投稿ツール） -->
-      <div class="work-card">
-        <div class="work-visual"><img src="assets/img/c07-spreadsheet.jpg" alt="" loading="lazy"><span class="work-visual-label">// React × TS × Vite — コンテンツ運用アプリ</span></div>
-        <div class="work-body">
-          <div class="work-meta"><span class="work-cat">C-07 · Webアプリ</span><span class="work-num">2025</span></div>
-          <h3 class="work-title">CSV統合 · コンテンツ運用Webアプリ</h3>
-          <p class="work-desc">
-            商品CSV・プロフィールデータをアップロードし、
-            <strong>プロフィールと商品情報を統合</strong>して一覧表示・記事管理・投稿管理を行うWebアプリ。
-            React / TypeScript / Vite / Tailwind CSS のモダン構成で、
-            CSVデータの取り込みから記事運用までを一つの画面に集約しています。
-          </p>
-          <div class="work-result">
-            <b>実証：CSV取り込み→記事管理→投稿までのUIを一貫構築</b>
-          </div>
-          <div class="work-stack">
-            <span class="tag">React</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Vite</span>
-            <span class="tag">Tailwind CSS</span>
-            <span class="tag">CSV統合</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══════════════════════════════════════════ -->
-      <!-- GROUP D · AI開発パイプライン実証デモ群         -->
-      <!-- ═══════════════════════════════════════════ -->
-      <div class="works-group">
-        <span class="works-group-num">GROUP D</span>
-        <span class="works-group-title">AI開発パイプライン実証デモ群</span>
-        <span class="works-group-count">34 projects</span>
-      </div>
-      <div class="featured-grid" style="grid-column:1/-1;margin-bottom:36px">
-        <div>
-          <div class="featured-h4">01 · WHY · なぜ作ったか</div>
-          <p class="featured-desc">
-            「AI開発パイプライン」（Featured Work参照）は、食品ギフト仲介事業者向けの実案件で
-            初めて実運用しましたが、<strong>1件の案件を任せられるだけでは「開発組織」としての
-            再現性は証明できません。</strong>ジャンル・技術要件がまったく異なる案件を並行して大量に
-            処理しても、レビュー体制や品質ゲートが崩れずに機能し続けるか——それを確認するために
-            企画した実証バッチが、このGROUP Dの34件です。
-          </p>
-          <p class="featured-desc">
-            OCR・PDF生成・セキュリティ・業務システム・レガシー変換など、あえて<strong>領域を大きく
-            散らして</strong>設計書を個別に用意し、1件ごとに他プロジェクトと完全に独立してゼロから
-            実装させています。
-          </p>
-        </div>
-        <div>
-          <div class="featured-h4">02 · HOW · どう作ったか</div>
-          <p class="featured-desc">
-            各デモは通常の受託案件と<strong>まったく同じプロセス</strong>を1件ずつ通しています。
-            実装エージェントによる実装 → レビューエージェントによる検証（差し戻しは最大3ラウンド）→
-            最終検査 → 課長承認 → 部長統括、という流れをすべて経たうえで、承認済みのものだけを
-            VPSへ個別デプロイし、実際に操作できるデモとして公開しています。
-          </p>
-          <p class="featured-desc">
-            各カードに表示している<strong>COST・AI稼働時間は演出ではなく実数値</strong>です。
-            パイプラインの実行ログ（cost-log）から、そのデモ1件を実装するのに実際にかかった
-            AI利用コストと処理時間を集計して掲載しています。
-          </p>
-        </div>
-      </div>
+    <div class="works-group">
+      <span class="works-group-num">PIPELINE DEMOS</span>
+      <span class="works-group-title">開発パイプラインの実証デモ（34件）</span>
+      <span class="works-group-count">D-19は欠番</span>
+    </div>
+    <p class="sub-lede">
+      1件の案件を任せられるだけでは「開発組織」としての再現性は証明できません。そこで、分野も技術もまったく違う34件を、受託と同じ手順で1件ずつ作らせ、レビューを通ったものだけを公開しました。各カードのCOSTとAI稼働時間は、実行ログから集計した実測値です（1件あたり$2〜24）。
+    </p>
+    <div class="works-grid">
             <div class="work-card">
         <div class="work-visual"><img src="assets/img/demo-shots/d-01-ocr-structuring-demo.jpg" alt="" loading="lazy"><span class="work-visual-label">// ocr-structuring-demo</span></div>
         <div class="work-body">
@@ -2313,126 +1837,722 @@
           <div class="work-stack"><span class="tag">Node.js / Express</span><span class="tag">Vision AI</span><span class="tag">多言語生成</span></div>
         </div>
       </div>
+    </div>
+
+    <div class="works-group">
+      <span class="works-group-num">SELF-DIRECTED</span>
+      <span class="works-group-title">自主開発・試作</span>
+    </div>
+    <div class="skill-list" style="margin:20px 0 0">
+      <div class="skill-item">SNS Factory（マルチアカウント統合パイプライン）</div>
+      <div class="skill-item">飲食店向けLINE連携の伝票処理（自分で使って検証）</div>
+      <div class="skill-item">AI wiki・長文要約・日報自動生成・自動メディア構築・データ収集基盤・動画編集支援 など</div>
+    </div>
+    <div class="works-grid">
+
+      <!-- ========== FEATURED: SNS Factory（目玉） ========== -->
+      <div class="featured-work">
+        <div class="featured-hero">
+          <img src="assets/img/sns-factory-hero.jpg" alt="" loading="lazy">
+          <span class="featured-hero-label">// SNS Factory — 収集 → 生成 → 承認 → 投稿 → 計測</span>
+        </div>
+        <div class="featured-header">
+          <div class="featured-meta">
+            <span class="featured-cat">A-01 · SNS運用 × 収益自動化</span>
+            <span class="featured-num">2025 — 継続開発中 · 主力案件</span>
+          </div>
+          <h3 class="featured-title">
+            SNS Factory — マルチアカウント統合パイプライン
+          </h3>
+          <p class="featured-tagline">
+            占い・AI・美容・副業など<strong style="color:var(--ink)">複数ジャンルのSNSアカウント</strong>を、
+            収集 → 生成 → 承認 → 投稿 → 計測まで自動化する個人開発の統合ワークスペース。
+            1つの巨大アプリではなく、<strong style="color:var(--ink)">目的ごとに独立した小さなツール群</strong>を、
+            単一ダッシュボードと Claude Code の並列AIエージェントが横断運用します。
+          </p>
+          <p class="featured-desc" style="margin-top:8px">
+            <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">REPO&nbsp;&nbsp;</span>
+            <a href="https://github.com/take8661/sns-factory-showcase" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">github.com/take8661/sns-factory-showcase&nbsp;↗</a>
+          </p>
+        </div>
+
+        <div class="featured-body">
+
+          <!-- 上段：全体像 × パイプライン図 -->
+          <div class="featured-grid">
+            <div>
+              <div class="featured-h4">01 · CONCEPT</div>
+              <p class="featured-desc">
+                「アカウントを増やす＝<strong>フォルダを1つ足すだけ</strong>」という思想で、
+                エンジンにアカウント固有のコードを書かない<strong>3層構造</strong>を採用。
+                アカウントごとの文体・記憶・下書きは<code style="font-family:var(--mono);font-size:12px;background:var(--bg-alt);padding:2px 6px">accounts/&lt;名前&gt;/</code>に分離され、
+                エンジンは汎用パイプラインとして再利用できます。
+              </p>
+              <p class="featured-desc">
+                <strong>公開の最終判断は必ず人間が握る</strong>という設計哲学。
+                AIは下書きまで、公開ボタンは人間 — 薬機法・景表法・ステマ規制などの
+                コンプライアンスリスクを構造的にブロックします。
+              </p>
+            </div>
+
+            <div>
+              <div class="featured-h4">02 · PIPELINE</div>
+              <div class="pipeline-viz">
+                <span class="node">Apify / RSS</span>
+                <span class="arrow">→</span>
+                <span class="node ai">品質ゲート</span>
+                <span class="arrow">→</span>
+                <span class="node">Obsidian Vault</span>
+                <br>
+                <span class="node ai">Claude / GPT-4o</span>
+                <span class="arrow">→</span>
+                <span class="node">下書き生成</span>
+                <span class="arrow">→</span>
+                <span class="node human">人間レビュー</span>
+                <br>
+                <span class="node human">承認ボタン</span>
+                <span class="arrow">→</span>
+                <span class="node">Threads / IG / X / note</span>
+                <span class="arrow">→</span>
+                <span class="node ai">insights収集</span>
+
+                <div class="pipeline-legend">
+                  <span class="l-ai">AI処理</span>
+                  <span class="l-human">人間の判断</span>
+                  <span class="l-data">データ / 外部API</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- モジュール構成 -->
+          <div class="featured-h4">03 · MODULES（主要パイプライン一覧）</div>
+          <div class="modules-grid">
+            <div class="module-item">
+              <div class="module-name">予約投稿ダッシュボード</div>
+              <div class="module-path">dashboard/serve.mjs</div>
+              <div class="module-desc">
+                下書き確認・予約投稿管理・オートスケジュール（本数上限/時間帯設定）を
+                行うローカルWeb管理画面。全アカウント横断の司令塔。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">Threadsスケジューラ</div>
+              <div class="module-path">Windows タスクスケジューラ連携</div>
+              <div class="module-desc">
+                常時稼働サーバー不要。OSのタスクスケジューラで定期起動し、
+                予約済み下書きをThreads APIへ実投稿する軽量な実行系。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">トレンドフィード</div>
+              <div class="module-path">tools/trendfeed/</div>
+              <div class="module-desc">
+                Reddit・HN・GitHub・arXivから話題を収集して投稿ネタ化。
+                429エラー時は Retry-After 準拠の自動リトライを実装し、時差アービトラージを実現。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">ウォッチリスト</div>
+              <div class="module-path">research/watchlist/</div>
+              <div class="module-desc">
+                競合・著名人アカウントを定点観測。X向け著名人ポーリングと、
+                YouTube字幕をClaude Haikuで要約する2系統を実装。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">note-poster</div>
+              <div class="module-path">tools/note-poster/</div>
+              <div class="module-desc">
+                note記事の生成と、章ごとの挿絵をAI画像生成で作るツール。
+                Playwrightのpersistent contextでnote.comへの投稿を自動化。
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-name">gdrive-sync</div>
+              <div class="module-path">tools/gdrive-sync/</div>
+              <div class="module-desc">
+                作業データをGoogleドライブへミラーリング。
+                ローカルとクラウド間の整合性を保つバックアップ層。
+              </div>
+            </div>
+          </div>
+
+          <!-- トリガー（自動実行の仕組み） -->
+          <div class="trigger-block">
+            <div class="featured-h4">04 · TRIGGER · サーバー不要の定期実行アーキテクチャ</div>
+            <p class="featured-desc" style="max-width:none;margin-bottom:24px">
+              クラウドサーバーやcronジョブを別途契約せず、
+              <strong>個人PC上のWindowsタスクスケジューラ</strong>から
+              Node.jsスクリプトを直接呼び出す設計。
+              「常駐プロセス」ではなく「決まった時刻に起動して仕事をしたら終了する」<strong>バッチジョブ</strong>として組むことで、
+              PCの負荷を抑えつつ複数の収集パイプラインを並行して回します。
+              サーバー費用ゼロで定期実行を成立させる、個人開発らしい現実解です。
+            </p>
+
+            <div class="trigger-grid">
+              <div class="trigger-item">
+                <div class="trigger-schedule">DAILY · 1回/日</div>
+                <div class="trigger-name">WatchlistAutoRefresh</div>
+                <div class="trigger-desc">
+                  <code>research/watchlist/</code> 配下の収集スクリプトを起動。
+                  著名人Xポーリング・YouTubeアーカイブ等が動き、
+                  登録済みアカウント・チャンネルの新着投稿/動画を取得してローカルJSON DBに追記。
+                  取得後は要約・統計情報も更新されます。
+                </div>
+              </div>
+              <div class="trigger-item">
+                <div class="trigger-schedule">INTERVAL · 定期</div>
+                <div class="trigger-name">ThreadsScheduler</div>
+                <div class="trigger-desc">
+                  一定間隔でダッシュボード上の予約済み下書きをチェックし、
+                  投稿時刻が来たものを実際にThreadsへ投稿する実行系。
+                  常時稼働サーバー不要で、決まった時刻にだけ動く軽量な構成。
+                </div>
+              </div>
+              <div class="trigger-item">
+                <div class="trigger-schedule">MANUAL → SCHEDULED</div>
+                <div class="trigger-name">Trendfeed（Reddit等）</div>
+                <div class="trigger-desc">
+                  現状は手動実行が中心ですが、
+                  将来的に同じタスクスケジューラ方式で定期化できる設計。
+                  実行ログ・最終結果コードで動作確認しながら段階的にスケジュール化していきます。
+                </div>
+              </div>
+            </div>
+
+            <div class="trigger-note">
+              <span class="trigger-note-label">// dev note</span>
+              開発中もこの定期実行タスクが想定通り動いているか（実行ログ・最終結果コード）を
+              確認しながらデバッグする場面が何度もあり、
+              「バッチ的な実行前提でコードを組む」という設計思想が自然と身に付いた案件です。
+            </div>
+          </div>
+
+          <!-- 開発運用の工夫 -->
+          <div class="featured-grid" style="margin-bottom:0;margin-top:36px">
+            <div>
+              <div class="featured-h4">05 · DEV OPS</div>
+              <p class="featured-desc">
+                <strong>ファイルベースの並列AI指示システム（panel_hub）</strong>を自作。
+                各AIパネルへの指示と完了報告を Obsidian vault 内の Markdown（inbox/outbox）で
+                やり取りし、チャットログに埋もれない永続記録として残します。
+              </p>
+              <p class="featured-desc">
+                複数パネルが同時に同じファイルを編集しないよう<strong>ロックファイル排他制御</strong>を実装。
+                各作業はブランチ・PR経由で行い、マージ前にCowork側のAIが独立テストを行う
+                <strong>PRベース品質担保フロー</strong>を運用しています。
+              </p>
+            </div>
+            <div>
+              <div class="featured-h4">06 · TECH STACK</div>
+              <p class="featured-desc" style="margin-bottom:12px">
+                <strong>フレームワーク非依存の素のNode.js</strong>（ESM）を中核に、
+                データはJSONファイルベース（Git差分管理可）、テストは<code style="font-family:var(--mono);font-size:12px;background:var(--bg-alt);padding:2px 6px">node --test</code>標準機能で、
+                外部API部分は依存性注入でモック化する軽量設計。
+              </p>
+              <div class="work-stack" style="margin-top:16px">
+                <span class="tag">Node.js (ESM)</span>
+                <span class="tag">Apify API</span>
+                <span class="tag">Claude Haiku</span>
+                <span class="tag">GPT-4o</span>
+                <span class="tag">Gemini</span>
+                <span class="tag">Grok (hermes-x)</span>
+                <span class="tag">YouTube Data API v3</span>
+                <span class="tag">Google Drive API</span>
+                <span class="tag">Playwright</span>
+                <span class="tag">Obsidian Vault</span>
+                <span class="tag">GitHub Actions</span>
+                <span class="tag">gitleaks</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Ops highlights -->
+        <div class="ops-wrap">
+          <div class="ops-grid">
+            <div class="ops-item">
+              <div class="ops-label">SCALE</div>
+              <div class="ops-num">6+</div>
+              <div class="ops-desc">
+                稼働中のパイプライン数。1,000+ファイルの統合ワークスペースを
+                個人開発で維持・拡張中。
+              </div>
+            </div>
+            <div class="ops-item">
+              <div class="ops-label">COST GUARD</div>
+              <div class="ops-num">$10<span style="font-size:16px;color:var(--ink-mute)">/月</span></div>
+              <div class="ops-desc">
+                Apify・Anthropic APIのコスト上限を事前件数ガード＋実測usage集計で管理。
+                週次スケジューラで自動監視。
+              </div>
+            </div>
+            <div class="ops-item">
+              <div class="ops-label">SAFETY</div>
+              <div class="ops-num">100<span style="font-size:16px;color:var(--ink-mute)">%</span></div>
+              <div class="ops-desc">
+                公開判断は人間の手動承認。薬機法・景表法・ステマ規制を
+                quality-checkerエージェントが自動採点。
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- A-03 · 品質チェック（AI社員運用テンプレート） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/a02-quality.jpg" alt="" loading="lazy"><span class="work-visual-label">// quality-checker — AIが下書き、品質ゲートが採点</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">A-03 · 運用テンプレート</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">投稿品質チェック × 人間承認ワークフロー</h3>
+          <p class="work-desc">
+            SNS下書きを薬機法・景表法・PR表記・文体ガイド整合の観点で自動採点し、
+            <strong>修正待ち / 確認待ち / 承認済み</strong>を明確に分離。
+            dry-runでの投稿前検証と、ダッシュボードでの状態確認まで含めた
+            「AIに任せつつ、人間が最終判断する」運用テンプレート。
+          </p>
+          <div class="work-result">
+            <b>実証：AI作業を品質ゲートと人間承認で挟む運用フローを整備</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">Claude Code Agents</span>
+            <span class="tag">Markdown / JSON</span>
+            <span class="tag">dry-run 検証</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- A-04 · panel_hub 複数タスク司令塔 -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/a03-panel-hub.jpg" alt="" loading="lazy"><span class="work-visual-label">// panel_hub — inbox / outbox / status</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">A-04 · タスク運用</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">複数タスク司令塔 · panel_hub</h3>
+          <p class="work-desc">
+            複数の開発タスク・AIパネルを、
+            <strong>inbox（指示）/ outbox（報告）/ status（状態）</strong>という
+            ファイルベースの3層構造で管理する司令塔。
+            著名人ポーリング、YouTubeアーカイブ、Drive同期、ダッシュボード修正など、
+            並行して進む作業を混線させずに走らせます。
+          </p>
+          <div class="work-result">
+            <b>実証：複数タスクの状態・指示・完了ログを一元管理</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Markdown DB</span>
+            <span class="tag">Obsidian Vault</span>
+            <span class="tag">ロックファイル排他制御</span>
+            <span class="tag">PR運用</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- A-05 · DX導入ヒアリングAI Webアプリ -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/a05-hearing.jpg" alt="" loading="lazy"><span class="work-visual-label">// hearing-webapp — 8領域ヒアリング → 案件カルテ自動生成</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">A-05 · 要件ヒアリング自動化</span><span class="work-num">2026</span></div>
+          <h3 class="work-title">DX導入ヒアリングAI Webアプリ</h3>
+          <p class="work-desc">
+            クライアントの案件要件を<strong>8領域にわたって対話形式でヒアリング</strong>し、
+            案件カルテ（要件定義の下敷き）として構造化・自動送信するWebアプリ。
+            もとはChatGPTのカスタムGPTとして運用していたものを、
+            共有制限の仕様変更を受けて<strong>OpenAI APIを直接叩く自前のチャットアプリ</strong>に移行。
+            ヒアリング結果はWebhook経由で案件管理シートへ自動反映されます。
+          </p>
+          <div class="work-result">
+            <b>実証：要件ヒアリングの型化とチャット形式での自動収集を実運用</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Node.js / Express</span>
+            <span class="tag">OpenAI API（Function Calling）</span>
+            <span class="tag">n8n Webhook連携</span>
+            <span class="tag">自動テスト（会話シナリオ）</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- B-01 · AI wiki 自動収集ナレッジベース -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/b01-wiki.jpg" alt="" loading="lazy"><span class="work-visual-label">// AI wiki — 情報を再利用できる知識資産へ</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">B-01 · ナレッジ</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">AI wiki · 自動収集ナレッジベース</h3>
+          <p class="work-desc">
+            Claude Code・Codex・Cursor・MCP・Skills・NotebookLM 等の
+            AI活用に関する情報を自動収集し、テーマ別に分類・統合ノート化。
+            単なるブックマークではなく、投稿ネタ・note記事・教材アイデアへ
+            <strong>再利用できる知識資産</strong>として蓄積します。
+          </p>
+          <div class="work-result">
+            <b>実証：情報収集→分類→再利用までのナレッジ運用サイクルを構築</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Obsidian Vault</span>
+            <span class="tag">Claude Haiku</span>
+            <span class="tag">RSS / Web収集</span>
+            <span class="tag">テーマ分類</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- B-02 · 長文資料要約パイプライン -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/b02-summary.jpg" alt="" loading="lazy"><span class="work-visual-label">// 長文要約 — PDF・文字起こしを読める知識資産に</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">B-02 · 要約パイプライン</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">長文資料 要約パイプライン</h3>
+          <p class="work-desc">
+            PDFや動画文字起こしなどの長文資料を、
+            <strong>チャンク分割 → 章要約 → 統合 → 検証</strong>まで一気通貫で処理。
+            日本語崩壊の検知、並列要約、数値ゲートによる品質検証まで含め、
+            大量の資料を読める知識資産に変換します。
+          </p>
+          <div class="work-result">
+            <b>実証：長文の統合要約と数値ゲート検証の自動化を確認</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Python</span>
+            <span class="tag">PDF抽出</span>
+            <span class="tag">Claude / Gemini</span>
+            <span class="tag">並列処理</span>
+            <span class="tag">品質ゲート</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- B-03 · 稼働データ記録・日報自動生成（旧CASE 05） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/b03-timeline.jpg" alt="" loading="lazy"><span class="work-visual-label">// Claude Haiku — 稼働ログから日報を自動生成</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">B-03 · 業務効率化</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">稼働データ記録・日報自動生成アプリ</h3>
+          <p class="work-desc">
+            日々の稼働データをSQLiteに記録し、Claude Haiku APIが自動で日報を生成。
+            Docker + Caddy で自前VPSに載せ、月額コストを抑えた構成に。
+          </p>
+          <div class="work-result">
+            <b>実証：日報の下書きをAIで自動生成できることを確認</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Claude Haiku API</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Caddy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-01 · LINE伝票OCR（旧CASE 01） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c01-receipt.jpg" alt="" loading="lazy"><span class="work-visual-label">// LINE × Claude — 伝票OCR自動化</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-01 · 飲食業</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">飲食店向け LINE連携 伝票自動処理システム</h3>
+          <p class="work-desc">
+            LINE Bot に伝票画像を送るだけで、Claude API がOCR・仕訳し、
+            Google Sheets へ自動記帳。手作業の伝票処理を大幅に削減。
+          </p>
+          <div class="work-result">
+            <b>実証：手作業の伝票入力を体感で半分以下に</b>（自分で使って検証）
+          </div>
+          <div class="work-stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">Claude API</span>
+            <span class="tag">LINE API</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">VPS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-02 · n8n × GPT-4o（旧CASE 02） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c02-automation.jpg" alt="" loading="lazy"><span class="work-visual-label">// n8n × GPT-4o — 47ノード自動化</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-02 · マーケティング</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">SNSコンテンツマーケティング 完全自動化システム</h3>
+          <p class="work-desc">
+            n8n を47ノードで構成し、GPT-4o と Together AI で
+            テキスト・画像を生成、Instagram に毎日定時投稿する仕組みを構築。
+          </p>
+          <div class="work-result">
+            <b>実証：定時投稿の自動化フローが構築可能なことを確認</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">n8n</span>
+            <span class="tag">GPT-4o</span>
+            <span class="tag">Together AI</span>
+            <span class="tag">Instagram API</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-03 · React × Gemini 自動メディア構築（旧CASE 03） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c03-media.jpg" alt="" loading="lazy"><span class="work-visual-label">// React × Gemini — 自動メディア構築</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-03 · メディア</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">デジタルコンテンツ配信向け 自動メディア構築システム</h3>
+          <p class="work-desc">
+            Gemini API で記事を自動生成し、WordPress へ配信。
+            作品3,000件・タレント1,879件のデータベースを構築し、大規模運用に耐える設計に。
+          </p>
+          <div class="work-result">
+            <b>実証：数千件規模のデータ蓄積とメディア生成が可能なことを確認</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">React 18</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Drizzle ORM</span>
+            <span class="tag">Gemini API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-04 · Python × Streamlit データ収集（旧CASE 04） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c04-database.jpg" alt="" loading="lazy"><span class="work-visual-label">// Python × Streamlit — データ基盤</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-04 · データ収集</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">大規模API データ収集・管理ツール</h3>
+          <p class="work-desc">
+            自動リトライ、重複排除、レート制御を備えた堅牢なデータ収集基盤。
+            Streamlit の管理画面で非エンジニアでも運用可能に。
+          </p>
+          <div class="work-result">
+            <b>実証：リトライ・重複排除を含むデータ収集基盤の構築</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">SQLAlchemy</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-05 · video-use / AI動画編集環境 -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c05-video.jpg" alt="" loading="lazy"><span class="work-visual-label">// video-use — AI × ffmpeg × 文字起こし</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-05 · 動画制作</span><span class="work-num">2025 · 運用中</span></div>
+          <h3 class="work-title">video-use · AI動画編集支援環境</h3>
+          <p class="work-desc">
+            <strong>AI × ffmpeg × 音声文字起こし</strong>を組み合わせた動画編集環境。
+            動画素材の下処理、音声からのテロップ素材化、
+            編集構成の補助まで、動画制作フローをAIで効率化します。実運用に投入済み。
+          </p>
+          <div class="work-result">
+            <b>実証：AIによる下処理〜構成補助フローが実運用ラインに乗る手応え</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">ffmpeg</span>
+            <span class="tag">Whisper 系文字起こし</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">構成補助スクリプト</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-06 · 商品データAPI活用 コンテンツ生成ツール（旧FANZA API Tool） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c06-table.jpg" alt="" loading="lazy"><span class="work-visual-label">// 商品API × Streamlit — CSV / HTML 自動生成</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-06 · アフィリエイト</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">商品データAPI活用 コンテンツ生成ツール</h3>
+          <p class="work-desc">
+            商品データAPI（DMM系）から情報を取得し、
+            <strong>CSVレポート</strong>や<strong>WordPress貼り付け用HTML</strong>を自動生成。
+            SQLiteでデータを管理し、Streamlit UIで非エンジニアでも操作可能に。
+            APIデータ取得から記事素材生成までを一気通貫で自動化します。
+          </p>
+          <div class="work-result">
+            <b>実証：APIデータ→記事素材の変換フローを自動化</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">商品データAPI</span>
+            <span class="tag">HTML生成</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C-07 · コンテンツ運用Webアプリ（旧FANZA投稿ツール） -->
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/c07-spreadsheet.jpg" alt="" loading="lazy"><span class="work-visual-label">// React × TS × Vite — コンテンツ運用アプリ</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">C-07 · Webアプリ</span><span class="work-num">2025</span></div>
+          <h3 class="work-title">CSV統合 · コンテンツ運用Webアプリ</h3>
+          <p class="work-desc">
+            商品CSV・プロフィールデータをアップロードし、
+            <strong>プロフィールと商品情報を統合</strong>して一覧表示・記事管理・投稿管理を行うWebアプリ。
+            React / TypeScript / Vite / Tailwind CSS のモダン構成で、
+            CSVデータの取り込みから記事運用までを一つの画面に集約しています。
+          </p>
+          <div class="work-result">
+            <b>実証：CSV取り込み→記事管理→投稿までのUIを一貫構築</b>
+          </div>
+          <div class="work-stack">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Vite</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">CSV統合</span>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
 </section>
 
-<!-- ========== CAREER ========== -->
+<!-- ========== 経歴 (#career) ========== -->
 <section id="career">
   <div class="wrap">
     <div class="eyebrow">Career</div>
-    <h2 class="section-title">経歴</h2>
-    <p class="section-lede">
-      経営 → EC → SE → 生成AI。一貫して「事業を前に進める」ことを続けてきました。
-    </p>
+    <h2 class="section-title tight">作る人と使う人の間に立ってきた</h2>
     <div class="career-timeline">
-
+      <div class="career-item">
+        <div class="career-year">2014〜2017</div>
+        <div class="career-role plain">個人での事業活動</div>
+        <div class="career-desc"><span class="lead">いまにつながること</span>自分で数字を見て、判断して、結果に責任を持つ</div>
+      </div>
+      <div class="career-item">
+        <div class="career-year">2017〜2022</div>
+        <div class="career-role plain">EC事業（TKC堂）。仕入れ・販促・収支管理、海外エンジニアへのツール開発依頼、コンサルティング</div>
+        <div class="career-desc"><span class="lead">いまにつながること</span>作る人と使う人の間に立ち、改善を回す</div>
+      </div>
+      <div class="career-item">
+        <div class="career-year">2022〜2023</div>
+        <div class="career-role plain">ECモールの出店・運用サポート（パーソルプロセス＆テクノロジー）</div>
+        <div class="career-desc"><span class="lead">いまにつながること</span>初めて使う人に、仕組みを分かる言葉で伝える</div>
+      </div>
+      <div class="career-item">
+        <div class="career-year">2023〜2026</div>
+        <div class="career-role plain">エンタープライズ環境のMECM／WSUSテクニカルサポート（派遣）</div>
+        <div class="career-desc"><span class="lead">いまにつながること</span>数千台規模の環境で、障害を切り分けて手順に落とす</div>
+      </div>
       <div class="career-item current">
-        <div class="career-year">2025 — 現在</div>
-        <div class="career-role">生成AI事業</div>
-        <div class="career-company">代表 · AI活用ジェネラリスト</div>
-        <div class="career-desc">
-          生成AIを活用した業務自動化ツール・Webアプリの試作・実証を継続中。
-          運用基盤・ナレッジ運用・単発ツール・AI開発パイプライン実証デモの4領域で計49件の
-          プロジェクトを制作し、中核となる<strong>「SNS Factory」（マルチアカウントSNS運用パイプライン）</strong>を継続開発中。
-          現在は<strong>AIストラテジスト資格</strong>の取得に向けて学習中。
-        </div>
+        <div class="career-year">2025〜現在</div>
+        <div class="career-role plain">生成AIを使ったシステム開発（受託・自主開発）</div>
+        <div class="career-desc"><span class="lead">いまにつながること</span>上の全部を、AIを束ねる形でやっている</div>
       </div>
-
-      <div class="career-item">
-        <div class="career-year">2023.5 — 2026.4</div>
-        <div class="career-role">日本コンセントリクス合同会社</div>
-        <div class="career-company">派遣社員 · システムエンジニア（派遣元：日本パーソナルビジネス）</div>
-        <div class="career-desc">
-          エンタープライズ環境における <strong>MECM / WSUS</strong> の運用・保守。
-          Windowsパッチ配信、M365展開、CMG環境のトラブルシューティング、手順書整備までを担当。
-        </div>
-      </div>
-
-      <div class="career-item">
-        <div class="career-year">2022.12 — 2023.3</div>
-        <div class="career-role">パーソルプロセス＆テクノロジー株式会社</div>
-        <div class="career-company">契約社員 · システムエンジニア</div>
-        <div class="career-desc">
-          au PAY マーケットの出店・運用サポート。新規出店法人のオンボーディングと、
-          自身のEC経営経験を活かした売上最大化アドバイス、FAQ・手順の体系化。
-        </div>
-      </div>
-
-      <div class="career-item">
-        <div class="career-year">2017.7 — 2022.12</div>
-        <div class="career-role">TKC堂（Eコマース事業）</div>
-        <div class="career-company">代表</div>
-        <div class="career-desc">
-          物販・デジタルコンテンツ販売。仕入れ交渉から独自マーケティングツールの制作、
-          コンサルティング業務まで。<strong>最大月収200万円</strong>を達成。
-        </div>
-      </div>
-
-      <div class="career-item">
-        <div class="career-year">2014 — 2017</div>
-        <div class="career-role">遊戯事業</div>
-        <div class="career-company">代表</div>
-        <div class="career-desc">
-          事業立ち上げ、収益管理、現場オペレーション、人材育成まで一貫して担当。
-          少人数運営で高収益モデルを構築し、<strong>最大月収200万円</strong>を達成。
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- ========== SKILLS ========== -->
-<section class="skills" id="skills">
+<!-- ========== 考え方の土台 (#books) ========== -->
+<section class="alt" id="books">
   <div class="wrap">
-    <div class="eyebrow">Skills</div>
-    <h2 class="section-title">触れてきたもの</h2>
+    <div class="eyebrow">Books</div>
+    <h2 class="section-title">読んできたもの</h2>
     <p class="section-lede">
-      「使いこなす」というより「AIの力を借りて触れてきた」領域です。
-      経営・営業の実体験と組み合わせて、業務の現場で役立てていきます。
+      読書記録アプリに233冊を記録しています。AIへの指示の精度は、指示を出す人間の考えの解像度で決まる、と考えています。
     </p>
-    <div class="skills-grid">
+    <div class="skills-grid books-grid">
       <div class="skill-cat">
-        <div class="skill-cat-title">LANGUAGE</div>
-        <div class="skill-list">
-          <div class="skill-item">Node.js / Express</div>
-          <div class="skill-item">Python</div>
-          <div class="skill-item">TypeScript</div>
-          <div class="skill-item">React 18</div>
-          <div class="skill-item">HTML / CSS / JS</div>
+        <div class="skill-cat-title">考え方・問題解決</div>
+        <div class="book-tags">
+          <span class="tag">具体と抽象</span>
+          <span class="tag">思考の整理学</span>
+          <span class="tag">知的複眼思考法</span>
+          <span class="tag">論理の方法</span>
+          <span class="tag">世界一やさしい問題解決の授業</span>
+          <span class="tag">エッセンシャル思考</span>
         </div>
       </div>
       <div class="skill-cat">
-        <div class="skill-cat-title">DATABASE</div>
-        <div class="skill-list">
-          <div class="skill-item">PostgreSQL</div>
-          <div class="skill-item">SQLite</div>
-          <div class="skill-item">Drizzle ORM</div>
-          <div class="skill-item">SQLAlchemy</div>
+        <div class="skill-cat-title">ファシリテーション・伝え方</div>
+        <div class="book-tags">
+          <span class="tag">ファシリテーター養成講座</span>
+          <span class="tag">ザ・ファシリテーター</span>
+          <span class="tag">組織変革ファシリテーター</span>
+          <span class="tag">「何回説明しても伝わらない」はなぜ起こるのか？</span>
+          <span class="tag">ロジカル・コミュニケーション</span>
         </div>
       </div>
       <div class="skill-cat">
-        <div class="skill-cat-title">INFRA · OPS</div>
-        <div class="skill-list">
-          <div class="skill-item">Docker</div>
-          <div class="skill-item">Ubuntu / VPS</div>
-          <div class="skill-item">PM2 / Caddy</div>
-          <div class="skill-item">MECM / WSUS</div>
-          <div class="skill-item">GitHub Actions</div>
-          <div class="skill-item">タスクスケジューラ運用</div>
+        <div class="skill-cat-title">行動経済学・心理</div>
+        <div class="book-tags">
+          <span class="tag">行動経済学が最強の学問である</span>
+          <span class="tag">その問題、経済学で解決できます。</span>
+          <span class="tag">勘違いが人を動かす</span>
         </div>
       </div>
       <div class="skill-cat">
-        <div class="skill-cat-title">AI · AUTOMATION</div>
-        <div class="skill-list">
-          <div class="skill-item">Claude / GPT-4o / Gemini / Grok</div>
-          <div class="skill-item">n8n / Dify / Cursor</div>
-          <div class="skill-item">Apify / Playwright</div>
-          <div class="skill-item">Claude Code 並列運用</div>
-          <div class="skill-item">RAG / Obsidian Vault</div>
+        <div class="skill-cat-title">事業・マーケティング</div>
+        <div class="book-tags">
+          <span class="tag">実践版 孫子の兵法</span>
+          <span class="tag">在庫マネジメントの基本</span>
+          <span class="tag">最適解を導く調達戦略フレームワーク</span>
+          <span class="tag">シュガーマンのマーケティング30の法則</span>
         </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">哲学・社会</div>
+        <div class="book-tags">
+          <span class="tag">史上最強の哲学入門</span>
+          <span class="tag">構造主義とは何か</span>
+          <span class="tag">哲学の起源</span>
+          <span class="tag">14歳からの社会学</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== これから (#next) ========== -->
+<section id="next">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="eyebrow">Next</div>
+        <h2 class="section-title">社内で完結するAIを、現場に入れたい</h2>
+      </div>
+      <div class="about-body">
+        <p>
+          複数の企業とお話しする中で、「機密情報を社外のAIに出せない」という需要が大きいことを実感しました。特にセキュリティ要件の厳しい大手企業でその傾向が強いです。社内の環境だけで完結するAI（ローカルLLM、社内文書の検索、セキュリティ対策を含む）を、お客様の現場に入って要件から一緒に作り、定着させるところまで担いたいと考えています。（現在は構想を固めている段階です）
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 面接で話せること (#talk) ========== -->
+<section class="alt" id="talk">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="eyebrow">Talk</div>
+        <h2 class="section-title">「何をしてきたか」より、「どう考えているか」を</h2>
+      </div>
+      <div class="about-body">
+        <p>
+          AIによって、何かを「作る」こと自体は誰にとっても簡単になりつつあります。これから差がつくのは、どんな設計思想で、どんな考え方で物事を捉えているか、だと考えています。そこは数字や経歴には表れにくい部分なので、ぜひ問いかけてください。
+        </p>
+        <div class="ask-head">問いかけてほしいこと</div>
+        <div class="ask-list">
+          <div class="skill-item">AIで作ることが簡単になった時代に、人に残る仕事は何か</div>
+          <div class="skill-item">物事を、感情や常識で判断する前に「構造」として捉えるとはどういうことか</div>
+          <div class="skill-item">完璧を目指さず、頻度と影響で「直す／直さない」を決める理由</div>
+          <div class="skill-item">数字にできない考え方や設計思想を、仕組みと言葉にどう落としているか</div>
+          <div class="skill-item">人とAIの役割の線をどこに引いているか。その線はこれからどう動くか</div>
+          <div class="skill-item">現場にAIが定着しないのはなぜか。どうすれば定着するか</div>
+          <div class="skill-item">哲学・社会学・行動経済学の本が、仕組みづくりにどう効いているか</div>
+        </div>
+        <p class="talk-foot">
+          具体的な話（AIチームの区切り方、ITに詳しくないお客様からの要件の引き出し方など）も、もちろんお話しできます。
+        </p>
       </div>
     </div>
   </div>
