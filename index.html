@@ -89,8 +89,7 @@
   }
   [data-variant="modern"] .nav-cta{background:var(--accent);color:var(--bg)}
   .nav-cta:hover{transform:translateY(-1px)}
-  @media(max-width:1180px){.nav-links{gap:20px;font-size:12px}}
-  @media(max-width:960px){.nav-links{display:none}}
+  @media(max-width:1180px){.nav-links{display:none}}
   @media(max-width:820px){.nav{padding:14px 20px}}
 
   /* ---------- Layout ---------- */
@@ -691,6 +690,9 @@
   .ask-list .skill-item{align-items:flex-start;font-size:15px;line-height:1.8;color:var(--ink-soft)}
   .ask-list .skill-item::before{line-height:1.8}
   .ask-head{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--ink-mute);margin-top:32px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .talk-title span{display:block;white-space:nowrap}
+  .talk-title{font-size:clamp(22px,6.4vw,44px)}
+  .talk-grid{margin-top:16px;max-width:820px}
   .talk-foot{padding-left:18px;border-left:3px solid var(--line)}
 
 </style>
@@ -2586,11 +2588,9 @@
 <!-- ========== 面接で話せること (#talk) ========== -->
 <section class="alt" id="talk">
   <div class="wrap">
-    <div class="about-grid">
-      <div>
-        <div class="eyebrow">Talk</div>
-        <h2 class="section-title">「何をしてきたか」より、<br />「どう考えているか」を</h2>
-      </div>
+    <div class="eyebrow">Talk</div>
+    <h2 class="section-title talk-title"><span>「何をしてきたか」より、</span><span>「どう考えているか」を</span></h2>
+    <div class="talk-grid">
       <div class="about-body">
         <p>
           AIによって、何かを「作る」こと自体は誰にとっても簡単になりつつあります。これから差がつくのは、どんな設計思想で、どんな考え方で物事を捉えているか、だと考えています。そこは数字や経歴には表れにくい部分なので、ぜひ問いかけてください。
