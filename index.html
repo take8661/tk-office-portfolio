@@ -1901,6 +1901,97 @@
       </div>
     </div>
 
+
+    <div class="works-group">
+      <span class="works-group-num">GROUP E</span>
+      <span class="works-group-title">自社ツール（同じパイプラインで制作）</span>
+      <span class="works-group-count">6 projects</span>
+    </div>
+    <p class="sub-lede">
+      GROUP Dと同じ流れ（実装 → レビュー → 最終検査 → 課長承認 → 部長統括）で、手続きのナビや業務シミュレーターを自社案件として制作したものです。
+      どれもブラウザだけで動き、データはすべて架空か公開情報の整理です。COST・AI稼働時間は実行ログからの実測値です。
+    </p>
+    <div class="works-grid">
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/demo-shots/e-01-setsuritsu-navi.jpg" alt="" loading="lazy"><span class="work-visual-label">// setsuritsu-navi</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">E-01 · 自社ツール</span><span class="work-num">2026</span></div>
+          <h3 class="work-title">会社設立後の届出ナビ</h3>
+          <p class="work-desc">設立日と本店所在地を入れると、会社設立後に必要な税務署・年金事務所・労働基準監督署などへの届出を、期限・窓口・条件つきで1画面に並べるツールです。条件が未回答の項目は「判断待ち」として残し、断定しない設計にしています。入力内容はブラウザの中だけに保存されます。</p>
+          <div class="work-result">
+            <b>COST $26.88 ・ AI稼働71分</b><br>
+            <span style="font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;<a href="https://setsuritsu-navi.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">setsuritsu-navi.demos.himitsuno-heya123.com&nbsp;↗</a></span>
+          </div>
+          <div class="work-stack"><span class="tag">Vanilla JS</span><span class="tag">期限計算</span><span class="tag">公開情報の整理</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/demo-shots/e-02-hikkoshi.jpg" alt="" loading="lazy"><span class="work-visual-label">// hikkoshi</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">E-02 · 自社ツール</span><span class="work-num">2026</span></div>
+          <h3 class="work-title">引っ越し手続きナビ</h3>
+          <p class="work-desc">引っ越し日と状況（市区町村をまたぐか、マイナンバーカードの有無など）に答えると、必要な手続きを出す先・期限の目安・窓口ごとに整理します。自治体で扱いが分かれる項目は「要確認」と明示し、確からしさを区別して表示します。</p>
+          <div class="work-result">
+            <b>COST $18.92 ・ AI稼働63分</b><br>
+            <span style="font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;<a href="https://hikkoshi.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">hikkoshi.demos.himitsuno-heya123.com&nbsp;↗</a></span>
+          </div>
+          <div class="work-stack"><span class="tag">Vanilla JS</span><span class="tag">条件分岐判定</span><span class="tag">期限計算</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/demo-shots/e-03-python-gakushu.jpg" alt="" loading="lazy"><span class="work-visual-label">// python-gakushu</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">E-03 · 自社ツール</span><span class="work-num">2026</span></div>
+          <h3 class="work-title">Python学習ツール</h3>
+          <p class="work-desc">ブラウザの中でPythonを実際に動かしながら学べる練習帳です。章ごとの学習、間違えた問題の復習、模試、学習記録までを1つの画面で扱います。Python本体はブラウザ内（Pyodide）で動くため、サーバー側でコードを実行しません。</p>
+          <div class="work-result">
+            <b>COST $74.93 ・ AI稼働439分</b><br>
+            <span style="font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;<a href="https://python-gakushu.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">python-gakushu.demos.himitsuno-heya123.com&nbsp;↗</a></span>
+          </div>
+          <div class="work-stack"><span class="tag">Pyodide</span><span class="tag">ブラウザ内実行</span><span class="tag">学習管理</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/demo-shots/e-04-genba-trouble.jpg" alt="" loading="lazy"><span class="work-visual-label">// genba-trouble</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">E-04 · 自社ツール</span><span class="work-num">2026</span></div>
+          <h3 class="work-title">現場トラブル対応シミュレーター</h3>
+          <p class="work-desc">工場で異常が起きたとき、人員配置・権限・情報共有・手順書の違いで、初動や復旧時間・生産ロスがどう変わるかを、体制Aと体制Bで同時に再生して比べるシミュレーターです。乱数の幅も含めて差を表示します。</p>
+          <div class="work-result">
+            <b>COST $13.07 ・ AI稼働75分</b><br>
+            <span style="font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;<a href="https://genba-trouble.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">genba-trouble.demos.himitsuno-heya123.com&nbsp;↗</a></span>
+          </div>
+          <div class="work-stack"><span class="tag">JavaScript</span><span class="tag">離散イベントシミュレーション</span><span class="tag">比較可視化</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/demo-shots/e-05-kasetsu-touron.jpg" alt="" loading="lazy"><span class="work-visual-label">// kasetsu-touron</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">E-05 · 自社ツール</span><span class="work-num">2026</span></div>
+          <h3 class="work-title">仮説討論デモ</h3>
+          <p class="work-desc">事業の仮説に対し、立場の違う批評役が台本に沿って討論し、見落としている論点を洗い出す様子を再生するデモです。批評役の人数やラウンド数を変えると、見つかる論点の数と結論が変わります。AIをその場で呼ばず、事前に用意した台本で動きます。</p>
+          <div class="work-result">
+            <b>COST $15.95 ・ AI稼働45分</b><br>
+            <span style="font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;<a href="https://kasetsu-touron.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">kasetsu-touron.demos.himitsuno-heya123.com&nbsp;↗</a></span>
+          </div>
+          <div class="work-stack"><span class="tag">JavaScript</span><span class="tag">マルチペルソナ</span><span class="tag">論点抽出</span></div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-visual"><img src="assets/img/demo-shots/e-06-kakaku-hannou.jpg" alt="" loading="lazy"><span class="work-visual-label">// kakaku-hannou</span></div>
+        <div class="work-body">
+          <div class="work-meta"><span class="work-cat">E-06 · 自社ツール</span><span class="work-num">2026</span></div>
+          <h3 class="work-title">価格反応シミュレーター</h3>
+          <p class="work-desc">架空の喫茶店を題材に、値上げや新商品投入をしたとき、架空のお客さん60人がどう反応するかを、購入意欲・離反率・売上の目安・口コミで表示します。条件を変えるとその場で再計算します。</p>
+          <div class="work-result">
+            <b>COST $12.78 ・ AI稼働47分</b><br>
+            <span style="font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;<a href="https://kakaku-hannou.demos.himitsuno-heya123.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">kakaku-hannou.demos.himitsuno-heya123.com&nbsp;↗</a></span>
+          </div>
+          <div class="work-stack"><span class="tag">JavaScript</span><span class="tag">Chart.js</span><span class="tag">需要シミュレーション</span></div>
+        </div>
+      </div>
+    </div>
+
     <div class="works-group">
       <span class="works-group-num">SELF-DIRECTED</span>
       <span class="works-group-title">自主開発・試作</span>
