@@ -696,6 +696,19 @@
   .talk-grid{margin-top:16px;max-width:820px}
   .talk-foot{padding-left:18px;border-left:3px solid var(--line)}
 
+
+  /* 2026-11-26 見やすさ改善：作品画像をカラーで表示、実績を3列、説明は3行（押すと全文） */
+  .work-visual img{filter:none!important}
+  .work-visual::before,.work-visual::after{display:none!important}
+  .works-grid{grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:1100px){.works-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:820px){.works-grid{grid-template-columns:1fr}}
+  .work-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+  .work-desc.open{display:block;-webkit-line-clamp:unset}
+  .works-index{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px}
+  .works-index a{font-size:13px;padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink,inherit);text-decoration:none;border-radius:999px}
+  .works-index a:hover{border-color:var(--accent)}
+  .works-group{scroll-margin-top:90px}
 </style>
 </head>
 <body data-variant="classic" style="font-size: 15px">
@@ -943,7 +956,7 @@
       という体制を、実際のクライアント案件で最後まで運用できたことが一番の手応えでした。
     </div>
 
-    <details class="more" open>
+    <details class="more">
       <summary>
         <span class="more-title">詳しく見る</span>
         <span class="more-sub">チーム編成・品質ゲート・納品前レビューツール・非機能要件18項目など</span>
@@ -3036,5 +3049,24 @@
   mountTweaks();
 </script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
+<script>
+// 2026-11-26 実績：グループ一覧（各グループへ移動）と、説明の全文表示
+(function(){
+  var w=document.getElementById('works'); if(!w) return;
+  var gs=w.querySelectorAll('.works-group'); if(!gs.length) return;
+  var nav=document.createElement('nav'); nav.className='works-index'; nav.setAttribute('aria-label','実績のグループ');
+  gs.forEach(function(g,i){
+    if(!g.id) g.id='works-g'+(i+1);
+    var t=g.querySelector('.works-group-title'), c=g.querySelector('.works-group-count');
+    var cards=0, n=g.nextElementSibling;
+    while(n && !n.classList.contains('works-group')){ cards+=n.querySelectorAll('.work-card').length; n=n.nextElementSibling; }
+    var a=document.createElement('a'); a.href='#'+g.id;
+    var tt=t?t.textContent.trim():'グループ'; a.textContent=tt+(cards&&!/\d+件/.test(tt)?'（'+cards+'件）':'');
+    nav.appendChild(a);
+  });
+  gs[0].parentNode.insertBefore(nav,gs[0]);
+  w.addEventListener('click',function(e){var d=e.target.closest('.work-desc'); if(d) d.classList.toggle('open');});
+})();
+</script>
 </body>
 </html>
