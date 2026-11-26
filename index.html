@@ -709,6 +709,12 @@
   .works-index a{font-size:13px;padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink,inherit);text-decoration:none;border-radius:999px}
   .works-index a:hover{border-color:var(--accent)}
   .works-group{scroll-margin-top:90px}
+.trust-strip{margin-top:28px;padding:22px 24px;border:1px solid var(--line,#d9d6cc);background:#fff}
+.trust-lead{margin:0 0 12px;font-size:15px;line-height:1.8}
+.trust-links{display:flex;flex-wrap:wrap;gap:8px}
+.trust-links a{font-size:13px;padding:7px 14px;border:1px solid var(--line,#d9d6cc);border-radius:999px;text-decoration:none;color:inherit}
+.trust-links a:first-child{background:#0f1a34;color:#fff;border-color:#0f1a34}
+.trust-links a:hover{border-color:#947044}
 </style>
 </head>
 <body data-variant="classic" style="font-size: 15px">
@@ -834,7 +840,7 @@
             <details class="arch-item">
               <summary><span class="node ai">開発パイプライン（重量級）</span><span class="tag">稼働中</span></summary>
               <p class="arch-body">要件の精査・分解 → 機能別チームが実装 → レビュー（差し戻し最大3回）→ 部長役AIが統括承認 → 統合・Web画面・納品物</p>
-              <p class="arch-body"><a class="arch-link" href="#flow">詳しい作り方は Flow へ</a></p>
+              <p class="arch-body"><a class="arch-link" href="./pipeline/">開発の進め方（動く図つき）へ</a>　<a class="arch-link" href="#flow">1件の流れは Flow へ</a></p>
             </details>
             <details class="arch-item">
               <summary><span class="node ai">設計検証パイプライン（軽量級）</span><span class="tag">稼働中</span></summary>
@@ -873,6 +879,17 @@
     <p class="featured-desc arch-sup">
       本体PCと予備PCの2台で処理を分担しています。本体は開発・設計を、予備PCは情報の調査と文書のレビューを担当し、1分ごとの中継でタスクと結果をやり取りします。
     </p>
+    <div class="trust-strip">
+      <p class="trust-lead"><b>AIの「できました」は、そのまま信用しません。</b>別のAIがテストを実行し、起動して操作した結果だけで次へ進めます。</p>
+      <div class="trust-links">
+        <a href="./pipeline/">開発の進め方（実案件の記録を再生）</a>
+        <a href="./qa/#q31">言語は大丈夫か</a>
+        <a href="./qa/#q33">データベース</a>
+        <a href="./qa/#q34">セキュリティ</a>
+        <a href="./qa/#q35">法律・制度</a>
+        <a href="./qa/#q36">納品後の手直し</a>
+      </div>
+    </div>
   </div>
 </section>
 

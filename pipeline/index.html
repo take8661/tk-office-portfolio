@@ -61,11 +61,20 @@
   .foot{padding:48px 0 64px;border-top:1px solid var(--line);display:flex;gap:16px;flex-wrap:wrap}
   .btn{display:inline-block;padding:12px 22px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
   .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-  .qa-links{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .qa-links{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .qa-links a{display:block;padding:18px 20px;background:#fff;border:1px solid var(--line);color:var(--soft,#384156);text-decoration:none;font-size:14px;line-height:1.8}
 .qa-links a:hover{border-color:var(--accent)}
 .qa-links b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
 @media(max-width:720px){.qa-links{grid-template-columns:1fr}}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tech-card{display:flex;flex-direction:column;gap:6px;padding:20px;background:#fff;border:1px solid var(--line);text-decoration:none;color:inherit}
+.tech-card:hover{border-color:var(--accent)}
+.tech-card .k{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.12em;color:var(--accent)}
+.tech-card b{font-size:17px;color:var(--ink)}
+.tech-card .d{font-size:14px;line-height:1.8;color:#384156;flex:1}
+.tech-card .m{font-size:13px;color:var(--accent);font-weight:700}
+@media(max-width:1000px){.tech-grid,.qa-links{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.tech-grid,.qa-links{grid-template-columns:1fr}}
 /* 動く図 */
 .agent-live{--bg:#0f1a34;--panel:#15234a;--line:#2a3b66;--ink:#eef2f9;--mute:#9fb0d3;--accent:#6fb5ff;--ok:#4cc38a;--ng:#ff7a6b;--human:#ffcc66;--mono:"JetBrains Mono",ui-monospace,monospace;max-width:1240px;margin:0 auto;padding:24px 16px}
 .agent-live *{box-sizing:border-box}
@@ -119,7 +128,7 @@
 </head>
 <body>
 <header class="top"><div class="wrap"><a class="brand" href="../">TK Office</a>
-<nav><a href="../">ポートフォリオ</a><a href="../qa/">Q&amp;A</a></nav></div></header>
+<nav><a href="../">ポートフォリオ</a><a href="#tech">技術・安全</a><a href="../qa/">Q&amp;A</a></nav></div></header>
 
 <main>
 <div class="wrap hero">
@@ -186,18 +195,25 @@
   </div>
 </div></section>
 
+<section id="tech"><div class="wrap">
+  <div class="eyebrow">04 · Tech &amp; Safety</div>
+  <h2>技術・安全・運用で、よく確かめられること</h2>
+  <p class="sub">導入を検討される企業の方から、特によく聞かれる点です。詳しい答えはQ&amp;Aにあります。</p>
+  <div class="tech-grid"><a class="tech-card" href="../qa/#q31"><span class="k">LANGUAGE</span><b>どの言語で作るのか</b><span class="d">お客様の環境と、納品後に誰が面倒を見るかで選びます。どの言語でも、別のAIがテストを実行し、起動して操作して合否を決めます。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q33"><span class="k">DATABASE</span><b>データベースはどうするのか</b><span class="d">少人数ならSQLite、複数人がサーバー経由で使うならPostgreSQL。データの置き場所と管理する人は、作る前に決めます。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q32"><span class="k">USAGE</span><b>どういう形で使うのか</b><span class="d">パソコン1台でダブルクリック起動、サーバーに置いてブラウザから、Excelのまま自動化など。使用説明書を必ず付けます。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q34"><span class="k">SECURITY</span><b>セキュリティは大丈夫か</b><span class="d">秘密情報はAIに渡さずコードにも書かない。本番の接続設定は人が行い、納品前に検査ツールで脆弱な書き方を調べます。外部の専門診断は未実施です。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q35"><span class="k">RULES</span><b>法律や制度が絡む業務</b><span class="d">法的な判断はAIにも私にもさせず、判断材料と根拠を示すところまで。解釈が分かれる点はお客様や専門家に確認します。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q36"><span class="k">REWORK</span><b>手直しが入ったら</b><span class="d">直した部分も、最初と同じ関門をもう一度通します。過去の判断は記録に残し、手直しで前の決定が崩れないようにします。</span><span class="m">詳しく読む →</span></a></div>
+</div></section>
 <section id="faq"><div class="wrap">
-  <div class="eyebrow">04 · Q&amp;A</div>
+  <div class="eyebrow">05 · Q&amp;A</div>
   <h2>よく聞かれる質問は、Q&amp;Aにまとめています</h2>
   <p class="sub">面接などでよく聞かれることを、テーマごとに分けて載せています。</p>
   <div class="qa-links">
-    <a href="../qa/#pipeline"><b>開発の仕組み（6問）</b>仕組み、AIの報告を信用しない理由、言語を選ばない理由、早さと費用、対応環境、いまの限界</a>
+    <a href="../qa/#pipeline"><b>開発の仕組み（5問）</b>仕組み、AIの報告を信用しない理由、言語を選ばない理由、早さと費用、いまの限界</a>
+    <a href="../qa/#tech"><b>技術・安全・運用（6問）</b>言語の選び方、使い方、データベース、セキュリティ、法律や制度、手直し</a>
     <a href="../qa/#project"><b>案件の進め方（3問）</b>どんなものを構築するか、ヒアリングの方法、お客様とのすり合わせ</a>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <div class="eyebrow">05 · Limits</div>
+  <div class="eyebrow">06 · Limits</div>
   <h2>いまの限界</h2>
   <p class="sub">できないこと、まだ確かめていないことも、そのまま書いておきます。</p>
   <div class="limits">
