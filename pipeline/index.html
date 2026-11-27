@@ -66,7 +66,8 @@
 .qa-links a:hover{border-color:var(--accent)}
 .qa-links b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
 @media(max-width:720px){.qa-links{grid-template-columns:1fr}}
-.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tech-card.wide{grid-column:span 2}
 .tech-card{display:flex;flex-direction:column;gap:6px;padding:20px;background:#fff;border:1px solid var(--line);text-decoration:none;color:inherit}
 .tech-card:hover{border-color:var(--accent)}
 .tech-card .k{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.12em;color:var(--accent)}
@@ -74,7 +75,7 @@
 .tech-card .d{font-size:14px;line-height:1.8;color:#384156;flex:1}
 .tech-card .m{font-size:13px;color:var(--accent);font-weight:700}
 @media(max-width:1000px){.tech-grid,.qa-links{grid-template-columns:1fr 1fr}}
-@media(max-width:720px){.tech-grid,.qa-links{grid-template-columns:1fr}}
+@media(max-width:720px){.tech-grid,.qa-links{grid-template-columns:1fr}.tech-card.wide{grid-column:auto}}
 /* 動く図 */
 .agent-live{--bg:#0f1a34;--panel:#15234a;--line:#2a3b66;--ink:#eef2f9;--mute:#9fb0d3;--accent:#6fb5ff;--ok:#4cc38a;--ng:#ff7a6b;--human:#ffcc66;--mono:"JetBrains Mono",ui-monospace,monospace;max-width:1240px;margin:0 auto;padding:24px 16px}
 .agent-live *{box-sizing:border-box}
@@ -186,7 +187,7 @@
     <li><b>設計書は、別のAI2つが確かめる</b><span>作る前に、設計書を独立した2つのレビューAIが読み、2回続けて合格するまで直します。作ってから「そもそも違った」を防ぎます。</span></li>
     <li><b>作ったものは、別のAIがテストを実際に動かす</b><span>作ったAIの「テストは通りました」という報告ではなく、レビュー役が自分でテストやコマンドを実行し、ログで判定します。</span></li>
     <li><b>組み合わせたら、実際に起動して通しで操作する</b><span>部品ごとに合格しても、つなぐと動かないことがあります。最終検査役がアプリを起動し、最初から最後まで操作して確かめます。</span></li>
-    <li><b>納品前に、専用の検査ツールで調べる</b><span>静的解析と、隔離した環境での動作検査を行い、「納品可能／条件付き／要修正／判定不能」を根拠付きで出します。</span></li>
+    <li><b>作るたびに、検査ツールにかける</b><span>実装のたびに検査ツールで書き方の誤りを機械的に洗い出し、「納品可能／条件付き／要修正／判定不能」を根拠付きで出します。実行できなかった検査は、通ったことにしません。</span></li>
     <li><b>最後に、私が自分で触って確かめる</b><span>依頼の目的に合っているか、使う人が迷わないかは、人が実際に操作して判断します。</span></li>
   </ol>
   <div class="ng-ok">
@@ -199,7 +200,7 @@
   <div class="eyebrow">04 · Tech &amp; Safety</div>
   <h2>技術・安全・運用で、よく確かめられること</h2>
   <p class="sub">導入を検討される企業の方から、特によく聞かれる点です。詳しい答えはQ&amp;Aにあります。</p>
-  <div class="tech-grid"><a class="tech-card" href="../qa/#q31"><span class="k">LANGUAGE</span><b>どの言語で作るのか</b><span class="d">お客様の環境と、納品後に誰が面倒を見るかで選びます。どの言語でも、別のAIがテストを実行し、起動して操作して合否を決めます。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q33"><span class="k">DATABASE</span><b>データベースはどうするのか</b><span class="d">少人数ならSQLite、複数人がサーバー経由で使うならPostgreSQL。データの置き場所と管理する人は、作る前に決めます。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q32"><span class="k">USAGE</span><b>どういう形で使うのか</b><span class="d">パソコン1台でダブルクリック起動、サーバーに置いてブラウザから、Excelのまま自動化など。使用説明書を必ず付けます。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q34"><span class="k">SECURITY</span><b>セキュリティは大丈夫か</b><span class="d">秘密情報はAIに渡さずコードにも書かない。本番の接続設定は人が行い、納品前に検査ツールで脆弱な書き方を調べます。外部の専門診断は未実施です。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q35"><span class="k">RULES</span><b>法律や制度が絡む業務</b><span class="d">法的な判断はAIにも私にもさせず、判断材料と根拠を示すところまで。解釈が分かれる点はお客様や専門家に確認します。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q36"><span class="k">REWORK</span><b>手直しが入ったら</b><span class="d">直した部分も、最初と同じ関門をもう一度通します。過去の判断は記録に残し、手直しで前の決定が崩れないようにします。</span><span class="m">詳しく読む →</span></a></div>
+  <div class="tech-grid"><a class="tech-card wide" href="../qa/#q31"><span class="k">REVIEW &amp; TEST</span><b>コードレビューとテスト</b><span class="d">作ったAIとは別のレビュー役と最終検査役が、それぞれ自分でテストを実行し直します。実装役の報告と結果が食い違えば差し戻し。届出カレンダーでは、レビュー役がテスト308件を自分で動かして確認しました。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q32"><span class="k">LANGUAGE</span><b>どの言語で作るのか</b><span class="d">お客様の環境と、納品後に誰が面倒を見るかで選びます。どの言語でも、別のAIがテストを実行し、起動して操作して合否を決めます。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q34"><span class="k">DATABASE</span><b>データベースはどうするのか</b><span class="d">少人数ならSQLite、複数人がサーバー経由で使うならPostgreSQL。データの置き場所と管理する人は、作る前に決めます。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q33"><span class="k">USAGE</span><b>どういう形で使うのか</b><span class="d">パソコン1台でダブルクリック起動、サーバーに置いてブラウザから、Excelのまま自動化など。使用説明書を必ず付けます。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q35"><span class="k">SECURITY</span><b>ハッキングへの対策</b><span class="d">秘密情報はAIに渡さずコードにも書かず、本番の接続設定は人が行います。一方、攻撃を試す検査や部品の脆弱性検査はまだ入っておらず、仕組みに足しているところです。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q36"><span class="k">RULES</span><b>法律や制度が絡む業務</b><span class="d">法的な判断はAIにも私にもさせず、判断材料と根拠を示すところまで。解釈が分かれる点はお客様や専門家に確認します。</span><span class="m">詳しく読む →</span></a><a class="tech-card" href="../qa/#q37"><span class="k">REWORK</span><b>手直しが入ったら</b><span class="d">直した部分も、最初と同じ関門をもう一度通します。過去の判断は記録に残し、手直しで前の決定が崩れないようにします。</span><span class="m">詳しく読む →</span></a></div>
 </div></section>
 <section id="faq"><div class="wrap">
   <div class="eyebrow">05 · Q&amp;A</div>
@@ -207,7 +208,7 @@
   <p class="sub">面接などでよく聞かれることを、テーマごとに分けて載せています。</p>
   <div class="qa-links">
     <a href="../qa/#pipeline"><b>開発の仕組み（5問）</b>仕組み、AIの報告を信用しない理由、言語を選ばない理由、早さと費用、いまの限界</a>
-    <a href="../qa/#tech"><b>技術・安全・運用（6問）</b>言語の選び方、使い方、データベース、セキュリティ、法律や制度、手直し</a>
+    <a href="../qa/#tech"><b>技術・安全・運用（7問）</b>コードレビューとテスト、言語の選び方、使い方、データベース、セキュリティ、法律や制度、手直し</a>
     <a href="../qa/#project"><b>案件の進め方（3問）</b>どんなものを構築するか、ヒアリングの方法、お客様とのすり合わせ</a>
   </div>
 </div></section>

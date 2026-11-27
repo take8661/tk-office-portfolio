@@ -883,11 +883,12 @@
       <p class="trust-lead"><b>AIの「できました」は、そのまま信用しません。</b>別のAIがテストを実行し、起動して操作した結果だけで次へ進めます。</p>
       <div class="trust-links">
         <a href="./pipeline/">開発の進め方（実案件の記録を再生）</a>
-        <a href="./qa/#q31">言語は大丈夫か</a>
-        <a href="./qa/#q33">データベース</a>
-        <a href="./qa/#q34">セキュリティ</a>
-        <a href="./qa/#q35">法律・制度</a>
-        <a href="./qa/#q36">納品後の手直し</a>
+        <a href="./qa/#q31">コードレビューとテスト</a>
+        <a href="./qa/#q32">言語は大丈夫か</a>
+        <a href="./qa/#q34">データベース</a>
+        <a href="./qa/#q35">セキュリティ</a>
+        <a href="./qa/#q36">法律・制度</a>
+        <a href="./qa/#q37">納品後の手直し</a>
       </div>
     </div>
   </div>
@@ -1187,9 +1188,10 @@
             <p class="featured-desc" style="max-width:none;margin-bottom:24px">
               パイプラインが生成した成果物は、最後に別途開発した<strong>納品前セキュリティ・品質検査ツール</strong>
               でレビューします。静的解析（Python: Ruff・mypy・Bandit／JavaScript・TypeScript: ESLint・tsc／
-              Java: Checkstyle・PMD）に加え、Dockerで隔離した環境での動的検査、任意でAIによる意味レビューまで行い、
+              Java: Checkstyle・PMD）を行い、
               <strong>「納品可能」「条件付き納品可能」「要修正」「判定不能」の4段階判定</strong>を根拠付きで返します。
-              安全性に具体的な疑いが残る場合は自動で処理を止め、人間の承認記録なしには解除されません。
+              ツール自体はDockerで隔離した環境での動的検査やAIによる意味レビューにも対応していますが、
+              現在のパイプラインで自動実行しているのは静的解析までです。動的検査と、セキュリティ専用の検査（秘密情報の検出・部品の脆弱性検査など）を組み込む作業を進めています。
             </p>
 
             <div class="modules-grid">
