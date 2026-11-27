@@ -172,6 +172,24 @@ main h2{font-size:clamp(28px,4vw,44px);line-height:1.3}
 .card h3{font-family:"Noto Serif JP","Times New Roman",serif;font-weight:600}
 .qa-links b,.tech-card b,.gates b{font-family:"Noto Serif JP","Times New Roman",serif;font-weight:600}
 </style>
+<style id="light-css">
+.lt-h{font-size:20px;margin:44px 0 14px}
+.lt-table{width:100%;border-collapse:collapse;background:#fff;font-size:14px}
+.lt-table th,.lt-table td{border:1px solid var(--line);padding:12px 16px;text-align:left;line-height:1.75;vertical-align:top}
+.lt-table th{font-weight:600;width:17em}
+.lt-table td{color:var(--ink-sub)}
+.lt-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.lt-cards div{background:#fff;border:1px solid var(--line);padding:18px 20px}
+.lt-cards b{display:block;font-size:16px;margin-bottom:6px}
+.lt-cards span{display:block;font-size:14px;line-height:1.85;color:var(--ink-sub)}
+.lt-log{list-style:none;margin:16px 0 0;padding:0}
+.lt-log li{display:grid;grid-template-columns:64px 12em 1fr;gap:14px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);padding:12px 16px;margin-bottom:8px;font-size:14px;line-height:1.8}
+.lt-log li.ng{border-left-color:#c0392b}
+.lt-log time{font-family:var(--mono);color:var(--ink-mute)}
+.lt-log span{color:var(--ink-sub)}
+.lt-note{font-size:13px;color:var(--ink-mute);margin:14px 0 0}
+@media(max-width:640px){.lt-table th{width:8em}.lt-table th,.lt-table td{padding:10px}.lt-log li{grid-template-columns:52px 1fr;gap:4px 10px}.lt-log li span{grid-column:1/-1}}
+</style>
 </head>
 <body>
 <nav class="gnav" aria-label="サイト内の移動"><a class="gnav-brand" href="../"><span class="gnav-mark">TK</span><span><span class="gnav-name">TK Office</span><span class="gnav-sub">Naoto Takemura · Sapporo</span></span></a><div class="gnav-links"><a href="../#thinking">Thinking</a><a href="../#architecture">Architecture</a><a href="../works/">Works</a><a href="../process/">Process</a><a href="../requirements/">Requirements</a><a href="../pipeline/" aria-current="page" class="gnav-on">Pipeline</a><a href="../profile/">Profile</a><a href="../qa/">Q&amp;A</a><a href="../#talk">Talk</a></div><a class="gnav-cta" href="../#contact">Contact →</a></nav><div class="gnav-space" aria-hidden="true"></div>
@@ -187,6 +205,8 @@ mark();size();window.addEventListener('scroll',mark,{passive:true});window.addEv
   <p class="lede">私の開発パイプラインは、AIに作らせることよりも、AIが作ったものを<strong>実際に動かして確かめてから信用する</strong>ことを中心に組んでいます。速さも、言語を選ばないことも、この考え方から来ています。</p>
   <div class="core">1つのAIに全部やらせず、作る役・確かめる役・決める人を分ける。そして、報告ではなく、実際に動かした結果だけで次へ進める。</div>
 </div>
+
+<div class="wrap"><p class="req-more" style="margin:0 0 40px"><a href="#light">設計検証パイプライン（軽量級）の仕組みと実際の記録へ ↓</a></p></div>
 
 <section><div class="wrap">
   <div class="eyebrow">01 · Why it works</div>
@@ -207,12 +227,62 @@ mark();size();window.addEventListener('scroll',mark,{passive:true});window.addEv
 <p class="req-more"><a href="../requirements/">最初の「ヒアリングAI」と「精査」で何を聞くか：要件定義の進め方 →</a></p>
 </div></section>
 
+<section id="light"><div class="wrap">
+  <div class="eyebrow">Lightweight</div>
+  <h2>設計検証パイプライン（軽量級）</h2>
+  <p class="sub">設計書づくりや小さめの修正を、依頼書を受け箱に置くだけで進める仕組みです。直すAIと確かめるAIが交互に回り、次の回は仕組みが作ります。私が呼ばれるのは、人にしか決められないことが出たときです。</p>
+
+  <h3 class="lt-h">1件の流れ</h3>
+  <ol class="gates">
+    <li><b>依頼書を受け箱に置く</b><span>投入の道具が、書き方と、同じ依頼がすでに無いかを確かめ、進行中の一覧に記録してから置きます。依頼書の先頭には、確認だけか修正か、何回まで回すかを書きます。</span></li>
+    <li><b>見張り役がすぐに動かす</b><span>受け箱に届いたことを検知して、実行役がAIを呼びます。1本のレーンは一度に1件。複数のレーンを、本体PCと予備PCで並行して動かします。</span></li>
+    <li><b>レビュー役は読むだけ</b><span>直した担当とは別のAIが、対象と前の回の結果を自分で確かめます。ファイルは書き換えません。前の担当の結論を出発点にせず、反対の仮説を立て、別の方法で確かめます。</span></li>
+    <li><b>指摘があれば、修正の回が作られる</b><span>修正役は依頼された範囲だけを直し、自分で検証します。直したら、もう一度別のAIのレビューに回します。</span></li>
+    <li><b>合格で完了、判断が要れば人へ</b><span>独立したレビューに合格したら、完了の通知を置いて止まります。重要なものは、2回続けての合格を条件にします。実装は、私が承認した依頼だけが進みます。</span></li>
+  </ol>
+
+  <h3 class="lt-h">回ごとの結果で、次の動きが決まる</h3>
+  <table class="lt-table"><tbody>
+    <tr><th>直しが必要</th><td>修正の回を作ります。</td></tr>
+    <tr><th>直した</th><td>別のAIのレビューの回を作ります。</td></tr>
+    <tr><th>合格</th><td>完了の通知を置いて止まります。</td></tr>
+    <tr><th>人の判断が必要</th><td>止めて、私が1行で答えられる質問を出します。</td></tr>
+    <tr><th>共有の文書を別の作業が使用中</th><td>繰り返し試さず、1回で止めます。</td></tr>
+    <tr><th>結果の書き方が崩れている</th><td>進めずに、人の判断へ回します。</td></tr>
+  </tbody></table>
+
+  <h3 class="lt-h">レビューの決まり</h3>
+  <div class="lt-cards">
+    <div><b>指摘は具体的に</b><span>重大・中程度にできるのは「この入力で、こういう誤った結果になる」と書ける指摘だけです。書けないものは軽微にして、実装のときに直す一覧に残します。</span></div>
+    <div><b>目的から外れた指摘は分ける</b><span>依頼のゴールに関係しない論点は別の欄に書き、合否に数えません。安全や判定に関わるものは外せません。</span></div>
+    <div><b>往復に上限を置く</b><span>レビューは原則3回までです。安全に関わる指摘が残る場合は、私が実装に進むかを判断します。</span></div>
+  </div>
+
+  <h3 class="lt-h">暴走させないための仕組み</h3>
+  <div class="lt-cards">
+    <div><b>勝手にやり直し続けない</b><span>回数の上限があります。AIの呼び出しに失敗した依頼は失敗の置き場へ移し、無限に再試行しません。途中で落ちた依頼は、次の起動で受け箱に戻します。</span></div>
+    <div><b>触ってよい範囲を見張る</b><span>共有の文書は実行役が鍵を管理します。宣言していないファイルが変わっていないかを前後の比較で調べ、見つけたら止めます。</span></div>
+    <div><b>外に出る操作はさせない</b><span>危険なGit操作、外部への公開、パスワードなどの秘密の値を出力することは、禁止する決まりです。</span></div>
+  </div>
+
+  <h3 class="lt-h">実際の記録（2026年11月27日）</h3>
+  <p class="sub">別のレーンへ移した作業を、投入した側から追えるようにする設計での例です。回と回のあいだは、仕組みが次の依頼を作っています。</p>
+  <ol class="lt-log">
+    <li><time>18:24</time><b>修正</b><span>設計書を直して、レビューへ。</span></li>
+    <li class="ng"><time>18:54</time><b>レビュー：直しが必要</b><span>中程度2件。設計どおりに画面を直しても、挙げている実例の通知が消えないこと。止まっている作業を、処理済みと案内する場合があること。</span></li>
+    <li><time>19:22</time><b>修正</b><span>2件を直して、レビューへ。</span></li>
+    <li class="ng"><time>19:32</time><b>レビュー：直しが必要</b><span>前の2件は直っていることを確認。残る中程度1件は、案内どおりに動くと、自動で作られる続きと人の投入が重なり、同じ作業が2回実行されうること。</span></li>
+    <li><time>20:20</time><b>修正</b><span>案内の手順を、20分以上あけて確かめ直してから再開する形に直して、次のレビューへ。</span></li>
+  </ol>
+  <p class="lt-note">本体PCに残っている記録では、軽量級の各レーンでAIが残した作業結果は約1万7千件です（2026年11月27日時点）。</p>
+</div></section>
+
 <section id="verify"><div class="wrap">
   <div class="eyebrow">03 · Verify before trust</div>
   <h2>「できました」を信用するまでの関門</h2>
   <p class="sub">AIの報告は、そのままでは信用しません。次の関門をすべて、実物で通ったものだけを次へ渡します。</p>
   <ol class="gates">
-    <li><b>設計書は、別のAI2つが確かめる</b><span>作る前に、設計書を独立した2つのレビューAIが読み、2回続けて合格するまで直します。作ってから「そもそも違った」を防ぎます。</span></li>
+    <li><b>設計書は、別のAIが確かめる</b><span>作る前に、書いた担当とは別のAIが設計書を読み、合格するまで直します。重要なものは2回続けての合格を条件にします。作ってから「そもそも違った」を防ぎます。</span></li>
     <li><b>作ったものは、別のAIがテストを実際に動かす</b><span>作ったAIの「テストは通りました」という報告ではなく、レビュー役が自分でテストやコマンドを実行し、ログで判定します。</span></li>
     <li><b>組み合わせたら、実際に起動して通しで操作する</b><span>部品ごとに合格しても、つなぐと動かないことがあります。最終検査役がアプリを起動し、最初から最後まで操作して確かめます。</span></li>
     <li><b>作るたびに、検査ツールにかける</b><span>実装のたびに検査ツールで書き方の誤りを機械的に洗い出し、「納品可能／条件付き／要修正／判定不能」を根拠付きで出します。実行できなかった検査は、通ったことにしません。</span></li>
