@@ -716,6 +716,7 @@
 .trust-links a{font-size:13px;padding:7px 14px;border:1px solid var(--line,#d9d6cc);border-radius:999px;text-decoration:none;color:inherit}
 .trust-links a:first-child{background:#0f1a34;color:#fff;border-color:#0f1a34}
 .trust-links a:hover{border-color:#947044}
+.node-link{text-decoration:none;cursor:pointer;transition:background .2s,color .2s}.node-link:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 .arch-live-lede{max-width:none;margin:0 0 8px}.arch-live-more{margin:4px 0 0;font-size:14px}.arch-sub{font-family:var(--serif);font-size:22px;margin:56px 0 10px;scroll-margin-top:120px}#architecture .agent-live{padding:16px 0}
 .agent-live{--bg:#0f1a34;--panel:#15234a;--line:#2a3b66;--ink:#eef2f9;--mute:#9fb0d3;--accent:#6fb5ff;--ok:#4cc38a;--ng:#ff7a6b;--human:#ffcc66;--mono:"JetBrains Mono",ui-monospace,monospace;max-width:1240px;margin:0 auto;padding:24px 16px}
 .agent-live *{box-sizing:border-box}
@@ -899,20 +900,25 @@
             <span class="tag build">構築中</span>
           </div>
           <div class="arch-tree">
-            <details class="arch-item">
-              <summary><span class="node ai">開発パイプライン（重量級）</span><span class="tag">稼働中</span></summary>
-              <p class="arch-body">中の動きは、下の「実際の記録で見る」で再生しています。<a class="arch-link" href="#arch-live">動く図へ ↓</a></p>
-              <p class="arch-body"><a class="arch-link" href="./pipeline/">開発の進め方（動く図つき）へ</a>　<a class="arch-link" href="./process/#flow">1件の流れは Flow へ</a></p>
-            </details>
-            <details class="arch-item">
-              <summary><span class="node ai">設計検証パイプライン（軽量級）</span><span class="tag">稼働中</span></summary>
-              <p class="arch-body">設計書を複数のAIで相互レビューし、合格するまで直す</p>
-            </details>
             <div class="arch-item">
               <div class="arch-row">
-                <span class="node ai">探索パイプライン</span>
+                <a class="node ai node-link" href="./pipeline/">開発パイプライン（重量級） →</a>
                 <span class="tag">稼働中</span>
-                <a class="arch-link" href="./process/#learning">「外と内から学ぶ」で詳述</a>
+                <span class="arch-note">アプリを作る。<a class="arch-link" href="#arch-live">実際の記録を再生 ↓</a></span>
+              </div>
+            </div>
+            <div class="arch-item">
+              <div class="arch-row">
+                <a class="node ai node-link" href="./pipeline/#verify">設計検証パイプライン（軽量級） →</a>
+                <span class="tag">稼働中</span>
+                <span class="arch-note">設計書を複数のAIで相互レビューし、合格するまで直す</span>
+              </div>
+            </div>
+            <div class="arch-item">
+              <div class="arch-row">
+                <a class="node ai node-link" href="./process/#learning">探索パイプライン →</a>
+                <span class="tag">稼働中</span>
+                <span class="arch-note">外と内から学び続ける</span>
               </div>
             </div>
             <div class="arch-item">
@@ -1001,10 +1007,6 @@
         </div>
         <h3 class="featured-title">食品ギフト仲介事業者向け 受発注管理システム</h3>
         <p class="featured-tagline">実際のお客様からの依頼を、自作のAI開発パイプラインで構築し、納品まで完了させた案件です。ヒアリング、機能別の6チームによる並行実装（受注メモ解析・受注入力・発注書PDF生成・通知・データベース・テスト）、別のAIによる検証、統合までを行い、Web画面・利用ガイド・本番投入手順書を付けて納めました。AIだけで解決しなかった指摘1件は、私が判断して解決しています。 <a class="arch-link" href="./process/#flow">依頼から納品までの流れを見る →</a></p>
-        <p class="featured-desc" style="margin-top:8px">
-          <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">DETAIL&nbsp;&nbsp;</span>
-          <a href="https://claude.ai/code/artifact/0ebb20de-2fb4-4876-a4ae-c3d9180cf2bf" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">claude.ai/code/artifact/0ebb20de-2fb4-4876-a4ae-c3d9180cf2bf&nbsp;↗</a>
-        </p>
         <p class="featured-desc" style="margin-top:8px">
           <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;</span>
           <a href="https://oroshi.himitsuno-heya123.com/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">oroshi.himitsuno-heya123.com&nbsp;↗</a>
