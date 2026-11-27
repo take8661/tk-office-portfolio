@@ -76,6 +76,7 @@
 .tech-card .m{font-size:13px;color:var(--accent);font-weight:700}
 @media(max-width:1000px){.tech-grid,.qa-links{grid-template-columns:1fr 1fr}}
 @media(max-width:720px){.tech-grid,.qa-links{grid-template-columns:1fr}.tech-card.wide{grid-column:auto}}
+.rules3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}.rules3 div{background:#fff;border:1px solid var(--line);padding:16px 18px;font-size:14px;line-height:1.8;color:#384156}.rules3 b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}@media(max-width:720px){.rules3{grid-template-columns:1fr}}
 /* 動く図 */
 .agent-live{--bg:#0f1a34;--panel:#15234a;--line:#2a3b66;--ink:#eef2f9;--mute:#9fb0d3;--accent:#6fb5ff;--ok:#4cc38a;--ng:#ff7a6b;--human:#ffcc66;--mono:"JetBrains Mono",ui-monospace,monospace;max-width:1240px;margin:0 auto;padding:24px 16px}
 .agent-live *{box-sizing:border-box}
@@ -179,7 +180,7 @@
 </section>
 </div></section>
 
-<section><div class="wrap">
+<section id="verify"><div class="wrap">
   <div class="eyebrow">03 · Verify before trust</div>
   <h2>「できました」を信用するまでの関門</h2>
   <p class="sub">AIの報告は、そのままでは信用しません。次の関門をすべて、実物で通ったものだけを次へ渡します。</p>
@@ -194,6 +195,11 @@
     <div class="x"><strong>判断に使わないもの</strong>AIの「完了しました」「問題ありません」という報告、AI同士の合意だけ</div>
     <div class="o"><strong>判断に使うもの</strong>テストの実行結果、実行ログ、実際に起動した画面、操作した結果</div>
   </div>
+  <div class="rules3">
+    <div><b>事実と推測を分ける</b>AIの指摘には、実際に確かめた事実か、推測かの印を付けます。推測だけでは、重大な問題と決めません。</div>
+    <div><b>根拠を残す</b>「確認した」という報告には、実際の実行記録を添えます。記録は上書きせず、回ごとに残します。</div>
+    <div><b>迷ったら人に戻す</b>決められた回数で直らないときや、想定外の判断が必要なときは、無理に進めず私が判断します。</div>
+  </div>
 </div></section>
 
 <section id="tech"><div class="wrap">
@@ -207,25 +213,13 @@
   <h2>よく聞かれる質問は、Q&amp;Aにまとめています</h2>
   <p class="sub">面接などでよく聞かれることを、テーマごとに分けて載せています。</p>
   <div class="qa-links">
-    <a href="../qa/#pipeline"><b>開発の仕組み（5問）</b>仕組み、AIの報告を信用しない理由、言語を選ばない理由、早さと費用、いまの限界</a>
+    <a href="../qa/#pipeline"><b>開発の仕組み（5問）</b>仕組み、AIの報告を信用しない理由、言語を選ばない理由、早さと費用、どこまで広げられるか</a>
     <a href="../qa/#tech"><b>技術・安全・運用（7問）</b>コードレビューとテスト、言語の選び方、使い方、データベース、セキュリティ、法律や制度、手直し</a>
     <a href="../qa/#project"><b>案件の進め方（3問）</b>どんなものを構築するか、ヒアリングの方法、お客様とのすり合わせ</a>
   </div>
 </div></section>
 
-<section><div class="wrap">
-  <div class="eyebrow">06 · Limits</div>
-  <h2>いまの限界</h2>
-  <p class="sub">できないこと、まだ確かめていないことも、そのまま書いておきます。</p>
-  <div class="limits">
-    <div><b>同時に動かせるのは4本まで</b>2台のパソコンで処理を分けています。それ以上は順番待ちになります。</div>
-    <div><b>最終の判断は私が行う</b>起動・本番への反映・最終の承認は人が行うため、件数が増えると私の確認がいちばんの詰まりどころになります。</div>
-    <div><b>受託で納品まで終えたのは1件</b>大規模な既存システムの改修や、長期運用の保守はまだ経験がありません。</div>
-    <div><b>実績のない分野</b>スマートフォンのネイティブアプリや、大量アクセスを前提にした構成は作った実績がありません。</div>
-    <div><b>検査ツールの対応言語</b>納品前の静的解析は、Python・JavaScript / TypeScript・Javaに対応しています。それ以外の言語は対応を広げている途中です。</div>
-    <div><b>広げ方</b>同時に動かす本数を増やしたときに、どこまで速くなるかを測りながら拡張しています。</div>
-  </div>
-</div></section>
+
 
 <div class="wrap foot"><a class="btn" href="../works/">実績を見る</a><a class="btn ghost" href="../qa/">考え方のQ&amp;Aを見る</a></div>
 </main>
