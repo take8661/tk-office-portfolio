@@ -131,7 +131,7 @@
 @media(max-width:520px){.top nav{gap:14px;font-size:12px}.top nav a,.top .brand{white-space:nowrap}.top nav a:first-child{display:none}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&family=Noto+Serif+JP:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style id="gnav-css">
 .gnav{position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;box-sizing:border-box;
   background:color-mix(in oklab,#f6f5f1 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,padding .3s;
@@ -160,6 +160,17 @@ html{scroll-padding-top:90px}
 @media(max-width:820px){.gnav,.gnav.scrolled{padding:14px 20px}}
 @media(max-width:520px){.gnav,.gnav.scrolled{padding:12px 16px}.gnav .gnav-sub{display:none}.gnav a.gnav-cta{padding:8px 12px;font-size:12px}}
 @media print{.gnav,.gnav-space{display:none!important}}
+</style>
+<style id="type-unify">
+body{font-family:"Noto Sans JP",Inter,-apple-system,BlinkMacSystemFont,sans-serif;font-feature-settings:"palt";-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Noto Serif JP","Times New Roman",serif;font-weight:600;letter-spacing:.02em}
+.eyebrow{font-family:"Noto Sans JP",Inter,-apple-system,BlinkMacSystemFont,sans-serif;font-size:11px;letter-spacing:.25em;text-transform:uppercase}
+body{font-size:16px;line-height:1.75}
+main h1{font-size:clamp(30px,4.2vw,50px);line-height:1.25;letter-spacing:.01em}
+.wrap.hero{padding-left:24px;padding-right:24px}@media(max-width:520px){.wrap.hero{padding-left:16px;padding-right:16px}}
+main h2{font-size:clamp(28px,4vw,44px);line-height:1.3}
+.card h3{font-family:"Noto Serif JP","Times New Roman",serif;font-weight:600}
+.qa-links b,.tech-card b,.gates b{font-family:"Noto Serif JP","Times New Roman",serif;font-weight:600}
 </style>
 </head>
 <body>
@@ -191,30 +202,8 @@ mark();size();window.addEventListener('scroll',mark,{passive:true});window.addEv
 <section><div class="wrap">
   <div class="eyebrow">02 · Live</div>
   <h2>AIチームが、分担して作り、確かめ合う様子</h2>
-  <p class="sub">実際に納品した「事業者の届出カレンダー」の制作記録（2026年11月25日）を、約1分に縮めて再生しています。差し戻しや、AIでは決められずに私へ相談が届いた場面も、記録どおりです。</p>
-  <section class="agent-live" aria-label="実際の案件で、AIチームが分担して作り、確かめ合った記録の再生">
-  <div class="al-head">
-    <div class="al-src">実際の案件ログの再生：<b>事業者の届出カレンダー</b>（2026年11月25日の制作記録を、約1分に縮めています）</div>
-    <div class="al-stats">
-      <div class="al-stat">時刻 <b id="al-clock">—</b></div>
-      <div class="al-stat">同時に作業中 <b id="al-par">0</b></div>
-      <div class="al-stat">差し戻し <b id="al-ret">0</b>回</div>
-      <div class="al-stat">人への相談 <b id="al-hum">0</b>回</div>
-      <div class="al-stat">AI費用 <b id="al-cost">$0.00</b></div>
-    </div>
-  </div>
-  <div class="al-box">
-    <div class="al-stage" id="al-stage"><svg id="al-svg" viewBox="0 0 1000 560" role="img" aria-label="ヒアリングから納品までのAIチームの流れ"></svg></div>
-    <div class="al-log"><h4>// 記録より（要約）</h4><div class="al-lines" id="al-log"></div></div>
-  </div>
-  <div class="al-legend">
-    <span><i style="background:#6fb5ff"></i>受け渡し</span>
-    <span><i style="background:#ff7a6b"></i>差し戻し</span>
-    <span><i style="background:#4cc38a"></i>合格</span>
-    <span><i style="background:#ffcc66"></i>人の判断</span>
-    <button class="al-ctrl" id="al-replay" type="button">最初から再生</button>
-  </div>
-</section>
+  <p class="sub">実際に納品した「事業者の届出カレンダー」の制作記録（2026年11月25日）を、約1分に縮めて再生できます。差し戻しや、AIでは決められずに私へ相談が届いた場面も、記録どおりです。</p>
+  <p class="req-more"><a href="../#arch-live">この記録を再生する動く図は、トップページにあります →</a></p>
 <p class="req-more"><a href="../requirements/">最初の「ヒアリングAI」と「精査」で何を聞くか：要件定義の進め方 →</a></p>
 </div></section>
 
@@ -262,118 +251,5 @@ mark();size();window.addEventListener('scroll',mark,{passive:true});window.addEv
 
 <div class="wrap foot"><a class="btn" href="../works/">実績を見る</a><a class="btn ghost" href="../qa/">考え方のQ&amp;Aを見る</a></div>
 </main>
-<script>
-(function(){
-var W=100,H=40;
-var N={
- hear:{x:80,y:52,t:'ヒアリングAI'},seisa:{x:210,y:52,t:'精査'},chousa:{x:330,y:52,t:'調査'},bunkai:{x:450,y:52,t:'分解'},
- d1:{x:200,y:170,t:'実装'},d2:{x:320,y:170,t:'レビュー'},d3:{x:440,y:170,t:'検査'},d4:{x:560,y:170,t:'課長'},
- k1:{x:200,y:280,t:'実装'},k2:{x:320,y:280,t:'レビュー'},k3:{x:440,y:280,t:'検査'},k4:{x:560,y:280,t:'課長'},
- g1:{x:200,y:390,t:'実装'},g2:{x:320,y:390,t:'レビュー'},g3:{x:440,y:390,t:'検査'},g4:{x:560,y:390,t:'課長'},
- bucho:{x:690,y:280,t:'部長'},togo:{x:810,y:200,t:'統合担当'},webui:{x:810,y:360,t:'Web画面担当'},
- kensa:{x:930,y:280,t:'統括検査'},hum:{x:930,y:110,t:'竹村（判断）',h:1},out:{x:930,y:470,t:'納品'}
-};
-var E=[['hear','seisa'],['seisa','chousa'],['chousa','bunkai'],['bunkai','d1'],['bunkai','k1'],['bunkai','g1'],
- ['d1','d2'],['d2','d3'],['d3','d4'],['k1','k2'],['k2','k3'],['k3','k4'],['g1','g2'],['g2','g3'],['g3','g4'],
- ['d4','bucho'],['k4','bucho'],['g4','bucho'],['bucho','togo'],['togo','webui'],['webui','kensa'],['togo','kensa'],
- ['kensa','hum'],['hum','g1'],['kensa','out'],['bucho','k1']];
-var svg=document.getElementById('al-svg'),stage=document.getElementById('al-stage'),NS='http://www.w3.org/2000/svg';
-function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
-// チームのレーン
-[['データ課',170],['基盤ロジック課',280],['画面課',390]].forEach(function(l){el('rect',{x:20,y:l[1]-34,width:600,height:68,rx:8,'class':'lane'});var t=el('text',{x:30,y:l[1]-18,'class':'lanelbl'});t.textContent=l[0]});
-var g1=el('text',{x:30,y:20,'class':'grp'});g1.textContent='受付・分解';
-var g2=el('text',{x:30,y:126,'class':'grp'});g2.textContent='機能別チーム（同時に進行）';
-var g3=el('text',{x:660,y:126,'class':'grp'});g3.textContent='統合・最終検査';
-var paths={};function key(a,b){return a<b?a+'|'+b:b+'|'+a}
-E.forEach(function(e){var p=N[e[0]],q=N[e[1]],d;
- if(e[0]==='hum'&&e[1]==='g1'){d='M'+(p.x-W/2)+','+p.y+' C 640,110 150,330 '+q.x+','+(q.y-H/2)}
- else if(e[0]==='bucho'&&e[1]==='k1'){d='M'+p.x+','+(p.y+H/2)+' C 650,340 200,340 '+q.x+','+(q.y+H/2)}
- else if(e[0]==='togo'&&e[1]==='kensa'){d='M'+(p.x+W/2)+','+p.y+' C 900,200 930,230 '+q.x+','+(q.y-H/2)}
- else{var mx=(p.x+q.x)/2;d='M'+p.x+','+p.y+' C '+mx+','+p.y+' '+mx+','+q.y+' '+q.x+','+q.y}
- paths[key(e[0],e[1])]={el:el('path',{d:d,'class':'edge'}),from:e[0]};});
-for(var k in N){var n=N[k],g=el('g',{'class':'node'+(n.h?' human':''),transform:'translate('+(n.x-W/2)+','+(n.y-H/2)+')'});
- el('rect',{width:W,height:H,rx:8,'class':'box'},g);var t=el('text',{x:W/2,y:H/2+4},g);t.textContent=n.t;
- el('rect',{x:8,y:H-6,width:W-16,height:3,'class':'barbg'},g);n.bar=el('rect',{x:8,y:H-6,width:0,height:3,'class':'bar'},g);n.g=g;
- var bb=document.createElement('div');bb.className='bub';stage.appendChild(bb);n.bub=bb;}
-function pos(n){var s=svg.getBoundingClientRect(),k=s.width/1000;return{x:n.x*k,y:(n.y-H/2-5)*k}}
-function say(id,txt,cls,ms){var n=N[id],p=pos(n),b=n.bub;b.textContent=txt;b.className='bub show '+(cls||'');b.style.left=Math.min(Math.max(p.x,110),svg.getBoundingClientRect().width-110)+'px';var k=svg.getBoundingClientRect().width/1000;if(n.y<150){b.style.top=((n.y+H/2+8)*k)+'px';b.style.transform='translate(-50%,0)'}else{b.style.top=p.y+'px';b.style.transform=''}clearTimeout(b._t);b._t=setTimeout(function(){b.className='bub '+(cls||'')},ms||2600)}
-function state(id,s){N[id].g.setAttribute('class','node'+(N[id].h?' human':'')+(s?' '+s:''))}
-var logEl=document.getElementById('al-log'),clockEl=document.getElementById('al-clock');
-function log(who,txt,cls){var d=document.createElement('div');d.className='ln '+(cls||'');
- var a=document.createElement('span');a.className='tm';a.textContent=clockEl.textContent;var b=document.createElement('span');b.className='who';b.textContent='['+who+']';
- d.appendChild(a);d.appendChild(b);d.appendChild(document.createTextNode(txt));logEl.appendChild(d);while(logEl.children.length>10)logEl.removeChild(logEl.firstChild)}
-var timers=[];
-function send(a,b,cls,dur){var P=paths[key(a,b)];if(!P)return;var path=P.el,L=path.getTotalLength(),rev=P.from!==a;path.setAttribute('class','edge hot');
- var c=el('circle',{r:5.5,'class':'pkt '+(cls||'')}),t0=performance.now();dur=dur||900;
- (function f(t){var u=Math.min(1,(t-t0)/dur),pt=path.getPointAtLength((rev?1-u:u)*L);c.setAttribute('cx',pt.x);c.setAttribute('cy',pt.y);if(u<1)requestAnimationFrame(f);else{c.remove();path.setAttribute('class','edge')}})(t0)}
-var work={};
-function start(id,ms){var n=N[id],t0=performance.now(),tok={};work[id]=tok;state(id,'active');
- (function f(t){if(work[id]!==tok)return;var u=Math.max(0,Math.min(1,(t-t0)/(ms||1500)));n.bar.setAttribute('width',(W-16)*u);if(u<1)requestAnimationFrame(f)})(t0);upd()}
-function done(id,s){work[id]=null;N[id].bar.setAttribute('width',0);state(id,s||'');upd()}
-var busy=['d1','k1','g1'];function upd(){var c=0;busy.forEach(function(i){if(work[i])c++});document.getElementById('al-par').textContent=c}
-var cost=0,ret=0,hum=0;
-function C(v){cost+=v;document.getElementById('al-cost').textContent='$'+cost.toFixed(2)}
-function R(){ret++;document.getElementById('al-ret').textContent=ret}
-function T(s){clockEl.textContent=s}
-// 実際の記録（コストは各担当の実行ログの値）
-var S=[
-[0,function(){T('11/20');say('hear','今は誰が、何を、どうしていますか？');start('hear',1400);log('ヒアリングAI','9つの領域を対話で聞き取り、案件カルテを作成')}],
-[1600,function(){done('hear','ok');send('hear','seisa');start('seisa',900)}],
-[2600,function(){done('seisa','ok');say('seisa','業務の手順が書けている。次へ','ok');log('精査','手順が「誰が・何を・どうする」で書けているかを確認：OK','ok');send('seisa','chousa');start('chousa',1100)}],
-[3900,function(){done('chousa','ok');log('調査','31項目の手続きの出典を調査');send('chousa','bunkai');start('bunkai',900)}],
-[5000,function(){done('bunkai','ok');say('bunkai','3チームに分けます');log('分解','データ課・基盤ロジック課・画面課の3チームに分解')}],
-[6000,function(){T('11/25 10:10');for(var k in N)if(k!=='hear'&&k!=='seisa'&&k!=='chousa'&&k!=='bunkai')state(k);send('bunkai','d1');send('bunkai','k1');send('bunkai','g1');log('3チーム','同時に実装を開始')}],
-[6900,function(){start('d1',2200);start('k1',3000);start('g1',3600)}],
-[9100,function(){T('10:23');done('d1');C(2.39);send('d1','d2');start('d2',900)}],
-[10100,function(){done('d2','ok');C(1.33);send('d2','d3');start('d3',400);log('データ課 レビュー','自分でテストを実行して確認：合格','ok')}],
-[10050,function(){T('10:28');done('k1');C(3.40);send('k1','k2');start('k2',1400)}],
-[10500,function(){T('10:32');done('d3','ok');C(1.22);send('d3','d4');start('d4',600)}],
-[10700,function(){T('10:33');done('g1');C(4.39);send('g1','g2');start('g2',1600);say('g2','実際にブラウザで画面を操作して確認中…')}],
-[11000,function(){T('10:34');done('d4','ok');C(1.06);send('d4','bucho','ok');log('データ課 課長','承認','ok')}],
-[11500,function(){T('10:37');done('k2','ok');C(1.94);send('k2','k3');start('k3',1000)}],
-[12300,function(){T('10:41');done('g2','ng');C(1.92);R();send('g2','g1','ng');say('g2','決算月を入れると「該当する項目はありません」と出る。事実と逆','ng',3200);log('画面課 レビュー','ブラウザで操作して誤表示を発見 → 差し戻し','ng')}],
-[12600,function(){T('10:42');done('k3','ok');C(1.62);send('k3','k4');start('k4',600)}],
-[13300,function(){T('10:45');done('k4','ok');C(1.01);send('k4','bucho','ok');log('基盤ロジック課 課長','承認','ok')}],
-[13400,function(){state('g2');start('g1',1400);say('g1','表示を直し、この状態のテストを追加')}],
-[14900,function(){T('10:49');done('g1');C(2.36);send('g1','g2');start('g2',1000)}],
-[16000,function(){T('10:56');done('g2','ok');C(1.95);say('g2','308件のテストを自分で実行：すべて成功','ok');log('画面課 レビュー','修正を確認。テスト308件を実行して全件成功','ok');send('g2','g3');start('g3',1000)}],
-[17100,function(){T('11:05');done('g3','ok');C(2.08);send('g3','g4');start('g4',600)}],
-[17800,function(){done('g4','ok');C(1.25);send('g4','bucho','ok');start('bucho',900);log('画面課 課長','承認','ok')}],
-[18800,function(){T('11:12');done('bucho','ng');C(1.18);R();send('bucho','k1','ng');say('bucho','基盤ロジック課の説明書きが足りない','ng');log('部長','基盤ロジック課の説明書きの不足 → 差し戻し','ng')}],
-[19800,function(){state('bucho');start('k1',900)}],
-[20700,function(){done('k1');C(1.87);send('k1','k2');start('k2',600)}],
-[21400,function(){done('k2','ok');C(1.79);send('k2','k3');start('k3',600)}],
-[22100,function(){done('k3','ok');C(2.17);send('k3','k4');start('k4',500)}],
-[22700,function(){T('11:43');done('k4','ok');C(1.59);send('k4','bucho','ok');start('bucho',700)}],
-[23500,function(){T('11:47');done('bucho','ok');C(0.78);say('bucho','3チームとも承認','ok');log('部長','3チームの承認を確認。統合へ','ok');send('bucho','togo');start('togo',1600)}],
-[25200,function(){T('12:45');done('togo');C(2.66+2.05+0.98+1.32);log('統合担当','3チームの部品を1つのアプリに組み立て');send('togo','kensa');start('kensa',1500);say('kensa','起動して全画面を描画して確認中…')}],
-[26800,function(){T('13:03');done('kensa','ng');C(1.72);R();send('kensa','togo','ng');say('kensa','入口に各画面の用途の案内が無い／通信しないことの表示が無い','ng',3000);log('統括検査','起動して全画面を確認：用途の案内なし、接続状態の表示なし → 差し戻し','ng')}],
-[28200,function(){state('kensa');start('togo',600)}],
-[28900,function(){done('togo');C(1.93);send('togo','kensa');start('kensa',500)}],
-[29500,function(){done('kensa','ng');C(0.90);R();send('kensa','togo','ng');start('togo',500);log('統括検査','再検証：未解消（2回目）','ng')}],
-[30100,function(){done('togo');C(0.75);send('togo','kensa');start('kensa',500)}],
-[30700,function(){done('kensa','ng');C(0.84);R();send('kensa','togo','ng');start('togo',500);log('統括検査','再検証：未解消（3回目）','ng')}],
-[31300,function(){T('13:39');done('togo');C(0.39+0.69);state('kensa','ng');send('kensa','hum','hm');say('kensa','3回直しても解消せず。担当と方法は人の判断が必要','hm',3000);log('統括検査','3回で解消せず → 証拠を添えて人へ相談','hm');hum++;document.getElementById('al-hum').textContent=hum}],
-[33000,function(){T('14:38');state('kensa');state('hum','active');say('hum','画面課が直す。全画面に「外部と通信しません」を表示','hm',3200);log('竹村','推奨案で判断。画面課に用途の一言と通信表示を追加させる','hm')}],
-[34600,function(){state('hum');send('hum','g1','hm',1200);for(var k of ['g2','g3','g4','bucho','togo'])state(k)}],
-[35900,function(){T('15:30');start('g1',1100)}],
-[37000,function(){done('g1');C(2.18);send('g1','g2');start('g2',700)}],
-[37800,function(){done('g2','ok');C(1.98);send('g2','g3');start('g3',700)}],
-[38600,function(){done('g3','ok');C(2.02);send('g3','g4');start('g4',500)}],
-[39200,function(){T('15:50');done('g4','ok');C(1.07);send('g4','bucho','ok');start('bucho',500)}],
-[39800,function(){T('15:52');done('bucho','ok');C(0.89);send('bucho','togo');start('togo',1000)}],
-[40900,function(){T('16:11');done('togo','ok');C(2.19+1.84);send('togo','webui');start('webui',1300);log('統合担当','修正版を取り込み、アプリを再構成')}],
-[42300,function(){T('16:30');done('webui','ok');C(3.59);say('webui','説明ページと使い方の画面を作成');log('Web画面担当','説明ページ・使い方の画面を作成');send('webui','kensa');C(1.91);start('kensa',1500)}],
-[43900,function(){T('17:01');done('kensa','ok');C(2.67);say('kensa','前回の指摘はすべて解消。納品可能','ok',3000);log('統括検査','実際に起動して再確認：納品可能','ok');send('kensa','out','ok')}],
-[45000,function(){state('out','ok');say('out','アプリ＋使用説明書',null,4000);log('納品','人の判断は1回だけ。ほかはAIが作り、別のAIが実物で確かめた','ok')}],
-[50000,null]
-];
-function run(){timers.forEach(clearTimeout);timers=[];cost=0;ret=0;hum=0;C(0);document.getElementById('al-ret').textContent=0;document.getElementById('al-hum').textContent=0;
- for(var k in N){done(k);N[k].bub.className='bub'}logEl.innerHTML='';T('—');
- S.forEach(function(s){if(s[1])timers.push(setTimeout(s[1],s[0]))});timers.push(setTimeout(run,S[S.length-1][0]))}
-document.getElementById('al-replay').addEventListener('click',run);
-var started=false;function go(){if(!started){started=true;run()}}
-if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)go()})},{threshold:.25}).observe(stage)}else go();
-})();
-</script>
+
 </body></html>
