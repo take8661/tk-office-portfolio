@@ -858,6 +858,71 @@
 <section class="alt" id="thinking">
   <div class="wrap">
     <div class="eyebrow">Thinking</div>
+    <div class="th">
+      <style>
+        .th{margin-bottom:80px}
+        .th h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.2vw,36px);line-height:1.55;letter-spacing:.02em;margin:0 0 28px}
+        .th h2 span{display:inline-block}
+        .th-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px;counter-reset:th}
+        .th-flow>li{position:relative;background:var(--card);border:1px solid var(--line);padding:18px 18px 20px;display:flex;flex-direction:column}
+        .th-flow>li:not(:last-child)::after{content:"→";position:absolute;right:-27px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--accent)}
+        .th-flow>li.hm{border:2px solid var(--highlight)}
+        .th-k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-mute)}
+        .th-flow b{display:block;font-family:var(--serif);font-size:19px;line-height:1.5;margin:4px 0 12px}
+        .th-flow p{margin:0;font-size:13px;line-height:1.85;color:var(--ink-soft)}
+        .th-fig{height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#0f1a34;margin-bottom:14px;color:#fff;font-size:12px;overflow:hidden}
+        .th-ai{width:58px;height:58px;border-radius:50%;border:2px solid #6fb5ff;display:grid;place-items:center;font:600 18px var(--mono);box-shadow:0 0 14px rgba(111,181,255,.55)}
+        .th-swap{display:grid;grid-template-columns:repeat(2,auto);gap:5px}
+        .th-swap i{font-style:normal;font-size:11px;line-height:1.6;padding:1px 8px;border:1px solid #2a3b66;color:#9fb0d3;white-space:nowrap;text-align:center;animation:thswap 8s infinite}
+        .th-swap i:nth-child(2){animation-delay:2s}.th-swap i:nth-child(3){animation-delay:4s}.th-swap i:nth-child(4){animation-delay:6s}
+        @keyframes thswap{0%,22%{background:#6fb5ff;border-color:#6fb5ff;color:#0f1a34}27%,100%{background:transparent;border-color:#2a3b66;color:#9fb0d3}}
+        .th-build{display:grid;grid-template-columns:repeat(3,30px);gap:6px}
+        .th-build i{height:22px;background:#6fb5ff;opacity:.2;animation:thbuild 4s infinite}
+        .th-build i:nth-child(2){animation-delay:.25s}.th-build i:nth-child(3){animation-delay:.5s}.th-build i:nth-child(4){animation-delay:.75s}.th-build i:nth-child(5){animation-delay:1s}.th-build i:nth-child(6){animation-delay:1.25s}
+        @keyframes thbuild{0%{opacity:.2}15%,80%{opacity:1}100%{opacity:.2}}
+        .th-gate{display:flex;gap:10px;align-items:center}
+        .th-gate i{font-style:normal;padding:6px 10px;border:1px solid #2a3b66;white-space:nowrap}
+        .th-gate i.ng{color:#ff9c90;border-color:#ff7a6b;animation:thng 4s infinite}
+        .th-gate i.ok{color:#6fd3a4;border-color:#4cc38a;animation:thok 4s infinite}
+        @keyframes thng{0%,45%{opacity:1}55%,100%{opacity:.25}}
+        @keyframes thok{0%,45%{opacity:.25}55%,100%{opacity:1}}
+        .th-tune{width:130px;display:grid;gap:14px}
+        .th-tune i{position:relative;height:2px;background:#4a5a85}
+        .th-tune i::after{content:"";position:absolute;top:-6px;left:30%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#d9c08e;animation:thtune 5s ease-in-out infinite alternate}
+        .th-tune i:nth-child(2)::after{animation-delay:-1.7s}.th-tune i:nth-child(3)::after{animation-delay:-3.4s}
+        @keyframes thtune{from{left:25%}to{left:75%}}
+        .th-sum{margin:22px 0 0;font-size:14px;line-height:1.9;color:var(--ink-soft)}
+        .th-sum a{color:var(--accent);font-weight:600}
+        @media(prefers-reduced-motion:reduce){.th-fig *,.th-fig *::after{animation:none!important}.th-build i{opacity:1}}
+        @media(max-width:960px){.th-flow{grid-template-columns:1fr 1fr;gap:34px}.th-flow>li:nth-child(2)::after{content:none}}
+        @media(max-width:560px){.th-flow{grid-template-columns:1fr}.th-flow>li:nth-child(2)::after{content:"→"}.th-flow>li:not(:last-child)::after{right:50%;top:auto;bottom:-31px;transform:translateX(50%) rotate(90deg)}}
+      </style>
+      <h2><span>型があるから、</span><span>どの分野でも作れる。</span><span>確かめるから、</span><span>信用できる。</span></h2>
+      <ol class="th-flow">
+        <li>
+          <div class="th-fig" aria-hidden="true"><div class="th-ai">AI</div><div class="th-swap"><i>動画編集</i><i>ホームページ</i><i>LP</i><i>業務ツール</i></div></div>
+          <span class="th-k">STEP 1</span><b>型を入れ替える</b>
+          <p>AIの強みは、頭の中身を入れ替えられることです。分野ごとの考え方を構造に分けて「型」にし、それを入れます。</p>
+        </li>
+        <li>
+          <div class="th-fig" aria-hidden="true"><div class="th-build"><i></i><i></i><i></i><i></i><i></i><i></i></div><span>型に沿って組み立てる</span></div>
+          <span class="th-k">STEP 2</span><b>作り上げる</b>
+          <p>型に沿って、好みの微調整の手前までは作り上げられます。</p>
+        </li>
+        <li>
+          <div class="th-fig" aria-hidden="true"><div class="th-gate"><i class="ng">通らない → 直す</i><i class="ok">通った</i></div><span>作る役と確かめる役を分ける</span></div>
+          <span class="th-k">STEP 3 · パイプライン</span><b>実物で確かめる</b>
+          <p>AIは本当でないことも言います。実際に動かして確かめ、通ったものだけを先へ進めます。そのための仕組みがパイプラインです。</p>
+        </li>
+        <li class="hm">
+          <div class="th-fig" aria-hidden="true"><div class="th-tune"><i></i><i></i><i></i></div><span>その人の好みに合わせる</span></div>
+          <span class="th-k">STEP 4 · 人</span><b>好みに合わせる</b>
+          <p>型だけでは、その人に合うものになりません。最後は相手の好みに合わせて微調整します。</p>
+        </li>
+      </ol>
+      <p class="th-sum">私が力を入れるのは、何をどう分けるかと、最後の好み合わせです。 <a href="./pipeline/">確かめる仕組み（開発の進め方）を見る →</a></p>
+    </div>
+
     <h2 class="section-title tight">3つの原則</h2>
     <div class="services-grid principles">
       <div class="svc-card">
