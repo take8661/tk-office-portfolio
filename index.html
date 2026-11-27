@@ -765,6 +765,9 @@
 .al-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
 .al-ctrl{margin-left:auto;font-size:12px;background:#fff;border:1px solid #d9d6cc;padding:4px 10px;cursor:pointer;font-family:inherit}
 
+  .req-link-row{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
+  .req-link{display:inline-block;font-size:13px;line-height:1.6;padding:8px 16px;border:1px solid var(--accent);color:var(--accent);background:var(--card);text-decoration:none;border-radius:999px}
+  .req-link:hover{background:var(--accent);color:#fff}
   #works [hidden]{display:none!important}
   .works-index{scroll-margin-top:110px}
   @media(max-width:1180px){
@@ -821,6 +824,7 @@
       </p>
       <div class="hero-actions">
         <a href="#thinking" class="btn">考え方を見る</a>
+        <a href="./requirements/" class="btn outline">要件定義を見る</a>
         <a href="#architecture" class="btn outline">仕組みを見る</a>
         <a href="./qa/" class="btn outline">Q&amp;Aを見る</a>
       </div>
@@ -877,6 +881,38 @@
           EC事業では、海外のエンジニアに業務ツール（自動出品ツール・売上管理ツール等）の開発を依頼し、お客様の要望を開発の指示に落とし込む橋渡しを続けてきました。いまは依頼先がエンジニアからAIに変わりましたが、やっていることは同じです。
         </p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="req-teaser" id="req-teaser">
+  <style>
+    .req-teaser{padding-top:72px;padding-bottom:72px}
+    .req-band{background:#0f1a34;color:#fff;padding:40px 40px 34px}
+    .req-band .k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:#d9c08e}
+    .req-band h2{font-family:var(--serif);font-size:clamp(24px,3vw,32px);line-height:1.5;margin:8px 0 6px;color:#fff}
+    .req-band>p{font-size:14px;line-height:1.9;color:#d7dbe6;margin:0 0 24px}
+    .req-band ul{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+    .req-band li a{display:block;height:100%;border:1px solid rgba(255,255,255,.28);padding:16px 18px;color:#fff;text-decoration:none;transition:background .2s}
+    .req-band li a:hover{background:rgba(255,255,255,.1)}
+    .req-band li b{display:block;font-size:16px;margin-bottom:4px}
+    .req-band li span{display:block;font-size:13px;line-height:1.75;color:#d7dbe6}
+    .req-band li em{display:block;font-style:normal;font-size:12px;color:#d9c08e;margin-top:8px}
+    .req-main{display:inline-block;background:#fff;color:#0f1a34;text-decoration:none;font-weight:600;font-size:14px;padding:13px 24px}
+    .req-main:hover{background:#d9c08e}
+    @media(max-width:520px){.req-band{padding:28px 20px 24px}}
+  </style>
+  <div class="wrap">
+    <div class="req-band">
+      <div class="k">REQUIREMENTS</div>
+      <h2>要件定義は、<span style="display:inline-block">こう進めています</span></h2>
+      <p>何を聞き、どう仕様を決め、足りないときや変わったときにどうするか。実際に使っている質問と流れを載せています。</p>
+      <ul>
+        <li><a href="./requirements/#req-hearing"><b>聞き取る</b><span>困りごと、業務の流れ、予算など9つの領域を、実際の質問で聞きます。</span><em>質問を見る →</em></a></li>
+        <li><a href="./requirements/#req-spec"><b>仕様を決める</b><span>作るものと作らないものを文章にして、仕様確認書で合意します。</span><em>決め方を見る →</em></a></li>
+        <li><a href="./requirements/#req-again"><b>聞き直す</b><span>情報が足りないとき、返事が曖昧なとき、仕様が変わるときの流れです。</span><em>流れを見る →</em></a></li>
+      </ul>
+      <a class="req-main" href="./requirements/#requirements">要件定義の進め方を見る →</a>
     </div>
   </div>
 </section>
@@ -1007,7 +1043,7 @@
           <span class="featured-num">2026 — 実案件で稼働 · 受託開発1件を完遂</span>
         </div>
         <h3 class="featured-title">食品ギフト仲介事業者向け 受発注管理システム</h3>
-        <p class="featured-tagline">実際のお客様からの依頼を、自作のAI開発パイプラインで構築し、納品まで完了させた案件です。ヒアリング、機能別の6チームによる並行実装（受注メモ解析・受注入力・発注書PDF生成・通知・データベース・テスト）、別のAIによる検証、統合までを行い、Web画面・利用ガイド・本番投入手順書を付けて納めました。AIだけで解決しなかった指摘1件は、私が判断して解決しています。 <a class="arch-link" href="./process/#flow">依頼から納品までの流れを見る →</a></p>
+        <p class="featured-tagline">実際のお客様からの依頼を、自作のAI開発パイプラインで構築し、納品まで完了させた案件です。ヒアリング、機能別の6チームによる並行実装（受注メモ解析・受注入力・発注書PDF生成・通知・データベース・テスト）、別のAIによる検証、統合までを行い、Web画面・利用ガイド・本番投入手順書を付けて納めました。AIだけで解決しなかった指摘1件は、私が判断して解決しています。 <a class="arch-link" href="./process/#flow">依頼から納品までの流れを見る →</a>　<a class="arch-link" href="./requirements/">要件定義の進め方を見る →</a></p>
         <p class="featured-desc" style="margin-top:8px">
           <span style="color:var(--ink-mute);font-family:var(--mono);font-size:12px">DEMO&nbsp;&nbsp;</span>
           <a href="https://oroshi.himitsuno-heya123.com/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all">oroshi.himitsuno-heya123.com&nbsp;↗</a>
@@ -1018,7 +1054,7 @@
         </p>
       </div>
     </div>
-    <p class="featured-desc" style="margin-top:16px">進行中の受託：レシート仕訳・帳簿入力の自動化（お客様の事務部門からの依頼）。ITに詳しくないお客様向けに、先にモックを見せ、答えやすい質問で要望を引き出しながら進めています。</p>
+    <p class="featured-desc" style="margin-top:16px">進行中の受託：レシート仕訳・帳簿入力の自動化（お客様の事務部門からの依頼）。ITに詳しくないお客様向けに、先にモックを見せ、答えやすい質問で要望を引き出しながら進めています。 <a class="arch-link" href="./requirements/">要件定義の進め方 →</a></p>
     <div class="works-group"><span class="works-group-num">PICK UP</span><span class="works-group-title">AI開発パイプラインで作ったもの</span></div>
     <div class="works-grid"><div class="work-card">
         <div class="work-visual"><img src="assets/img/demo-shots/e-03-python-gakushu.jpg" alt="" loading="lazy"><span class="work-visual-label">// python-gakushu</span></div>
@@ -1098,7 +1134,7 @@
           <div class="skill-item">哲学・社会学・行動経済学の本が、仕組みづくりにどう効いているか</div>
         </div>
         <p class="talk-foot">
-          具体的な話（AIチームの区切り方、ITに詳しくないお客様からの要件の引き出し方など）も、もちろんお話しできます。
+          具体的な話（AIチームの区切り方、<a class="arch-link" href="./requirements/#req-hearing">ITに詳しくないお客様からの要件の引き出し方</a>など）も、もちろんお話しできます。
         </p>
       </div>
     </div>

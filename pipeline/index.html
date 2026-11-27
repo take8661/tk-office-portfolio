@@ -126,11 +126,14 @@
 .al-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
 .al-ctrl{margin-left:auto;font-size:12px;background:#fff;border:1px solid #d9d6cc;padding:4px 10px;cursor:pointer;font-family:inherit}
 
+.req-more{margin:18px 0 0;font-size:14px}.req-more a{color:var(--accent);font-weight:600}
+.qa-links a.req-card{grid-column:1/-1;border:2px solid var(--accent)}
+@media(max-width:520px){.top nav{gap:14px;font-size:12px}.top nav a,.top .brand{white-space:nowrap}.top nav a:first-child{display:none}}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap"><a class="brand" href="../">TK Office</a>
-<nav><a href="../">ポートフォリオ</a><a href="../works/">実績</a><a href="#tech">技術・安全</a><a href="../qa/">Q&amp;A</a></nav></div></header>
+<nav><a href="../">ポートフォリオ</a><a href="../works/">実績</a><a href="../requirements/">要件定義</a><a href="#tech">技術・安全</a><a href="../qa/">Q&amp;A</a></nav></div></header>
 
 <main>
 <div class="wrap hero">
@@ -178,6 +181,7 @@
     <button class="al-ctrl" id="al-replay" type="button">最初から再生</button>
   </div>
 </section>
+<p class="req-more"><a href="../requirements/">最初の「ヒアリングAI」と「精査」で何を聞くか：要件定義の進め方 →</a></p>
 </div></section>
 
 <section id="verify"><div class="wrap">
@@ -213,6 +217,7 @@
   <h2>よく聞かれる質問は、Q&amp;Aにまとめています</h2>
   <p class="sub">面接などでよく聞かれることを、テーマごとに分けて載せています。</p>
   <div class="qa-links">
+    <a class="req-card" href="../requirements/"><b>要件定義の進め方 →</b>聞き取る実際の質問、仕様の決め方、聞き直しの流れ、納品後の修正依頼の受け方</a>
     <a href="../qa/#pipeline"><b>開発の仕組み（5問）</b>仕組み、AIの報告を信用しない理由、言語を選ばない理由、早さと費用、どこまで広げられるか</a>
     <a href="../qa/#tech"><b>技術・安全・運用（7問）</b>コードレビューとテスト、言語の選び方、使い方、データベース、セキュリティ、法律や制度、手直し</a>
     <a href="../qa/#project"><b>案件の進め方（4問）</b>どんなものを構築するか、ヒアリングの方法、お客様とのすり合わせ、要件定義の進め方</a>
