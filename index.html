@@ -715,7 +715,7 @@
 .trust-links a{font-size:13px;padding:7px 14px;border:1px solid var(--line,#d9d6cc);border-radius:999px;text-decoration:none;color:inherit}
 .trust-links a:first-child{background:#0f1a34;color:#fff;border-color:#0f1a34}
 .trust-links a:hover{border-color:#947044}
-.arch-live-lede{max-width:none;margin:0 0 8px}.arch-live-more{margin:4px 0 40px;font-size:14px}.arch-sub{font-family:var(--serif);font-size:20px;margin:0 0 16px}#architecture .agent-live{padding:16px 0}
+.arch-live-lede{max-width:none;margin:0 0 8px}.arch-live-more{margin:4px 0 0;font-size:14px}.arch-sub{font-family:var(--serif);font-size:22px;margin:56px 0 10px;scroll-margin-top:120px}#architecture .agent-live{padding:16px 0}
 .agent-live{--bg:#0f1a34;--panel:#15234a;--line:#2a3b66;--ink:#eef2f9;--mute:#9fb0d3;--accent:#6fb5ff;--ok:#4cc38a;--ng:#ff7a6b;--human:#ffcc66;--mono:"JetBrains Mono",ui-monospace,monospace;max-width:1240px;margin:0 auto;padding:24px 16px}
 .agent-live *{box-sizing:border-box}
 .al-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
@@ -884,32 +884,6 @@
   <div class="wrap">
     <div class="eyebrow">Architecture</div>
     <h2 class="section-title tight">AIを組織のように束ねる</h2>
-    <p class="featured-desc arch-live-lede">AIのチームが分担して作り、別のAIが確かめ、AIでは決められないことだけが私に届く。その動きを、実際の制作記録で再生しています。</p>
-    <div class="agent-live" aria-label="実際の案件で、AIチームが分担して作り、確かめ合った記録の再生">
-  <div class="al-head">
-    <div class="al-src">実際の案件ログの再生：<b>事業者の届出カレンダー</b>（2026年11月25日の制作記録を、約1分に縮めています）</div>
-    <div class="al-stats">
-      <div class="al-stat">時刻 <b id="al-clock">—</b></div>
-      <div class="al-stat">同時に作業中 <b id="al-par">0</b></div>
-      <div class="al-stat">差し戻し <b id="al-ret">0</b>回</div>
-      <div class="al-stat">人への相談 <b id="al-hum">0</b>回</div>
-      <div class="al-stat">AI費用 <b id="al-cost">$0.00</b></div>
-    </div>
-  </div>
-  <div class="al-box">
-    <div class="al-stage" id="al-stage"><svg id="al-svg" viewBox="0 0 1000 560" role="img" aria-label="ヒアリングから納品までのAIチームの流れ"></svg></div>
-    <div class="al-log"><h4>// 記録より（要約）</h4><div class="al-lines" id="al-log"></div></div>
-  </div>
-  <div class="al-legend">
-    <span><i style="background:#6fb5ff"></i>受け渡し</span>
-    <span><i style="background:#ff7a6b"></i>差し戻し</span>
-    <span><i style="background:#4cc38a"></i>合格</span>
-    <span><i style="background:#ffcc66"></i>人の判断</span>
-    <button class="al-ctrl" id="al-replay" type="button">最初から再生</button>
-  </div>
-</div>
-    <p class="arch-live-more"><a class="arch-link" href="./pipeline/">AIの報告をどう確かめているか（開発の進め方）→</a></p>
-    <h3 class="arch-sub">パイプラインの全体構成</h3>
 
     <div class="pipeline-viz arch">
       <div class="arch-row">
@@ -926,7 +900,7 @@
           <div class="arch-tree">
             <details class="arch-item">
               <summary><span class="node ai">開発パイプライン（重量級）</span><span class="tag">稼働中</span></summary>
-              <p class="arch-body">要件の精査・分解 → 機能別チームが実装 → レビュー（差し戻し最大3回）→ 部長役AIが統括承認 → 統合・Web画面・納品物</p>
+              <p class="arch-body">中の動きは、下の「実際の記録で見る」で再生しています。<a class="arch-link" href="#arch-live">動く図へ ↓</a></p>
               <p class="arch-body"><a class="arch-link" href="./pipeline/">開発の進め方（動く図つき）へ</a>　<a class="arch-link" href="./process/#flow">1件の流れは Flow へ</a></p>
             </details>
             <details class="arch-item">
@@ -966,6 +940,32 @@
     <p class="featured-desc arch-sup">
       本体PCと予備PCの2台で処理を分担しています。本体は開発・設計を、予備PCは情報の調査と文書のレビューを担当し、1分ごとの中継でタスクと結果をやり取りします。
     </p>
+    <h3 class="arch-sub" id="arch-live">開発パイプライン（重量級）の中を、実際の記録で見る</h3>
+    <p class="featured-desc arch-live-lede">上の図の「開発パイプライン（重量級）」の中で、AIのチームが分担して作り、別のAIが確かめ、AIでは決められないことだけが私に届く様子です。</p>
+    <div class="agent-live" aria-label="実際の案件で、AIチームが分担して作り、確かめ合った記録の再生">
+  <div class="al-head">
+    <div class="al-src">実際の案件ログの再生：<b>事業者の届出カレンダー</b>（2026年11月25日の制作記録を、約1分に縮めています）</div>
+    <div class="al-stats">
+      <div class="al-stat">時刻 <b id="al-clock">—</b></div>
+      <div class="al-stat">同時に作業中 <b id="al-par">0</b></div>
+      <div class="al-stat">差し戻し <b id="al-ret">0</b>回</div>
+      <div class="al-stat">人への相談 <b id="al-hum">0</b>回</div>
+      <div class="al-stat">AI費用 <b id="al-cost">$0.00</b></div>
+    </div>
+  </div>
+  <div class="al-box">
+    <div class="al-stage" id="al-stage"><svg id="al-svg" viewBox="0 0 1000 560" role="img" aria-label="ヒアリングから納品までのAIチームの流れ"></svg></div>
+    <div class="al-log"><h4>// 記録より（要約）</h4><div class="al-lines" id="al-log"></div></div>
+  </div>
+  <div class="al-legend">
+    <span><i style="background:#6fb5ff"></i>受け渡し</span>
+    <span><i style="background:#ff7a6b"></i>差し戻し</span>
+    <span><i style="background:#4cc38a"></i>合格</span>
+    <span><i style="background:#ffcc66"></i>人の判断</span>
+    <button class="al-ctrl" id="al-replay" type="button">最初から再生</button>
+  </div>
+</div>
+    <p class="arch-live-more"><a class="arch-link" href="./pipeline/">AIの報告をどう確かめているか（開発の進め方）→</a></p>
     <div class="trust-strip">
       <p class="trust-lead"><b>AIの「できました」は、そのまま信用しません。</b>別のAIがテストを実行し、起動して操作した結果だけで次へ進めます。</p>
       <div class="trust-links">
