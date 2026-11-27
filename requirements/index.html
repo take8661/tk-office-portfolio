@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>要件定義 — 竹村 直人 | TK Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* A案：クラシック信頼型 */
+    --bg: #f6f5f1;
+    --bg-alt: #ecebe5;
+    --ink: #0f1a34;
+    --ink-soft: #384156;
+    --ink-mute: #6b7280;
+    --line: #d9d6cc;
+    --card: #ffffff;
+    --accent: #1a3a6b;      /* ネイビー */
+    --accent-soft: #e7ecf4;
+    --highlight: #b8946a;   /* 落ち着いた金 */
+    --serif: "Noto Serif JP", "Times New Roman", serif;
+    --sans: "Noto Sans JP", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --radius: 4px;
+    --shadow: 0 1px 2px rgba(15,26,52,.04), 0 4px 24px rgba(15,26,52,.04);
+  }
+  [data-variant="modern"]{
+    --bg: #0b1220;
+    --bg-alt: #111a2e;
+    --ink: #eef2f9;
+    --ink-soft: #b8c2d6;
+    --ink-mute: #7683a0;
+    --line: #1e2942;
+    --card: #131c33;
+    --accent: #6fb5ff;
+    --accent-soft: #1a2745;
+    --highlight: #7fe6d3;
+    --serif: "Inter", sans-serif;
+    --shadow: 0 1px 2px rgba(0,0,0,.2), 0 8px 40px rgba(0,0,0,.25);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"palt";
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:18px 40px;
+    display:flex;align-items:center;justify-content:space-between;
+    background:color-mix(in oklab, var(--bg) 85%, transparent);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s, padding .3s;
+  }
+  .nav.scrolled{border-bottom-color:var(--line);padding:12px 40px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:600}
+  .brand-mark{
+    width:34px;height:34px;border:1.5px solid var(--ink);
+    display:grid;place-items:center;
+    font-family:var(--serif);font-weight:700;font-size:15px;
+    letter-spacing:.02em;
+  }
+  [data-variant="modern"] .brand-mark{border-color:var(--accent);color:var(--accent)}
+  .brand-name{font-size:15px;letter-spacing:.08em}
+  .brand-sub{font-size:11px;color:var(--ink-mute);letter-spacing:.15em;text-transform:uppercase;font-family:var(--sans)}
+  .nav-links{display:flex;gap:32px;font-size:13px;letter-spacing:.08em}
+  .nav-links a{color:var(--ink-soft);transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a::after{content:"";position:absolute;bottom:-6px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{
+    padding:10px 20px;font-size:13px;letter-spacing:.05em;
+    background:var(--ink);color:var(--bg);border:none;cursor:pointer;
+    font-family:var(--sans);transition:transform .15s;
+  }
+  [data-variant="modern"] .nav-cta{background:var(--accent);color:var(--bg)}
+  .nav-cta:hover{transform:translateY(-1px)}
+  @media(max-width:1180px){.nav-links{display:none}}
+  @media(max-width:820px){.nav{padding:14px 20px}}
+
+  /* ---------- Layout ---------- */
+  section{padding:120px 40px;position:relative}
+  .wrap{max-width:1200px;margin:0 auto}
+  @media(max-width:820px){section{padding:80px 20px}}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:11px;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--ink-mute);font-family:var(--sans);margin-bottom:24px;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--ink-mute)}
+  .section-title{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(28px,4vw,44px);line-height:1.3;
+    letter-spacing:.02em;margin-bottom:16px;
+  }
+  .section-lede{color:var(--ink-soft);font-size:16px;max-width:640px;margin-bottom:64px}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-top:180px;padding-bottom:140px;
+    min-height:92vh;display:flex;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:center;width:100%}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:48px}}
+  .hero-eyebrow{
+    font-family:var(--mono);font-size:12px;color:var(--ink-mute);
+    letter-spacing:.15em;margin-bottom:32px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--highlight);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hero h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(30px,4.2vw,50px);line-height:1.25;letter-spacing:.01em;
+    margin-bottom:32px;
+  }
+  .hero h1 .accent{color:var(--accent);position:relative;display:inline-block}
+  .hero h1 .accent::after{
+    content:"";position:absolute;left:0;right:0;bottom:6px;height:.35em;
+    background:color-mix(in oklab, var(--highlight) 40%, transparent);
+    z-index:-1;
+  }
+  [data-variant="modern"] .hero h1 .accent::after{display:none}
+  [data-variant="modern"] .hero h1 .accent{
+    background:linear-gradient(90deg, var(--accent), var(--highlight));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lede{font-size:17px;color:var(--ink-soft);max-width:520px;margin-bottom:40px;line-height:1.9}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 26px;font-size:14px;letter-spacing:.05em;
+    border:1px solid var(--ink);background:var(--ink);color:var(--bg);
+    cursor:pointer;font-family:var(--sans);transition:all .2s;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,26,52,.15)}
+  .btn.outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+  [data-variant="modern"] .btn{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  [data-variant="modern"] .btn.outline{background:transparent;color:var(--ink);border-color:var(--line)}
+
+  .hero-card{
+    position:relative;padding:36px;background:var(--card);
+    border:1px solid var(--line);box-shadow:var(--shadow);
+  }
+  .hero-card::before{
+    content:"PROFILE";position:absolute;top:-10px;left:24px;
+    background:var(--bg);padding:0 12px;font-family:var(--mono);
+    font-size:11px;letter-spacing:.2em;color:var(--ink-mute);
+  }
+  .profile-row{display:flex;gap:20px;align-items:flex-start;margin-bottom:8px;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .profile-row:last-of-type{border-bottom:none}
+  .profile-key{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.1em;min-width:80px;padding-top:3px}
+  .profile-val{font-size:14px;color:var(--ink);flex:1;line-height:1.7}
+  .profile-val strong{font-family:var(--serif);font-size:16px;font-weight:600}
+
+  /* 背景ライン装飾 */
+  .hero::after{
+    content:"";position:absolute;right:-100px;top:20%;width:400px;height:400px;
+    background:radial-gradient(circle, color-mix(in oklab, var(--accent) 12%, transparent), transparent 70%);
+    pointer-events:none;z-index:0;
+  }
+
+  /* ---------- About ---------- */
+  .about{background:var(--bg-alt)}
+  .about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:40px}}
+  .about-body p{color:var(--ink-soft);font-size:15px;line-height:2;margin-bottom:20px}
+  .about-body p strong{color:var(--ink);font-weight:600}
+  .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
+  .stat-num{font-family:var(--serif);font-size:44px;font-weight:600;color:var(--accent);line-height:1;margin-bottom:8px}
+  .stat-label{font-size:12px;color:var(--ink-mute);letter-spacing:.05em}
+
+  /* ---------- Services ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:900px){.services-grid{grid-template-columns:1fr}}
+  .svc-card{
+    padding:40px 32px;background:var(--card);border:1px solid var(--line);
+    position:relative;transition:transform .3s, box-shadow .3s;
+    overflow:hidden;
+  }
+  .svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  /* Services 上部ビジュアル（Worksより控えめな細帯・B案トーン） */
+  .svc-visual{
+    position:relative;aspect-ratio:16/5;overflow:hidden;
+    margin:-40px -32px 32px;
+    border-bottom:1px solid var(--line);
+    background:var(--accent);
+  }
+  .svc-visual img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) brightness(.55) contrast(1.2);
+    z-index:0;
+  }
+  .svc-visual::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(135deg, rgba(26,58,107,.75), rgba(15,26,52,.55));
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .svc-visual::after{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:repeating-linear-gradient(135deg, transparent 0 8px, rgba(255,255,255,.02) 8px 9px);
+    pointer-events:none;
+  }
+  html[data-theme="dark"] .svc-visual img{
+    filter:grayscale(1) brightness(.65) contrast(1.15);
+  }
+  html[data-theme="dark"] .svc-visual::before{
+    background:linear-gradient(135deg, rgba(111,181,255,.35), rgba(15,26,52,.65));
+  }
+  .svc-num{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.2em;margin-bottom:24px}
+  .svc-icon{
+    width:44px;height:44px;margin-bottom:24px;
+    display:grid;place-items:center;
+    border:1px solid var(--accent);color:var(--accent);
+  }
+  .svc-title{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:16px;letter-spacing:.02em}
+  .svc-desc{font-size:14px;color:var(--ink-soft);line-height:1.9;margin-bottom:20px}
+  .svc-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{
+    font-family:var(--mono);font-size:11px;padding:4px 10px;
+    background:var(--accent-soft);color:var(--accent);letter-spacing:.05em;
+  }
+
+  /* ---------- Works ---------- */
+  .works{background:var(--bg-alt)}
+  .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+  @media(max-width:820px){.works-grid{grid-template-columns:1fr}}
+  .work-card{background:var(--card);border:1px solid var(--line);overflow:hidden;transition:transform .3s}
+  .work-card:hover{transform:translateY(-4px)}
+  .work-visual{
+    aspect-ratio:16/9;position:relative;overflow:hidden;
+    background:
+      repeating-linear-gradient(135deg, var(--accent-soft) 0 12px, transparent 12px 24px),
+      var(--bg-alt);
+    border-bottom:1px solid var(--line);
+  }
+  /* B案 Heavy tint: 画像 → グレースケール＋暗く → ネイビーオーバーレイ */
+  .work-visual img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) brightness(.55) contrast(1.2);
+    z-index:0;
+  }
+  .work-visual::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(135deg, rgba(26,58,107,.75), rgba(15,26,52,.55));
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .work-visual::after{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:repeating-linear-gradient(135deg, transparent 0 8px, rgba(255,255,255,.02) 8px 9px);
+    pointer-events:none;
+  }
+  /* ダークモード時は少しトーンを緩める */
+  html[data-theme="dark"] .work-visual img{
+    filter:grayscale(1) brightness(.65) contrast(1.15);
+  }
+  html[data-theme="dark"] .work-visual::before{
+    background:linear-gradient(135deg, rgba(111,181,255,.35), rgba(15,26,52,.65));
+  }
+  .work-visual-label{
+    position:absolute;left:16px;bottom:16px;z-index:2;
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    color:#fff;background:rgba(15,26,52,.72);padding:6px 12px;
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+  }
+  .work-body{padding:32px}
+  .work-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .work-cat{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.15em}
+  .work-num{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .work-title{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:12px;line-height:1.5}
+  .work-desc{font-size:14px;color:var(--ink-soft);line-height:1.85;margin-bottom:20px}
+  .work-result{
+    padding:16px;background:var(--accent-soft);
+    border-left:3px solid var(--accent);
+    font-size:13px;color:var(--ink);margin-bottom:20px;
+  }
+  .work-result b{font-family:var(--serif);color:var(--accent);font-size:15px}
+  .work-stack{display:flex;flex-wrap:wrap;gap:6px}
+
+  /* ---------- Mini demo grid (GROUP D) ---------- */
+  .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:980px){.mini-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.mini-grid{grid-template-columns:1fr}}
+  .mini-card{
+    background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);
+    padding:20px;display:flex;flex-direction:column;gap:10px;
+    transition:transform .25s,border-color .25s,box-shadow .25s;
+  }
+  .mini-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+  .mini-card:hover{border-top-color:var(--accent)}
+  .mini-card-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .mini-num{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.14em;font-weight:600;white-space:nowrap;flex-shrink:0}
+  .mini-stat{font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.02em;white-space:nowrap;text-align:right}
+  .mini-title{font-family:var(--serif);font-size:16px;font-weight:600;line-height:1.5}
+  .mini-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.75;flex-grow:1}
+  .mini-demo-line{
+    font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);
+    padding-top:10px;border-top:1px dashed var(--line);letter-spacing:.02em;
+  }
+  .mini-demo-line b{color:var(--ink-soft);font-weight:600}
+  .mini-tags{display:flex;flex-wrap:wrap;gap:5px}
+  .mini-tag{
+    font-family:var(--mono);font-size:10px;padding:3px 8px;
+    background:var(--accent-soft);color:var(--accent);letter-spacing:.03em;
+  }
+
+  /* ---------- Works Group Heading ---------- */
+  .works-group{
+    grid-column:1/-1;
+    display:flex;align-items:baseline;gap:20px;
+    padding:24px 0 8px;
+    border-bottom:1px solid var(--line);
+    margin-top:24px;
+  }
+  .works-group:first-of-type{margin-top:0}
+  .works-group-num{
+    font-family:var(--mono);font-size:11px;letter-spacing:.25em;
+    color:var(--ink-mute);
+  }
+  .works-group-title{
+    font-family:var(--serif);font-size:22px;font-weight:600;
+    color:var(--ink);letter-spacing:.02em;flex:1;
+  }
+  .works-group-count{
+    font-family:var(--mono);font-size:11px;
+    color:var(--ink-mute);letter-spacing:.05em;
+  }
+  @media(max-width:640px){
+    .works-group{flex-wrap:wrap;gap:8px}
+    .works-group-title{font-size:19px;flex-basis:100%}
+  }
+
+  /* ---------- Featured Work (SNS Factory) ---------- */
+  .featured-work{
+    grid-column:1/-1;
+    background:var(--card);border:1px solid var(--line);
+    position:relative;overflow:hidden;
+  }
+  /* SNS Factory ヒーロー画像バナー（B案トーン処理） */
+  .featured-hero{
+    position:relative;aspect-ratio:32/9;overflow:hidden;
+    border-bottom:1px solid var(--line);background:var(--accent);
+  }
+  .featured-hero img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) brightness(.5) contrast(1.25);
+    z-index:0;
+  }
+  .featured-hero::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:
+      linear-gradient(135deg, rgba(26,58,107,.78), rgba(15,26,52,.6)),
+      radial-gradient(ellipse at 30% 40%, rgba(111,181,255,.15), transparent 60%);
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .featured-hero::after{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:repeating-linear-gradient(135deg, transparent 0 10px, rgba(255,255,255,.03) 10px 11px);
+    pointer-events:none;
+  }
+  .featured-hero-label{
+    position:absolute;left:32px;bottom:24px;z-index:2;
+    font-family:var(--mono);font-size:12px;letter-spacing:.15em;
+    color:#fff;background:rgba(15,26,52,.72);padding:8px 14px;
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+  }
+  @media(max-width:640px){
+    .featured-hero{aspect-ratio:16/9}
+    .featured-hero-label{left:16px;bottom:16px;font-size:10px;padding:6px 10px}
+  }
+  html[data-theme="dark"] .featured-hero img{
+    filter:grayscale(1) brightness(.6) contrast(1.2);
+  }
+  html[data-theme="dark"] .featured-hero::before{
+    background:
+      linear-gradient(135deg, rgba(111,181,255,.4), rgba(15,26,52,.7)),
+      radial-gradient(ellipse at 30% 40%, rgba(111,181,255,.2), transparent 60%);
+  }
+  .featured-work::before{
+    content:"FEATURED";position:absolute;top:0;right:0;
+    background:var(--accent);color:var(--bg);
+    font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+    padding:6px 14px;z-index:2;
+  }
+  .featured-header{
+    padding:40px 40px 32px;border-bottom:1px solid var(--line);
+    background:
+      linear-gradient(180deg, transparent, color-mix(in oklab, var(--accent) 3%, transparent)),
+      var(--card);
+  }
+  .featured-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+  .featured-cat{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.15em}
+  .featured-num{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .featured-title{
+    font-family:var(--serif);font-size:clamp(24px,3vw,34px);font-weight:600;
+    line-height:1.35;margin-bottom:12px;letter-spacing:.02em;
+  }
+  .featured-tagline{font-size:15px;color:var(--ink-soft);line-height:1.85;max-width:820px}
+
+  .featured-body{padding:40px}
+  .featured-grid{
+    display:grid;grid-template-columns:1.15fr 1fr;gap:48px;
+    margin-bottom:36px;
+  }
+  @media(max-width:900px){.featured-grid{grid-template-columns:1fr;gap:32px}}
+
+  .featured-h4{
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    color:var(--ink-mute);margin-bottom:16px;padding-bottom:10px;
+    border-bottom:1px solid var(--line);
+  }
+  .featured-desc{font-size:14px;color:var(--ink-soft);line-height:1.9;margin-bottom:16px}
+  .featured-desc strong{color:var(--ink);font-weight:600}
+
+  /* パイプライン図 */
+  .pipeline-viz{
+    background:var(--bg-alt);border:1px dashed var(--line);
+    padding:24px;font-family:var(--mono);font-size:12px;
+    line-height:1.9;color:var(--ink-soft);
+    overflow-x:auto;
+  }
+  .pipeline-viz .node{
+    display:inline-block;padding:4px 10px;
+    background:var(--card);border:1px solid var(--line);
+    color:var(--ink);margin:2px 0;
+  }
+  .pipeline-viz .node.ai{border-color:var(--accent);color:var(--accent)}
+  .pipeline-viz .node.human{border-color:var(--highlight);color:var(--highlight)}
+  .pipeline-viz .arrow{color:var(--ink-mute);padding:0 6px}
+  .pipeline-legend{
+    display:flex;gap:20px;margin-top:16px;padding-top:14px;
+    border-top:1px dashed var(--line);
+    font-family:var(--mono);font-size:11px;color:var(--ink-mute);
+    flex-wrap:wrap;
+  }
+  .pipeline-legend span::before{
+    content:"■";margin-right:6px;
+  }
+  .pipeline-legend .l-ai::before{color:var(--accent)}
+  .pipeline-legend .l-human::before{color:var(--highlight)}
+  .pipeline-legend .l-data::before{color:var(--ink-mute)}
+
+  /* パイプライン構成一覧 */
+  .modules-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+    margin-bottom:36px;
+  }
+  @media(max-width:820px){.modules-grid{grid-template-columns:1fr}}
+  .module-item{
+    padding:20px;background:var(--bg-alt);border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+  }
+  .module-name{
+    font-family:var(--serif);font-size:16px;font-weight:600;
+    margin-bottom:6px;color:var(--ink);
+  }
+  .module-path{
+    font-family:var(--mono);font-size:11px;color:var(--ink-mute);
+    margin-bottom:10px;letter-spacing:.02em;
+  }
+  .module-desc{font-size:13px;color:var(--ink-soft);line-height:1.75}
+
+  /* Trigger block（04 · サーバー不要の定期実行） */
+  .trigger-block{
+    margin-top:36px;padding:32px;
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--highlight) 6%, transparent), transparent 60%),
+      var(--bg-alt);
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .trigger-block::before{
+    content:"◇";position:absolute;top:16px;right:20px;
+    font-size:20px;color:var(--highlight);opacity:.5;
+  }
+  .trigger-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+    margin-bottom:24px;
+  }
+  @media(max-width:900px){.trigger-grid{grid-template-columns:1fr}}
+  .trigger-item{
+    background:var(--card);border:1px solid var(--line);
+    padding:20px;position:relative;
+  }
+  .trigger-schedule{
+    font-family:var(--mono);font-size:10px;
+    letter-spacing:.2em;color:var(--highlight);
+    margin-bottom:12px;padding-bottom:10px;
+    border-bottom:1px dashed var(--line);
+  }
+  .trigger-name{
+    font-family:var(--serif);font-size:17px;font-weight:600;
+    color:var(--ink);margin-bottom:12px;
+  }
+  .trigger-desc{
+    font-size:13px;color:var(--ink-soft);line-height:1.8;
+  }
+  .trigger-desc code{
+    font-family:var(--mono);font-size:11px;
+    background:var(--bg-alt);padding:1px 6px;color:var(--ink);
+  }
+  .trigger-note{
+    padding:16px 20px;background:var(--card);
+    border-left:3px solid var(--highlight);
+    font-size:13px;color:var(--ink-soft);line-height:1.85;
+  }
+  .trigger-note-label{
+    display:block;font-family:var(--mono);font-size:10px;
+    letter-spacing:.15em;color:var(--highlight);
+    margin-bottom:6px;
+  }
+
+  /* Ops highlights */
+  .ops-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+    padding:32px 40px;background:var(--bg-alt);
+    border-top:1px solid var(--line);
+  }
+  @media(max-width:820px){
+    .ops-grid{grid-template-columns:1fr;padding:24px 20px}
+  }
+  .ops-item{padding:0}
+  .ops-num{
+    font-family:var(--serif);font-size:32px;font-weight:600;
+    color:var(--accent);line-height:1;margin-bottom:8px;
+  }
+  .ops-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+    color:var(--ink-mute);text-transform:uppercase;margin-bottom:6px;
+  }
+  .ops-desc{font-size:13px;color:var(--ink-soft);line-height:1.7}
+
+  /* ---------- Career ---------- */
+  .career-timeline{position:relative;max-width:920px;margin:0 auto;padding-left:32px}
+  .career-timeline::before{
+    content:"";position:absolute;left:8px;top:8px;bottom:8px;width:1px;
+    background:var(--line);
+  }
+  .career-item{position:relative;padding-bottom:56px}
+  .career-item:last-child{padding-bottom:0}
+  .career-item::before{
+    content:"";position:absolute;left:-32px;top:8px;width:17px;height:17px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--accent);
+  }
+  .career-item.current::before{background:var(--highlight);border-color:var(--highlight)}
+  .career-year{
+    font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+    color:var(--accent);margin-bottom:6px;
+  }
+  .career-role{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:4px}
+  .career-company{font-size:13px;color:var(--ink-mute);margin-bottom:12px}
+  .career-desc{font-size:14px;color:var(--ink-soft);line-height:1.85}
+
+  /* ---------- Skills ---------- */
+  .skills{background:var(--bg-alt)}
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  @media(max-width:820px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
+  .skill-cat{background:var(--card);border:1px solid var(--line);padding:28px 24px}
+  .skill-cat-title{
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    color:var(--ink-mute);margin-bottom:20px;padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .skill-list{display:flex;flex-direction:column;gap:12px}
+  .skill-item{font-size:14px;color:var(--ink);display:flex;align-items:center;gap:10px}
+  .skill-item::before{content:"—";color:var(--accent);font-family:var(--mono)}
+
+  /* ---------- Contact ---------- */
+  .contact-inner{max-width:820px;margin:0 auto;text-align:center}
+  .contact-inner .section-title{margin-bottom:24px}
+  .contact-inner .section-lede{margin:0 auto 48px}
+  .contact-email{
+    display:inline-block;font-family:var(--serif);
+    font-size:clamp(24px,4vw,40px);font-weight:600;
+    color:var(--accent);letter-spacing:.02em;
+    padding-bottom:8px;border-bottom:2px solid var(--accent);
+    margin-bottom:48px;transition:opacity .2s;
+  }
+  .contact-email:hover{opacity:.7}
+  .contact-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px}
+  @media(max-width:640px){.contact-methods{grid-template-columns:1fr}}
+  .method{padding:28px 20px;border:1px solid var(--line);background:var(--card)}
+  .method-label{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--ink-mute);margin-bottom:8px}
+  .method-val{font-size:15px;color:var(--ink);font-weight:500}
+
+  /* ---------- Footer ---------- */
+  footer{padding:40px;border-top:1px solid var(--line);background:var(--bg)}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .footer-copy{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.1em}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease}
+  .reveal.on{opacity:1;transform:translateY(0)}
+
+  /* ---------- v2 additions（既存の変数・部品のみで構成） ---------- */
+  .alt{background:var(--bg-alt)}
+  .section-title.tight{margin-bottom:48px}
+  .sub-lede{color:var(--ink-soft);font-size:15px;line-height:1.95;max-width:860px;margin:20px 0 32px}
+  .sub-lede + .sub-lede{margin-top:-12px}
+  .stack-gap{margin-top:56px}
+  .note-small{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink-mute);margin-top:16px}
+  .build{opacity:.55}
+
+  /* 考え方 */
+  .principles .svc-card{padding:36px 32px}
+
+  /* 全体構成図 */
+  .arch{padding:28px;font-size:13px}
+  .arch .tag{font-size:11px;white-space:nowrap}
+  .arch-row{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+  .arch-note{font-family:var(--sans);font-size:13px;color:var(--ink-soft);line-height:1.7}
+  .arch-tree{margin:10px 0 0 12px;padding-left:24px;border-left:1px solid var(--line)}
+  .arch-item{position:relative;padding:8px 0}
+  .arch-item::before{content:"";position:absolute;left:-24px;top:21px;width:18px;height:1px;background:var(--line)}
+  .arch-item > summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+  .arch-item > summary::-webkit-details-marker{display:none}
+  .arch-item > summary::after{content:"＋";color:var(--ink-mute);font-family:var(--mono);margin-left:4px}
+  .arch-item[open] > summary::after{content:"－"}
+  .arch-body{margin:8px 0 4px 2px;font-family:var(--sans);font-size:13px;color:var(--ink-soft);line-height:1.85;max-width:720px}
+  .arch-link{font-family:var(--sans);font-size:12px;color:var(--accent);border-bottom:1px solid var(--accent-soft)}
+  .arch-sup{margin-top:28px;max-width:820px}
+
+  /* 1件の流れ */
+  .flow-timeline{max-width:none;margin:0 0 48px}
+  .flow-demo{margin-top:8px}
+  .more{margin-top:48px;border:1px solid var(--line);background:var(--card)}
+  .more > summary{cursor:pointer;list-style:none;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .more > summary::-webkit-details-marker{display:none}
+  .more > summary::after{content:"＋";font-family:var(--mono);color:var(--accent)}
+  .more[open] > summary::after{content:"－"}
+  .more[open] > summary{border-bottom:1px solid var(--line)}
+  .more-title{font-family:var(--serif);font-size:18px;font-weight:600;flex:1}
+  .more > summary::after{order:2}
+  .more-sub{font-size:12px;color:var(--ink-mute);flex-basis:100%;order:3}
+  .more .ops-wrap{border-top:0}
+
+  /* 外と内から学ぶ */
+  .ops-grid.cols4{grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin:40px 0 8px}
+  @media(max-width:900px){.ops-grid.cols4{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.ops-grid.cols4{grid-template-columns:1fr;padding:24px 20px}}
+  .status-list{max-width:640px;margin-top:8px}
+  .status-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:14px;color:var(--ink)}
+  .status-row:last-child{border-bottom:none}
+  .learn-head{margin-top:0;margin-bottom:24px}
+  .learn-head.next{margin-top:64px}
+
+  /* 実績 */
+  .works .works-group{margin-top:56px}
+  .works .works-group.first{margin-top:0}
+  .works .modules-grid{margin:24px 0 0}
+  .works .works-grid{margin-top:32px}
+  .module-status{margin-bottom:10px}
+
+  /* 経歴（表→タイムライン） */
+  .career-role.plain{font-size:18px;line-height:1.6}
+  .career-desc.career-body{margin-bottom:6px}
+  .career-desc .lead{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent);margin-right:10px}
+
+  /* 読書 */
+  .books-grid{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:900px){.books-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.books-grid{grid-template-columns:1fr}}
+  .book-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .book-tags .tag{line-height:1.6;font-size:12px}
+
+  /* これから／面接で話せること */
+  .ask-list{display:flex;flex-direction:column;gap:12px;margin:16px 0 28px}
+  .ask-list .skill-item{align-items:flex-start;font-size:15px;line-height:1.8;color:var(--ink-soft)}
+  .ask-list .skill-item::before{line-height:1.8}
+  .ask-head{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--ink-mute);margin-top:32px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .talk-title span{display:block;white-space:nowrap}
+  .talk-title{font-size:clamp(22px,6.4vw,44px)}
+  .talk-grid{margin-top:16px;max-width:820px}
+  .talk-foot{padding-left:18px;border-left:3px solid var(--line)}
+
+
+  /* 2026-11-26 見やすさ改善：作品画像をカラーで表示、実績を3列、説明は3行（押すと全文） */
+  .work-visual img{filter:none!important}
+  .work-visual::before,.work-visual::after{display:none!important}
+  .works-grid{grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:1100px){.works-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:820px){.works-grid{grid-template-columns:1fr}}
+  .work-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+  .work-desc.open{display:block;-webkit-line-clamp:unset}
+  .works-index{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px}
+  .works-index a{font-size:13px;padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink,inherit);text-decoration:none;border-radius:999px}
+  .works-index a:hover{border-color:var(--accent)}
+  .works-group{scroll-margin-top:90px}
+.trust-strip{margin-top:28px;padding:22px 24px;border:1px solid var(--line,#d9d6cc);background:#fff}
+.trust-lead{margin:0 0 12px;font-size:15px;line-height:1.8}
+.trust-links{display:flex;flex-wrap:wrap;gap:8px}
+.trust-links a{font-size:13px;padding:7px 14px;border:1px solid var(--line,#d9d6cc);border-radius:999px;text-decoration:none;color:inherit}
+.trust-links a:first-child{background:#0f1a34;color:#fff;border-color:#0f1a34}
+.trust-links a:hover{border-color:#947044}
+
+  #works [hidden]{display:none!important}
+  .works-index{scroll-margin-top:110px}
+  @media(max-width:1180px){
+    .nav{flex-wrap:wrap;row-gap:8px}
+    .nav .nav-links{display:flex!important;order:3;width:100%;overflow-x:auto;gap:20px;padding:2px 0 4px;white-space:nowrap;scrollbar-width:none;font-size:12px}
+    .nav .nav-links::-webkit-scrollbar{display:none}
+    html{scroll-padding-top:120px}
+  }
+  @media(max-width:820px){section:first-of-type{padding-top:140px}}
+  @media(max-width:520px){.nav{padding:12px 16px}.nav .brand-sub{display:none}.nav .nav-cta{padding:8px 12px;font-size:12px}}
+  .nav-links a.nav-on{color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
+  .works-index button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink,inherit);border-radius:999px;cursor:pointer}
+  .works-index button:hover{border-color:var(--accent)}
+  .works-index button[aria-pressed="true"]{background:var(--ink,#0f1a34);color:#fff;border-color:var(--ink,#0f1a34)}
+</style>
+</head>
+<body data-variant="classic" style="font-size: 15px">
+
+<!-- ========== NAV ========== -->
+<nav class="nav" id="nav">
+  <a href="../" class="brand">
+    <div class="brand-mark">TK</div>
+    <div>
+      <div class="brand-name">TK Office</div>
+      <div class="brand-sub">Naoto Takemura · Sapporo</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="../#thinking">Thinking</a>
+    <a href="../#architecture">Architecture</a>
+    <a href="../works/">Works</a>
+    <a href="../process/">Process</a>
+    <a href="../requirements/" aria-current="page" class="nav-on">Requirements</a>
+    <a href="../pipeline/">Pipeline</a>
+    <a href="../profile/">Profile</a>
+    <a href="../qa/">Q&amp;A</a>
+    <a href="../#talk">Talk</a>
+  </div>
+  <a href="../#contact" class="nav-cta">Contact →</a>
+</nav>
+
+<!-- ========== 要件定義の進め方 (#requirements) ========== -->
+<section id="requirements">
+  <style>
+    .req-map{list-style:none;margin:0 0 40px;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));counter-reset:req}
+    .req-map li{border:1px solid var(--line);background:var(--card);padding:16px 18px;counter-increment:req}
+    .req-map li::before{content:"STEP " counter(req);display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-mute)}
+    .req-map b{display:block;font-family:var(--serif);font-size:17px;margin:2px 0 4px}
+    .req-map span{display:block;font-size:13px;color:var(--ink-soft);line-height:1.75}
+    .req-map em{display:block;font-style:normal;font-size:12px;color:var(--accent);margin-top:8px;line-height:1.7}
+    .req-jump{display:flex;flex-wrap:wrap;gap:8px}
+    .req-jump a{font-size:13px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);background:var(--card)}
+    .req-jump a:hover{border-color:var(--accent);color:var(--accent)}
+    .req-anchor{scroll-margin-top:120px}
+    .req-q{list-style:none;margin:12px 0 0;padding:0}
+    .req-q li{font-size:13px;line-height:1.75;color:var(--ink);border-left:2px solid var(--highlight);padding:2px 0 2px 10px;margin-top:8px}
+    .req-list{margin:0 0 20px;padding-left:1.3em;font-size:14px;color:var(--ink-soft);line-height:2}
+    .req-list b{color:var(--ink);font-weight:600}
+    .req-table{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 24px;background:var(--card)}
+    .req-table th,.req-table td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top;line-height:1.75}
+    .req-table th{font-weight:600;white-space:nowrap}
+    .req-table td{color:var(--ink-soft)}
+    @media(max-width:640px){.req-table th{white-space:normal;width:7em}.req-table th,.req-table td{padding:10px}}
+    .req-quote{margin:0 0 24px;padding:18px 22px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);font-size:14px;line-height:2;color:var(--ink)}
+    .req-quote cite{display:block;font-style:normal;font-size:12px;color:var(--ink-mute);margin-top:8px}
+    .req-shot{margin:8px 0 0;max-width:420px}
+    .req-shot img{display:block;width:100%;height:auto;border:1px solid var(--line)}
+    .req-shot figcaption{font-size:12px;color:var(--ink-mute);line-height:1.7;margin-top:8px}
+  </style>
+  <div class="wrap">
+    <div class="eyebrow">Requirements</div>
+    <h2 class="section-title tight">要件定義の進め方</h2>
+    <p class="section-lede">
+      困りごとを聞き取り、何を作るか、何を作らないかを文章にして、合意してから作ります。足りなければ聞き直し、変わったら合意し直します。
+    </p>
+    <ol class="req-map">
+      <li><b>聞き取る</b><span>ヒアリングAIが9つの領域を会話で聞きます。</span><em>答えにくそうなら聞き方を変え、2回で決まらなければ「未確認」にします。</em></li>
+      <li><b>まとめを確認する</b><span>会話の最後に、お客様が内容を直してから送ります。</span><em>直したいところがあれば反映して、もう一度確認します。</em></li>
+      <li><b>情報を精査する</b><span>別のAIが、作るものを決められるだけの情報があるかを調べます。</span><em>足りなければ、追加の質問を作って聞き直します。</em></li>
+      <li><b>仕様に分ける</b><span>機能ごとの指示書にして、分からないことを一覧にします。</span><em>起動前に答えが要る項目が残っていると、実装は始まりません。</em></li>
+      <li><b>仕様確認書で合意する</b><span>作るものと選択肢を文書にして確認していただきます。</span><em>変更の希望があれば、作り直して改訂版を送ります。</em></li>
+      <li><b>納品後の修正を受ける</b><span>修正依頼専用のAIが状況を聞き取ります。</span><em>直したあとは、最初と同じ検査をもう一度通します。</em></li>
+    </ol>
+    <nav class="req-jump" aria-label="このページの目次">
+      <a href="#req-hearing">聞き取る内容と実際の質問</a>
+      <a href="#req-spec">仕様の決め方</a>
+      <a href="#req-again">聞き直す流れ</a>
+      <a href="#req-fix">「直してほしい」と言われたら</a>
+      <a href="#req-purpose">目的そのものを整理するアプリ</a>
+    </nav>
+  </div>
+</section>
+
+<section class="alt req-anchor" id="req-hearing">
+  <div class="wrap">
+    <div class="eyebrow">Hearing</div>
+    <h2 class="section-title tight">聞き取る内容と、実際の質問</h2>
+    <p class="featured-desc" style="max-width:none">自作の「DX導入ヒアリングAI」が、ITに詳しくない方にも分かる言葉で聞きます。一度に聞くのは多くても3つまでです。</p>
+
+    <div class="works-group learn-head">
+      <span class="works-group-num">01</span>
+      <span class="works-group-title">会話の流れ</span>
+    </div>
+    <ol class="req-list">
+      <li><b>話し方を選んでいただく</b>：箇条書きでさくさく、普通の会話、くだけた会話の3つから選べます。</li>
+      <li><b>お仕事を聞き、事例を見せる</b>：その業種でよくある自動化や見える化の例を示して、「それ、うちもやっている」を引き出します。</li>
+      <li><b>9つの領域を聞く</b>：下の内容を、会話の流れに合わせて聞きます。途中で一度まとめを返し、長くなるときは何回かに分けられます。</li>
+      <li><b>画像も受け取る</b>：今のExcelの画面や手書きの発注書を添付できます。AIが読み取った内容は、お客様が確認するまで確定にしません。</li>
+      <li><b>まとめを確認して送る</b>：直したいところを反映し、確認をいただいてから送ります。</li>
+    </ol>
+
+    <div class="works-group learn-head next">
+      <span class="works-group-num">02</span>
+      <span class="works-group-title">9つの領域と質問の例</span>
+    </div>
+    <div class="modules-grid">
+      <div class="module-item">
+        <div class="module-path">領域 1</div>
+        <div class="module-name">困りごと</div>
+        <div class="module-desc">何に困っているか、いつから、どのくらいの頻度か。時間・手間・ミス・売上の機会の損失。</div>
+        <ul class="req-q"><li>「これって、そもそも何のためにやっていますか？」</li><li>「この作業自体をなくすと困ることってありますか？」</li></ul>
+      </div>
+      <div class="module-item">
+        <div class="module-path">領域 2</div>
+        <div class="module-name">今の業務の流れ</div>
+        <div class="module-desc">誰が、何を受け取り、何を使い、どの順で作業し、誰に渡すか。手作業、二重入力、特定の人しか分からない作業。</div>
+        <ul class="req-q"><li>「最初に何を受け取って、最後に何ができたら完了ですか？」</li><li>「ちなみに、この流れはいつも同じですか？それとも、担当者や部署、取引先、季節や量などによって、少しやり方が変わることはありますか？」</li></ul>
+      </div>
+      <div class="module-item">
+        <div class="module-path">領域 3</div>
+        <div class="module-name">理想の状態と成功の目安</div>
+        <div class="module-desc">どうなれば成功と言えるか。答えにくいときは、今の数字を基準にします。</div>
+        <ul class="req-q"><li>「今2時間かかっているなら、どのくらいになったら嬉しいですか？」</li></ul>
+      </div>
+      <div class="module-item">
+        <div class="module-path">領域 4</div>
+        <div class="module-name">関係者</div>
+        <div class="module-desc">決める人、使う人、反対や確認が必要になりそうな人。人によって見せる画面や操作を分けるか。</div>
+        <ul class="req-q"><li>「今回の件は、〇〇様ご自身で最終的に決めていただく形になりますか？」</li><li>「使う人によって見られる画面や操作できる範囲を変えたいですか？」</li></ul>
+      </div>
+      <div class="module-item">
+        <div class="module-path">領域 5</div>
+        <div class="module-name">予算と時期</div>
+        <div class="module-desc">予算と希望の時期は別々に聞きます。開発費とは別に、毎月の維持費の感覚も確かめます。</div>
+        <ul class="req-q"><li>「ご予算のイメージはありますか？」</li><li>「毎月かかる維持費（サーバー代・AIの利用料等）はどのくらいまでなら想定内ですか？」</li></ul>
+      </div>
+      <div class="module-item">
+        <div class="module-path">領域 6</div>
+        <div class="module-name">今の環境の引き継ぎ</div>
+        <div class="module-desc">使っているシステムとの連携、Excelや紙の記録の移行。希望があれば、記録・通信の失敗・データの矛盾・監視・速さ・安全対策・AIの誤動作の対策も聞きます。</div>
+        <ul class="req-q"><li>「そのシステムは他のサービスと連携できる機能（API等）がある感じですか？それとも社内だけで閉じているシステムですか？」</li><li>「今、その業務に関する記録やデータは既にありますか？もしあれば、新しい仕組みにそのまま持っていきたいですか？」</li></ul>
+      </div>
+      <div class="module-item">
+        <div class="module-path">領域 7</div>
+        <div class="module-name">使い勝手と渡し方</div>
+        <div class="module-desc">使いたい形、見た目の参考、納品後の管理と保守を誰がするか（私が管理する、保守だけ私が受ける、丸ごと渡す、の3つ）。</div>
+        <ul class="req-q"><li>「パソコンで開いて使いたいですか？スマホで見たいですか？それともLINEやExcelなど、今使っているものの中で完結するのが理想ですか？」</li><li>「画面の雰囲気について、何かイメージはありますか？」</li></ul>
+      </div>
+      <div class="module-item">
+        <div class="module-path">領域 8</div>
+        <div class="module-name">優先順位</div>
+        <div class="module-desc">絶対に必要なもの、できれば欲しいもの、今回はいらないものに分けます。「今回はいらない」ものは作りません。</div>
+        <ul class="req-q"><li>「いろいろ検討してきましたが、最終的にはどうしたいですか？」</li></ul>
+      </div>
+      <div class="module-item">
+        <div class="module-path">領域 9</div>
+        <div class="module-name">今後の関わり方</div>
+        <div class="module-desc">完成品をそのまま使うのか、ご自身でもAIの道具を使えるようになりたいのか。</div>
+        <ul class="req-q"><li>「竹村が作ったものをそのまま使っていく形でよいですか？それとも、将来的にはご自身やスタッフの方が、AIツールを実際に使いこなせるようになっていきたい、というご希望もありますか？」</li></ul>
+      </div>
+    </div>
+    <p class="featured-desc" style="max-width:none;margin-top:24px"><strong>社内の資料を探したい、社内向けのAIを使いたいという相談では、質問が増えます。</strong>資料の保存場所、古い版の扱い、見せてはいけない資料、個人情報の有無、外部のクラウドに出してよいか、インターネットから切り離す必要があるか、実際の資料をどこまで見せられるか、などです。資料の中身や個人情報は入力しないよう、先にお願いします。</p>
+
+    <div class="works-group learn-head next">
+      <span class="works-group-num">03</span>
+      <span class="works-group-title">聞くときに守ること</span>
+    </div>
+    <div class="modules-grid">
+      <div class="module-item">
+        <div class="module-name">感覚と事実を分ける</div>
+        <div class="module-desc">「それは実際に数字やデータで確認されているお話ですか？それとも、肌感覚としてそう感じていらっしゃる、という感じですか？」と、問い詰めない言い方で確かめます。</div>
+      </div>
+      <div class="module-item">
+        <div class="module-name">分からないことは埋めない</div>
+        <div class="module-desc">2回聞いても決まらないことは「未確認」。連携先の仕様のようにお客様が知らないことは、私が実物を調べる項目にします。</div>
+      </div>
+      <div class="module-item">
+        <div class="module-name">約束しない</div>
+        <div class="module-desc">金額、納期、法律への適合、外部のシステムと連携できるかは、AIがその場で約束せず、私が確認して答えます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="req-anchor" id="req-spec">
+  <div class="wrap">
+    <div class="eyebrow">Specification</div>
+    <h2 class="section-title tight">仕様の決め方</h2>
+
+    <div class="works-group learn-head">
+      <span class="works-group-num">01</span>
+      <span class="works-group-title">言われたものを、そのまま作る前提にしない</span>
+    </div>
+    <ol class="req-list">
+      <li><b>手段より目的</b>：「Excelから別のシステムへの入力を自動にしたい」という相談でも、目的が二重入力をなくすことなら、転記そのものをなくして直接つなぐ案を出します。</li>
+      <li><b>考える順番</b>：なくす、簡単にする、自動にする、人が残る部分を決める、新しい価値を足す。</li>
+      <li><b>追加の提案は理由つきで1つから3つ</b>：押し売りはしません。作らない方がよいと判断したら、理由を添えて一度お伝えします。</li>
+      <li><b>決めるのはお客様</b>：残したいと言われたものは、理由を一度だけ伺って尊重します。AIの推奨と、お客様の希望と、その理由は分けて記録します。</li>
+    </ol>
+
+    <div class="works-group learn-head next">
+      <span class="works-group-num">02</span>
+      <span class="works-group-title">仕様のたたき台と案件カルテ</span>
+    </div>
+    <table class="req-table">
+      <tbody>
+        <tr><th>仕様のたたき台</th><td>何を入力するか、どう処理するか、何が出てくるか、誰がどう操作するか、機能どうしのつながり、連携の候補、見た目の参考。</td></tr>
+        <tr><th>経緯</th><td>最初の要望、最後に決めた内容、変わった理由。AIの提案と、それへの反応。</td></tr>
+        <tr><th>分析</th><td>今の業務の流れ、原因の見立て（体感かデータかを添える）、削る・簡単にする・自動にする・人が残る部分。</td></tr>
+        <tr><th>残った課題</th><td>調べること、私が判断すること、次に確認すること。</td></tr>
+      </tbody>
+    </table>
+
+    <div class="works-group learn-head next">
+      <span class="works-group-num">03</span>
+      <span class="works-group-title">指示書に分けるときに決めること</span>
+    </div>
+    <p class="featured-desc" style="max-width:none">精査を通った案件は、AIが担当ごとの指示書に分けます。指示書には「何を入力し、どう処理し、何を出力するか」まで書き、「今回はいらない」機能は入れません。あわせて「結局この案件は何を解決するのか」を短い文章に書き直し、私が聞き取った内容とずれていないかを確かめます。</p>
+    <blockquote class="req-quote">
+      引っ越しに伴う手続き25項目を、出す先・期限・必要なもの・出典・確認日つきで一覧にする自分用のWebアプリ。15問に答えると「該当／任意・検討／回答待ち／判定不能／該当しない」に分け、引っ越し日から期限の目安日を出す。<strong>自治体ごとの最新ルールの断定、書類の代行、電子申請、手数料の計算はしない。</strong>公式の本文を読めていない項目は、隠さずにそう表示する。
+      <cite>自分で使うために作った「引っ越しの手続き」の例（分解時の文章を要約）</cite>
+    </blockquote>
+    <table class="req-table">
+      <tbody>
+        <tr><th>起動前に確認</th><td>金額、法律、個人情報、動かす場所、パスワードなどを誰が管理するか。答えが入るまで、実装は起動できません。</td></tr>
+        <tr><th>作りながら確認</th><td>部品の利用条件や動作など、担当のAIが実際に動かして確かめ、結果を記録します。</td></tr>
+        <tr><th>後で決める</th><td>仮の扱いを書いて進め、誰が後で決めるかを残します。</td></tr>
+      </tbody>
+    </table>
+
+    <div class="works-group learn-head next">
+      <span class="works-group-num">04</span>
+      <span class="works-group-title">仕様確認書</span>
+    </div>
+    <table class="req-table">
+      <tbody>
+        <tr><th>作るもの</th><td>専門用語を避けた説明と、機能の一覧（何を入れると何が出るか）。</td></tr>
+        <tr><th>選んでいただくこと</th><td>監査の記録や同時操作への対策などの追加候補を、推薦の理由つきで示し、「含める／含めない」を選んでいただきます。</td></tr>
+        <tr><th>答えていただくこと</th><td>AIだけでは判断できない点を、質問として載せます。</td></tr>
+        <tr><th>目安</th><td>納期と予算の目安。PDFにまとめて送ります。</td></tr>
+        <tr><th>承認の条件</th><td>進めてよいという返事と、すべての選択と回答がそろうこと。そろうまで実装は始めません。</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="alt req-anchor" id="req-again">
+  <div class="wrap">
+    <div class="eyebrow">Follow-up</div>
+    <h2 class="section-title tight">聞き直すときの流れ</h2>
+
+    <div class="works-group learn-head">
+      <span class="works-group-num">01</span>
+      <span class="works-group-title">会話の中で</span>
+    </div>
+    <p class="featured-desc" style="max-width:none">答えにくそうなときは、業種の例を出して言い換えます。送信の直前には、流れが分かれないかと、まだ聞けていない項目を確かめます。同じことを2回聞いて決まらなければ、それ以上は聞かず「未確認」にします。</p>
+
+    <div class="works-group learn-head next">
+      <span class="works-group-num">02</span>
+      <span class="works-group-title">精査で情報が足りないとき</span>
+    </div>
+    <p class="featured-desc" style="max-width:none">別のAIが次の8つを確かめます。<strong>作るものの入力と出力、今の業務の手順、困りごとの背景、今回必要なものと不要なもの、予算、決める人、規模、使う人の役割。</strong>1つでも足りなければ分解に進まず、足りない理由と追加の質問を作って「要追加ヒアリング」にします。私がその質問をお客様に伺い、答えを反映してから精査し直します。推測では埋めません。</p>
+    <ul class="req-q" style="margin-bottom:8px">
+      <li>手順が分からないとき：「直近でSWOTや3Cの図解を作られた際の流れを、1件だけ具体的に教えていただけますか。たとえば、どんな分析結果を元に、最初に何をして、どのツールで、どんな順番で仕上げたか、…」</li>
+      <li>出来事しか書かれていないとき：「LINEで意見を集めて結論を決められた直近の場面について、教えていただけますか。まず、どなたがどんな問いかけをLINEに投げましたか。…」</li>
+      <li>規模が分からないとき：「1回のアンケートで、回答してくださる方はおよそ何名を想定されていますか。…」</li>
+    </ul>
+    <p class="featured-desc" style="font-size:12px;color:var(--ink-mute)">自分で使うツールの案件で、精査担当のAIが実際に作った質問です（一部を短くしています）。</p>
+
+    <div class="works-group learn-head next">
+      <span class="works-group-num">03</span>
+      <span class="works-group-title">仕様確認書への返事によって</span>
+    </div>
+    <table class="req-table">
+      <tbody>
+        <tr><th>承認</th><td>選択と回答を指示書に反映して、実装に進みます。</td></tr>
+        <tr><th>変更の希望</th><td>内容を記録し、指示書を組み直して、改訂番号を上げた確認書を送ります。変更が3回重なったら、私が引き取って整理します。</td></tr>
+        <tr><th>どちらとも取れる</th><td>承認とはみなしません。質問だけの返信や、答えが抜けた返信も含め、私が読んで確かめます。</td></tr>
+        <tr><th>機能の追加が混ざる</th><td>承認の言葉があっても「変更の希望」として扱います。</td></tr>
+      </tbody>
+    </table>
+
+    <div class="works-group learn-head next">
+      <span class="works-group-num">04</span>
+      <span class="works-group-title">作り始めたあとに仕様が変わるとき</span>
+    </div>
+    <p class="featured-desc" style="max-width:none">指示書を改訂し、<strong>読んで確かめた版そのもの</strong>を照合して承認し直します。前の承認は消さずに残し、いつ、何の理由で変えたかを記録します。自分で使う「Python学習ツール」では、章を足したり画面の説明を変えたりするたびにこの手順を踏み、改訂番号は11まで進みました。作っている途中でAIでは決められない点が出たときは、私が整理してお客様に確認し、答えを記録してから進めます。</p>
+  </div>
+</section>
+
+<section class="req-anchor" id="req-fix">
+  <div class="wrap">
+    <div class="eyebrow">Support</div>
+    <h2 class="section-title tight">「直してほしい」と言われたら</h2>
+    <p class="featured-desc" style="max-width:none">納品したあとは、ヒアリングと同じアプリの「修正依頼」で受け付けます。</p>
+    <div class="career-timeline flow-timeline">
+      <div class="career-item">
+        <div class="career-year">受付</div>
+        <div class="career-role">どの件かを確かめて、症状を聞く</div>
+        <div class="career-desc">何が起きているか、いつから、毎回かたまにか、どう操作したときか、本来の動きと実際の動き、別のやり方でしのげているか、仕事への影響、エラーの表示や画面の画像、使っている端末とブラウザを聞きます。一度に聞くのは2つまでです。</div>
+      </div>
+      <div class="career-item">
+        <div class="career-year">守ること</div>
+        <div class="career-role">決めつけない、約束しない</div>
+        <div class="career-desc">原因を断定せず、直る時期もその場では約束しません。お客様の操作を責める聞き方をしません。お客様の推測は推測として、AIの見立ては事実と分けて記録します。貼られた内容にパスワードらしい文字があれば伏せます。</div>
+      </div>
+      <div class="career-item">
+        <div class="career-year">急ぎの判断</div>
+        <div class="career-role">業務停止と情報漏れの疑いは別扱い</div>
+        <div class="career-desc">業務が完全に止まっているときは、どの件か、何が起きているか、いつからか、に絞って緊急で記録します。他の人の情報が見えるといった疑いは、印を付けて記録し、私が直接対応します。</div>
+      </div>
+      <div class="career-item">
+        <div class="career-year">切り分け</div>
+        <div class="career-role">直す場所を決める</div>
+        <div class="career-desc">受け付けた内容は一覧に記録し、まとめをお客様にも確認していただきます（業務停止の緊急時は省きます）。私が確認して直す担当を決めます。新しい機能の希望は不具合と分けて、新しい相談として伺います。</div>
+      </div>
+      <div class="career-item current">
+        <div class="career-year">修正</div>
+        <div class="career-role">最初と同じ検査をもう一度通す</div>
+        <div class="career-desc">直したあとは、別のAIがテストを自分で実行し直し、全体を起動して通しで確かめます。決めたことは記録に残し、手直しで前の判断が崩れないようにします。 <a class="arch-link" href="../qa/#q37">手直しについての質問と回答 →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt req-anchor" id="req-purpose">
+  <div class="wrap">
+    <div class="eyebrow">Purpose</div>
+    <h2 class="section-title tight">目的そのものを整理するアプリ</h2>
+    <p class="featured-desc" style="max-width:none">仕様の前に「そもそも何を解決したいのか」が決まっていない場合のために、別のヒアリングアプリも作りました（公開前）。システムの話はせず、事業の目的と、事実と仮説の整理を手伝います。</p>
+    <table class="req-table">
+      <tbody>
+        <tr><th>浅い版</th><td>業種と立場の2問のあと、本題10問。1問につき深掘りは1回まで。相談のきっかけを作るためのものです。<ul class="req-q"><li>「そもそも、この取り組みの本当の目的（ノーススター）は何ですか？」</li><li>「前提や仕組みを変えれば、そもそもこの行動や作業自体が不要にならないか？」</li></ul></td></tr>
+        <tr><th>深い版</th><td>16問。1問につき深掘りは5回まで。招待コードを持つ方だけが使えます。<ul class="req-q"><li>「手元にある情報は「客観的な事実（Fact）」か、それとも誰かの「意見・感想（Opinion）」か？」</li><li>「上手くいかない原因は「人の能力や姿勢」ではなく、「仕組みそのものの不備」ではないか？」</li></ul></td></tr>
+        <tr><th>AIの役割</th><td>質問の文は固定です。AIは答えを読んで、深掘りする、言い換えて聞き直す、次へ進む、のどれかを選びます。回答の代筆、診断の断定、営業への誘導はさせず、外れた文は決まった聞き返しに差し替えます。</td></tr>
+        <tr><th>認識合わせ</th><td>やり取りがあった質問は、AIが本人の言葉だけでまとめ直し、本人が「この内容で確定する」か「自分の言葉に直して確定する」を選びます。送るのは、確定した回答です。</td></tr>
+        <tr><th>費用の歯止め</th><td>1回のヒアリングで使うAIの利用料に上限を設けています。</td></tr>
+      </tbody>
+    </table>
+    <figure class="req-shot">
+      <img src="../assets/img/req-confirm.jpg" alt="目的を整理するアプリの確認画面。AIのまとめの下に、この内容で確定する、自分の言葉に直して確定する、の2つのボタンがある" loading="lazy">
+      <figcaption>確認の画面（浅い版）。回答は説明用の例で、AIの返答は試験用の固定の文です。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-inner">
+    <div class="brand">
+      <div class="brand-mark">TK</div>
+      <div>
+        <div class="brand-name">TK Office</div>
+        <div class="brand-sub">Naoto Takemura</div>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 TK Office · Sapporo, Hokkaido</div>
+  </div>
+</footer>
+
+<!-- Tweaks Panel -->
+<div id="tweaks-root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="../tweaks_panel.jsx"></script>
+<script>
+  // Nav scroll effect (plain JS — runs immediately, not async via Babel)
+  (function(){
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  })();
+
+  // Reveal on scroll — progressive enhancement.
+  // Initial-viewport elements are marked .on immediately, so content is
+  // always visible even if JS/observer is slow.
+  // Also: work cards / featured / groups are never hidden — they're the
+  // main content, not decoration. Only section-level intros animate.
+  (function(){
+    const NEVER_HIDE = 'work-card featured-work works-group'.split(' ');
+    const els = document.querySelectorAll('section > .wrap > *, .work-card, .svc-card, .career-item, .skill-cat');
+    const vh = window.innerHeight || 800;
+    els.forEach(el => {
+      // Skip elements that must always be visible (main content cards).
+      if (NEVER_HIDE.some(cls => el.classList.contains(cls))) return;
+      el.classList.add('reveal');
+      const rect = el.getBoundingClientRect();
+      // Anything within (or above) the first viewport is shown immediately.
+      if (rect.top < vh * 0.95) el.classList.add('on');
+    });
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+      document.querySelectorAll('.reveal:not(.on)').forEach(el => io.observe(el));
+    } else {
+      // No IO support → just show everything.
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('on'));
+    }
+    // Bulletproof fallback: after 1.5s, force any still-hidden reveal into .on
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.on)').forEach(el => el.classList.add('on'));
+    }, 1500);
+  })();
+</script>
+
+<script type="text/babel">
+
+  // ---- Tweaks ----
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "variant": "classic",
+  "accent": "#1a3a6b"
+}/*EDITMODE-END*/;
+
+  function TweaksApp() {
+    if (!window.TweaksPanel || !window.useTweaks) return null;
+    const { TweaksPanel, TweakSection, TweakRadio, TweakColor, useTweaks } = window;
+    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+    React.useEffect(() => {
+      document.body.setAttribute('data-variant', t.variant);
+      // accentは classic のときだけ上書き
+      if (t.variant === 'classic') {
+        document.documentElement.style.setProperty('--accent', t.accent);
+        // アクセントに応じてsoftを再計算
+        document.documentElement.style.setProperty('--accent-soft',
+          t.accent === '#1a3a6b' ? '#e7ecf4' :
+          t.accent === '#2d4a3e' ? '#e6ede9' :
+          t.accent === '#5a3a1a' ? '#f2ebe0' : '#e7ecf4'
+        );
+      } else {
+        document.documentElement.style.removeProperty('--accent');
+        document.documentElement.style.removeProperty('--accent-soft');
+      }
+    }, [t.variant, t.accent]);
+
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="デザインバリエーション">
+          <TweakRadio
+            label="スタイル"
+            value={t.variant}
+            options={[
+              { value: 'classic', label: 'A案 · クラシック' },
+              { value: 'modern',  label: 'B案 · モダン' },
+            ]}
+            onChange={v => setTweak('variant', v)}
+          />
+        </TweakSection>
+        {t.variant === 'classic' && (
+          <TweakSection title="アクセントカラー（A案のみ）">
+            <TweakColor
+              label="アクセント"
+              value={t.accent}
+              options={['#1a3a6b','#2d4a3e','#5a3a1a','#3d3d5c']}
+              onChange={v => setTweak('accent', v)}
+            />
+          </TweakSection>
+        )}
+      </TweaksPanel>
+    );
+  }
+
+  // TweaksPanelLib グローバル化 & マウント
+  // Babel が非同期変換するため load イベントは既に発火済みの可能性がある。
+  // readyState を見て即マウントする。
+  // Babel は全 <script type="text/babel"> を順番に変換・実行するので、
+  // tweaks_panel.jsx の Object.assign(window, ...) はこのスクリプト実行時には完了済み。
+  // リトライを介してマウントする。
+  function mountTweaks(retries) {
+    retries = retries == null ? 20 : retries;
+    const el = document.getElementById('tweaks-root');
+    if (!el) return;
+    if (!window.TweaksPanel || !window.useTweaks) {
+      if (retries > 0) return setTimeout(() => mountTweaks(retries - 1), 100);
+      return;
+    }
+    // 重複マウント防止：既に createRoot 済みなら再利用。
+    if (!window.__tweaksRoot) {
+      window.__tweaksRoot = ReactDOM.createRoot(el);
+    }
+    window.__tweaksRoot.render(<TweaksApp />);
+  }
+  mountTweaks();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
+<script>
+// 2026-11-26 実績：グループ一覧（各グループへ移動）と、説明の全文表示
+(function(){
+  var w=document.getElementById('works'); if(!w) return;
+  var gs=w.querySelectorAll('.works-group'); if(!gs.length) return;
+  var nav=document.createElement('nav'); nav.className='works-index'; nav.setAttribute('aria-label','実績のグループ');
+  gs.forEach(function(g,i){
+    if(!g.id) g.id='works-g'+(i+1);
+    var t=g.querySelector('.works-group-title'), c=g.querySelector('.works-group-count');
+    var cards=0, n=g.nextElementSibling;
+    while(n && !n.classList.contains('works-group')){ cards+=n.querySelectorAll('.work-card').length; n=n.nextElementSibling; }
+    var a=document.createElement('a'); a.href='#'+g.id;
+    var tt=t?t.textContent.trim():'グループ'; a.textContent=tt+(cards&&!/\d+件/.test(tt)?'（'+cards+'件）':'');
+    nav.appendChild(a);
+  });
+  gs[0].parentNode.insertBefore(nav,gs[0]);
+  w.addEventListener('click',function(e){var d=e.target.closest('.work-desc'); if(d) d.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>
