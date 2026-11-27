@@ -716,6 +716,9 @@
 .trust-links a:first-child{background:#0f1a34;color:#fff;border-color:#0f1a34}
 .trust-links a:hover{border-color:#947044}
 
+  .req-link-row{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
+  .req-link{display:inline-block;font-size:13px;line-height:1.6;padding:8px 16px;border:1px solid var(--accent);color:var(--accent);background:var(--card);text-decoration:none;border-radius:999px}
+  .req-link:hover{background:var(--accent);color:#fff}
   #works [hidden]{display:none!important}
   .works-index{scroll-margin-top:110px}
   @media(max-width:1180px){
@@ -777,6 +780,7 @@
         <div class="module-name">レシート仕訳・帳簿入力の自動化（お客様の事務部門からの依頼）</div>
         <div class="module-status"><span class="tag">進行中</span></div>
         <div class="module-desc">ITに詳しくないお客様向けに、先にモックを見せ、答えやすい質問で要望を引き出しながら進めている</div>
+        <p class="req-link-row"><a class="req-link" href="../requirements/">要件定義の進め方 →</a></p>
       </div>
     </div>
 
@@ -1763,6 +1767,7 @@
           <div class="work-result">
             <b>実証：要件ヒアリングの型化とチャット形式での自動収集を実運用</b>
           </div>
+          <p class="req-link-row"><a class="req-link" href="../requirements/#req-hearing">聞き取る内容と実際の質問 →</a></p>
           <div class="work-stack">
             <span class="tag">Node.js / Express</span>
             <span class="tag">OpenAI API（Function Calling）</span>
