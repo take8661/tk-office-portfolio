@@ -215,7 +215,7 @@
   <div class="qa-links">
     <a href="../qa/#pipeline"><b>開発の仕組み（5問）</b>仕組み、AIの報告を信用しない理由、言語を選ばない理由、早さと費用、どこまで広げられるか</a>
     <a href="../qa/#tech"><b>技術・安全・運用（7問）</b>コードレビューとテスト、言語の選び方、使い方、データベース、セキュリティ、法律や制度、手直し</a>
-    <a href="../qa/#project"><b>案件の進め方（3問）</b>どんなものを構築するか、ヒアリングの方法、お客様とのすり合わせ</a>
+    <a href="../qa/#project"><b>案件の進め方（4問）</b>どんなものを構築するか、ヒアリングの方法、お客様とのすり合わせ、要件定義の進め方</a>
   </div>
 </div></section>
 
@@ -278,7 +278,7 @@ function R(){ret++;document.getElementById('al-ret').textContent=ret}
 function T(s){clockEl.textContent=s}
 // 実際の記録（コストは各担当の実行ログの値）
 var S=[
-[0,function(){T('11/20');say('hear','今は誰が、何を、どうしていますか？');start('hear',1400);log('ヒアリングAI','8つの領域を対話で聞き取り、案件カルテを作成')}],
+[0,function(){T('11/20');say('hear','今は誰が、何を、どうしていますか？');start('hear',1400);log('ヒアリングAI','9つの領域を対話で聞き取り、案件カルテを作成')}],
 [1600,function(){done('hear','ok');send('hear','seisa');start('seisa',900)}],
 [2600,function(){done('seisa','ok');say('seisa','業務の手順が書けている。次へ','ok');log('精査','手順が「誰が・何を・どうする」で書けているかを確認：OK','ok');send('seisa','chousa');start('chousa',1100)}],
 [3900,function(){done('chousa','ok');log('調査','31項目の手続きの出典を調査');send('chousa','bunkai');start('bunkai',900)}],
